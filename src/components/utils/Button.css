@@ -11,7 +11,9 @@
     border-radius: 2px;
     border: none;
     outline:none;
-    cursor:pointer
+    cursor:pointer;
+    height: 40px;
+    
 }
 
 .btn--primary{

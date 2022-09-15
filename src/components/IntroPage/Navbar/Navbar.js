@@ -5,14 +5,15 @@ import './Navbar.css';
 
 function Navbar(){
     const [click, setClick] = useState(false);
-    const [button, setButton] = useState(true);
+    
+    const handleClick= () => setClick(!click);
 
     return (
         <nav className='navbar'>
             <div className='navbar-container'>
                 <Link to='/' className='navbar-logo' >
                     SDDS
-                    <i class="fa-solid fa-code"></i>
+                    <i class="fa-solid fa-laptop-code"></i>
                 </Link>
                 <div className='menu-icon'>
                     <i className = {click ? 'fas fa-times' : 'fas fa-bars' } />
@@ -32,8 +33,8 @@ function Navbar(){
                     
 
                 </ul> 
-                <Button buttonStyle='btn--pink' buttonSize='btn--medium' name='Login'>Login</Button>
-                <Button buttonStyle='btn--white' buttonSize='btn--medium' name='시작하기'>시작하기</Button>
+                <Button className="btn" buttonStyle='btn--pink' buttonSize='btn--medium' name='Login'>Login</Button>
+                <Button className="btn" buttonStyle='btn--white' buttonSize='btn--medium' name='시작하기'>시작하기</Button>
             </div>
 
         </nav>
