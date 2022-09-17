@@ -2,6 +2,7 @@ import React from 'react';
 import Description from './Description';
 import DetailSkill from './DetailSkill';
 import Intro from './Intro';
+import Start from './Start';
 
 function Home(){
 
@@ -11,6 +12,7 @@ function Home(){
             <Intro/>
             <Description/>
             <DetailSkill/>
+            <Start/>
         </>
     )
 }
