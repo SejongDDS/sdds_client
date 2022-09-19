@@ -14,7 +14,7 @@ function Intro() {
                     <p>쉽고 완벽하게,<br/>세종대의<br/>웹페이지 빌더</p>
                 </div>
             </div>
-            <Button buttonStyle='btn--white' buttonSize='btn--medium' name='시작하기' className='btn'></Button>
+            <Button buttonStyle='btn--white' buttonSize='btn--medium' name='시작하기' className="btn"></Button>
         </div>
     )
 }
