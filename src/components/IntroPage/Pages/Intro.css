@@ -1,0 +1,42 @@
+.intro__container {
+    background-color: #FF86AA;
+    padding: 50px;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.display__container {
+    margin: 20px 0;
+    width:100%;
+    height: 500px;
+    align-items: center;
+}
+
+.img_container {
+    height: 100%;
+    width: 60%;
+    float: left;
+    
+}
+
+.web_img {
+    width: 600px;
+    height: 500px;
+}
+
+.sentence__container {
+    height: 100%;
+    width: 40%;
+    float:right;
+    color: white;
+    font-size: 40px;
+    text-align: left;
+    display : flex;
+
+    align-items : center;
+}
+
+.btn {
+    margin:20px 0;
+}
