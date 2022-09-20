@@ -15,7 +15,7 @@
 
 .img_container {
     height: 100%;
-    width: 60%;
+    width: 55%;
     float: left;
     
 }
@@ -27,10 +27,10 @@
 
 .sentence__container {
     height: 100%;
-    width: 40%;
+    width: 45%;
     float:right;
     color: white;
-    font-size: 40px;
+    font-size: 30px;
     text-align: left;
     display : flex;
 

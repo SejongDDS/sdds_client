@@ -34,8 +34,8 @@ function Navbar(){
                     
 
                 </ul> 
-                <Button className="btn" buttonStyle='btn--pink' buttonSize='btn--medium' name='Login'>Login</Button>
-                <Button className="btn" buttonStyle='btn--white' buttonSize='btn--medium' name='시작하기'>시작하기</Button>
+                <Button className="nav_btn" buttonStyle='btn--pink' buttonSize='btn--medium' name='Login'>Login</Button>
+                <Button className="nav_btn" buttonStyle='btn--white' buttonSize='btn--medium' name='시작하기'>시작하기</Button>
             </div>
 
         </nav>

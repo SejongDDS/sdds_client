@@ -54,8 +54,8 @@
     height: 100%;
 }
 
-.btn{
-    margin-left: 0.5rem;
+.nav_btn{
+    margin-left:20px;
 }
 
 .nav-link:hover {

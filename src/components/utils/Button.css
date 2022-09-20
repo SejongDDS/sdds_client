@@ -55,8 +55,12 @@
     background-color: var(--purple);
 } 
 .btn--white:hover{
-    background-color: var(--pink);
+    background-color: var(--purple);
     color: var(--white);
     
 
+}
+
+.btn-mobile {
+    margin-left: 10px;
 }

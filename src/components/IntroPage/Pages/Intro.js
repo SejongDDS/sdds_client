@@ -11,10 +11,10 @@ function Intro() {
                     <img className="web_img" src={web_intro} alt="web_img" />
                 </div>
                 <div className="sentence__container">
-                    <p>쉽고 완벽하게,<br/>세종대의<br/>웹페이지 빌더</p>
+                    <h1>쉽고 완벽하게,<br/>세종대의<br/>웹페이지 빌더</h1>
                 </div>
             </div>
-            <Button buttonStyle='btn--white' buttonSize='btn--medium' name='시작하기' className="btn"></Button>
+            <Button buttonStyle='btn--white' buttonSize='btn--large' name='시작하기' className="btn"></Button>
         </div>
     )
 }
