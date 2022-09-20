@@ -1,0 +1,13 @@
+.start__container {
+    background-image: url("../../../resources/imgs/start_background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    text-align: center;
+    justify-content: center;
+    padding: 40px;
+}
+.start__container h1 {
+    color: #5B5B5B;
+    font-size: 40px;
+}

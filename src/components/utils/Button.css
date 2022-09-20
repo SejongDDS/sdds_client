@@ -1,0 +1,66 @@
+:root {
+    --promary: #fff;
+    --pink:#FF86AA;
+    --white:#FFFFFF;
+    --gray:#606060;
+    --purple:#CE7BB1;
+}
+
+.btn {
+    padding:8px 20px;
+    border-radius: 2px;
+    
+    outline:none;
+    cursor:pointer;
+    height: 40px;
+    
+}
+
+.btn--primary{
+    background-color: var(--primary);
+    color:#242424;
+    border: 1px solid var(--primary);
+}
+
+.btn--pink {
+    background-color: var(--pink);
+    border: 1px #242424;
+    color:var(--white);
+    padding:8px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn--white {
+    border: none;
+    background-color: var(--white);
+    color: var(--gray);
+    padding:8px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn--medium {
+    padding: 8px 20px;
+    font-size: 20px;
+
+}
+
+.btn--large {
+    padding: 12px 30px;
+    height: 50px;
+    font-size: 20px;
+
+}
+
+.btn--pink:hover{
+    background-color: var(--purple);
+} 
+.btn--white:hover{
+    background-color: var(--purple);
+    color: var(--white);
+    
+
+}
+
+.btn-mobile {
+    margin-left: 10px;
+}
