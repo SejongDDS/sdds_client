@@ -1,17 +1,19 @@
 import React from "react";
 import "./App.css"
-import {BrowserRouter as Router, Switch,Route} from 'react-router-dom'; 
-import Navbar from './components/IntroPage/Navbar/Navbar';
-import Home from './components/IntroPage/Pages/Home';
+import {BrowserRouter, Routes,Route} from 'react-router-dom'; 
+import IntroPage from './components/IntroPage/IntroPage';
 
 function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Navbar/>
-        <Home/>
-      </Router>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<IntroPage/>}/>
+          <Route path='/aaa' element={<h1>hi</h1>}></Route>        
+        </Routes>
+      </BrowserRouter>
+      
     </div>
   );
 }
