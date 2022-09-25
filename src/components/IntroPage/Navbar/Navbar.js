@@ -5,7 +5,7 @@ import "./Navbar.css";
 
 import SighUpMain from "../../SignUpPage/Pages/SignUpMain";
 
-function Navbar() {
+function Navbar({ history }) {
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
@@ -15,7 +15,7 @@ function Navbar() {
             <div className="navbar-container">
                 <Link to="/" className="navbar-logo">
                     SDDS
-                    <li className="fa-solid fa-laptop-code"></li>
+                    <i className="fa-solid fa-laptop-code"></i>
                 </Link>
                 <div className="menu-icon">
                     <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -27,7 +27,7 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/SignUp" className="nav-link">
+                        <Link to="/" className="nav-link">
                             템플릿
                         </Link>
                     </li>
@@ -37,11 +37,15 @@ function Navbar() {
                         </Link>
                     </li>
                 </ul>
+
                 <Button
                     className="nav_btn"
                     buttonStyle="btn--pink"
                     buttonSize="btn--medium"
                     name="Login"
+                    onClick={() => {
+                        window.location.href = "/signup";
+                    }}
                 >
                     Login
                 </Button>
@@ -50,6 +54,9 @@ function Navbar() {
                     buttonStyle="btn--white"
                     buttonSize="btn--medium"
                     name="시작하기"
+                    onClick={() => {
+                        window.location.href = "/main";
+                    }}
                 >
                     시작하기
                 </Button>

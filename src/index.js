@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import "grapesjs/dist/css/grapes.min.css"; //테마 설정
 
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
