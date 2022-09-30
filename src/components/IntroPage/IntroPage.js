@@ -1,15 +1,15 @@
-import React from 'react';
-import Navbar from './Navbar/Navbar';
-import Home from './Pages/Home';
+import React from "react";
+import Navbar from "./Navbar/Navbar";
+import Home from "./Pages/Home";
 
-function IntroPage(){
+function IntroPage() {
 
-    return(
+    return (
         <>
-            <Navbar/>
-            <Home/>
+            <Navbar />
+            <Home />
         </>
-    )
+    );
 }
 
 export default IntroPage;
