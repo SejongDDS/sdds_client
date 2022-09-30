@@ -5302,6 +5302,11 @@ grapesjs-plugin-export@^0.1.5:
     file-saver "^1.3.2"
     jszip "^3.0.0"
 
+grapesjs-plugin-export@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/grapesjs-plugin-export/-/grapesjs-plugin-export-1.0.11.tgz#1e025a0ad7f1499308d567e40188b5f74ae68749"
+  integrity sha512-S444lO7v8jODJ/ApMHIEU2f63MRRHkq+1xarFU/PNwpp/43wwKTTySila+PZzVEQvlZFlVQxYA+qwoI337vwcg==
+
 grapesjs-plugin-filestack@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/grapesjs-plugin-filestack/-/grapesjs-plugin-filestack-0.1.1.tgz#690d8b532fab6e01d614d1ab288da0086b748972"

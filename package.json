@@ -15,6 +15,7 @@
     "grapesjs": "^0.20.1",
     "grapesjs-blocks-basic": "^1.0.1",
     "grapesjs-custom-code": "^1.0.1",
+    "grapesjs-plugin-export": "^1.0.11",
     "grapesjs-plugin-toolbox": "^1.0.13",
     "grapesjs-preset-webpage": "^0.1.11",
     "grapesjs-react": "^4.0.1",
