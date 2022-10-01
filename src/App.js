@@ -1,23 +1,23 @@
 import React from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Modal from "react-modal";
-import SignUpPage from "./components/SignUpPage/SignUpPage";
+import "./App.css";
+import { BrowserRouter, Routes,Route} from "react-router-dom";
 import IntroPage from "./components/IntroPage/IntroPage";
+import SignUpPage from "./components/SignUpPage/SignUpPage";
 import MainPage from "./components/MainPage/MainPage";
-
 import grapesjs from "grapesjs";
 
 function App() {
     return (
         <div className="App">
-            <Router>
+            <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<IntroPage />} />
                     <Route path="/main" element={<MainPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
                 </Routes>
-            </Router>
+            </BrowserRouter>
+            
         </div>
     );
 }
