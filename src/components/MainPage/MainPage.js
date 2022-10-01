@@ -1,25 +1,34 @@
 import grapesjs from "grapesjs";
-import gjsPresetWebpage from "grapesjs-preset-webpage";
-// import gjsBlockBasic from "grapesjs-plugin-toolbox";
 import gjsBlockBasic from "grapesjs-blocks-basic";
 import "../../styles/main.scss";
 import React, { useEffect, useState } from "react";
-import grapesjsPluginExport from 'grapesjs-plugin-export'
+import grapesjsPluginExport from "grapesjs-plugin-export";
+import { panels } from "./util/Panels";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
     useEffect(() => {
         const editor = grapesjs.init({
             container: "#editor",
-            plugins: [
-                gjsBlockBasic,
-                grapesjsPluginExport
-            ],
+            panels: panels,
+            plugins: [gjsBlockBasic, grapesjsPluginExport],
             pluginsOpts: {
                 gjsBlockBasic: {},
                 grapesjsPluginExport: {},
             },
         });
+
+        editor.Commands.add("export", {
+            // run: (editor) => {
+            //     const exportData = {
+            //         html: editor.getHtml(),
+            //         css: editor.getCss(),
+            //     };
+            //     console.log("exprotData :>> ", exportData);
+            // },
+            run: (editor) => editor.runCommand("gjs-export-zip"),
+        });
+
         setEditor(editor);
     }, []);
 
@@ -29,6 +38,5 @@ function MainPage() {
         </div>
     );
 }
-
 
 export default MainPage;
