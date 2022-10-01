@@ -38,5 +38,5 @@ function MainPage() {
         </div>
     );
 }
-
+//추가 테스트
 export default MainPage;
