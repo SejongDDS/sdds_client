@@ -49,6 +49,16 @@ export const panels = {
                     className: "fa fa-download",
                     command: "export",
                 },
+                {
+                    id: "undo",
+                    className: "fa fa-undo",
+                    command: "undo",
+                },
+                {
+                    id: "redo",
+                    className: "fa fa-repeat",
+                    command: "redo",
+                },
             ],
         },
         {
