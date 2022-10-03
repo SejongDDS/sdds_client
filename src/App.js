@@ -6,6 +6,7 @@ import IntroPage from "./components/IntroPage/IntroPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import MainPage from "./components/MainPage/MainPage";
 import grapesjs from "grapesjs";
+import PersonalPage from './components/PersonalPage/PersonalPage';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<IntroPage />} />
+                    <Route path="/personal" element={<PersonalPage/>}/>
                     <Route path="/main" element={<MainPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
                 </Routes>
