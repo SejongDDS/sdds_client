@@ -1,7 +1,7 @@
 export const styleManager = {
     sectors: [
         {
-            name: "일반",
+            name: "General",
             properties: [
                 {
                     extend: "float",
@@ -22,7 +22,7 @@ export const styleManager = {
             ],
         },
         {
-            name: "차원",
+            name: "Dimension",
             open: false,
             properties: [
                 "width",

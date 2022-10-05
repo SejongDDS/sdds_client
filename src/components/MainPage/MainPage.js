@@ -6,14 +6,16 @@ import grapesjsPluginExport from "grapesjs-plugin-export";
 import { panels } from "./util/Panels";
 import { styleManager } from "./util/StyleManager";
 import { addCommands } from "./util/Commands";
+import ko from "./lang/korean";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
     useEffect(() => {
         const editor = grapesjs.init({
             container: "#editor",
-            styleManager: styleManager,
-            panels: panels,
+            styleManager: styleManager, //스타일 관리자
+            panels: panels, //상단 메뉴바 관리
+            i18n: { messages: { ko } }, //한글패치
             plugins: [gjsBlockBasic, grapesjsPluginExport],
             pluginsOpts: {
                 gjsBlockBasic: {},
