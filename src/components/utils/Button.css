@@ -38,6 +38,14 @@
     transition: all 0.3s ease-in-out;
 }
 
+.btn--blue {
+    border:none;
+    background-color: #009FDF;
+    color:var(--white);
+    padding:8px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
 .btn--medium {
     padding: 8px 20px;
     font-size: 20px;
@@ -59,6 +67,10 @@
     color: var(--white);
     
 
+}
+
+.btn--blue:hover{
+    background-color: #00DBB9;
 }
 
 .btn-mobile {
