@@ -50,6 +50,11 @@ export const panels = {
                     className: "fa fa-repeat",
                     command: "redo",
                 },
+                {
+                    id: "domain",
+                    className: "fa fa-browser",
+                    command: "domain",
+                },
             ],
         },
         {

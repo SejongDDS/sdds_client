@@ -13,3 +13,36 @@ html {
 ::-webkit-scrollbar {
     display: none;
 }
+
+// 테마 색 조정
+$primaryColor: #444;
+$secondaryColor: #ddd;
+$tertiaryColor: #804f7b;
+$quaternaryColor: #d278c9;
+
+#gjs {
+    border: none;
+}
+/* Theming */
+
+/* Primary color for the background */
+.gjs-one-bg {
+    background-color: #5b5b5b;
+}
+
+/* Secondary color for the text color */
+.gjs-two-color {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Tertiary color for the background */
+.gjs-three-bg {
+    background-color: #ff86aa;
+    color: white;
+}
+
+/* Quaternary color for the text color */
+.gjs-four-color,
+.gjs-four-color-h:hover {
+    color: #ff86aa;
+}
