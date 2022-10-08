@@ -4,13 +4,20 @@ import "../../styles/main.scss";
 import React, { useEffect, useState } from "react";
 import grapesjsPluginExport from "grapesjs-plugin-export";
 import { panels } from "./util/Panels";
+import { styleManager } from "./util/StyleManager";
+import { addCommands } from "./util/Commands";
+import { storageManager } from "./util/StorageManager";
+import ko from "./lang/korean";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
     useEffect(() => {
         const editor = grapesjs.init({
             container: "#editor",
-            panels: panels,
+            styleManager: styleManager, //스타일 관리자
+            storageManager: storageManager, //저장 설정
+            panels: panels, //상단 메뉴바 관리
+            i18n: { messages: { ko } }, //한글 패치
             plugins: [gjsBlockBasic, grapesjsPluginExport],
             pluginsOpts: {
                 gjsBlockBasic: {},
@@ -18,16 +25,7 @@ function MainPage() {
             },
         });
 
-        editor.Commands.add("export", {
-            // run: (editor) => {
-            //     const exportData = {
-            //         html: editor.getHtml(),
-            //         css: editor.getCss(),
-            //     };
-            //     console.log("exprotData :>> ", exportData);
-            // },
-            run: (editor) => editor.runCommand("gjs-export-zip"),
-        });
+        addCommands(editor);
 
         setEditor(editor);
     }, []);
@@ -38,5 +36,5 @@ function MainPage() {
         </div>
     );
 }
-
+//추가 테스트
 export default MainPage;

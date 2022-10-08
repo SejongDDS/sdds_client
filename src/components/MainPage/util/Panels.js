@@ -1,12 +1,3 @@
-const swv = "sw-visibility";
-const expt = "export-template";
-const osm = "open-sm";
-const otm = "open-tm";
-const ola = "open-layers";
-const obl = "open-blocks";
-const ful = "fullscreen";
-const prv = "preview";
-
 export const panels = {
     defaults: [
         {
@@ -18,30 +9,30 @@ export const panels = {
             buttons: [
                 {
                     active: true,
-                    id: swv,
+                    id: "sw-visibility",
                     className: "fa fa-square-o",
-                    command: swv,
-                    context: swv,
-                    attributes: { title: "View components" },
+                    command: "sw-visibility",
+                    context: "sw-visibility",
+                    attributes: { title: "컴포넌트 보기" },
                 },
                 {
-                    id: prv,
+                    id: "preview",
                     className: "fa fa-eye",
-                    command: prv,
-                    context: prv,
+                    command: "preview",
+                    context: "preview",
                     attributes: { title: "Preview" },
                 },
                 {
-                    id: ful,
+                    id: "fullscreen",
                     className: "fa fa-arrows-alt",
-                    command: ful,
-                    context: ful,
+                    command: "fullscreen",
+                    context: "fullscreen",
                     attributes: { title: "Fullscreen" },
                 },
                 {
-                    id: expt,
+                    id: "export-template",
                     className: "fa fa-code",
-                    command: expt,
+                    command: "export-template",
                     attributes: { title: "View code" },
                 },
                 {
@@ -49,37 +40,52 @@ export const panels = {
                     className: "fa fa-download",
                     command: "export",
                 },
+                {
+                    id: "undo",
+                    className: "fa fa-undo",
+                    command: "undo",
+                },
+                {
+                    id: "redo",
+                    className: "fa fa-repeat",
+                    command: "redo",
+                },
+                {
+                    id: "domain",
+                    className: "fa fa-browser",
+                    command: "domain",
+                },
             ],
         },
         {
             id: "views",
             buttons: [
                 {
-                    id: osm,
+                    id: "open-sm",
                     className: "fa fa-paint-brush",
-                    command: osm,
+                    command: "open-sm",
                     active: true,
                     togglable: 0,
                     attributes: { title: "Open Style Manager" },
                 },
                 {
-                    id: otm,
+                    id: "open-tm",
                     className: "fa fa-cog",
-                    command: otm,
+                    command: "open-tm",
                     togglable: 0,
                     attributes: { title: "Settings" },
                 },
                 {
-                    id: ola,
+                    id: "open-layers",
                     className: "fa fa-bars",
-                    command: ola,
+                    command: "open-layers",
                     togglable: 0,
                     attributes: { title: "Open Layer Manager" },
                 },
                 {
-                    id: obl,
+                    id: "open-blocks",
                     className: "fa fa-th-large",
-                    command: obl,
+                    command: "open-blocks",
                     togglable: 0,
                     attributes: { title: "Open Blocks" },
                 },
