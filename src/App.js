@@ -8,6 +8,7 @@ import MainPage from "./components/MainPage/MainPage";
 import grapesjs from "grapesjs";
 import LoginPage from "./components/LoginPage/LoginPage";
 import PersonalPage from './components/PersonalPage/PersonalPage';
+import ManagerPage from './components/ManagerPage/ManagerPage';
 
 function App() {
     return (
@@ -19,6 +20,14 @@ function App() {
                     <Route path="/main" element={<MainPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
+
+                    <Route path="/manager" element={<ManagerPage/>}/>
+                    <Route path="/manager/" element={<ManagerPage/>}/>
+                    <Route path="/manager/client" element={<ManagerPage/>}/>
+                    <Route path="/manager/product" element={<ManagerPage/>}/>
+                    <Route path="/manager/shop" element={<ManagerPage/>}/>
+                    <Route path="/manager/statistic" element={<ManagerPage/>}/>
+                    <Route path="/manager/setting" element={<ManagerPage/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
