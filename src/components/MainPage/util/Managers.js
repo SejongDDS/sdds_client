@@ -302,3 +302,15 @@ export const styleManager = {
         },
     ],
 };
+
+export const layerManager = {
+    appendTo: "#layers-container",
+};
+
+export const traitManager = {
+    appendTo: "#trait-container",
+};
+
+export const selectorManager = {
+    appendTo: "#styles-container",
+};
