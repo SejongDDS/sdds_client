@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import SidebarItem from './SidebarItem';
 
 const Side = styled.div`
+
     display: flex;
     border-right: 1px solid #e0e0e0;
     flex-direction: column;

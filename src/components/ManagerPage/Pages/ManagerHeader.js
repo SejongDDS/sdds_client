@@ -4,12 +4,17 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import styled from 'styled-components';
 
 
+const Header =styled.div`
+
+`
 function ManagerHeader({domain,page_url}){
 
     return(
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Header>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
             <Container>
                 <Navbar.Brand href="/personal">SDDS</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -25,6 +30,7 @@ function ManagerHeader({domain,page_url}){
             </Navbar.Collapse>
         </Container>
     </Navbar>
+    </Header>
     )
 }
 

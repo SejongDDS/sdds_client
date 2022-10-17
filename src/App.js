@@ -8,10 +8,12 @@ import MainPage from "./components/MainPage/MainPage";
 import grapesjs from "grapesjs";
 import LoginPage from "./components/LoginPage/LoginPage";
 import PersonalPage from './components/PersonalPage/PersonalPage';
-import ManagerPage from './components/ManagerPage/ManagerPage';
+import ManagerPage from './components/ManagerPage/Pages/ManagerPage';
+import {RecoilRoot} from 'recoil';
 
 function App() {
     return (
+        <RecoilRoot>
         <div className="App">
             <BrowserRouter>
                 <Routes>
@@ -31,6 +33,7 @@ function App() {
                 </Routes>
             </BrowserRouter>
         </div>
+        </RecoilRoot>
     );
 }
 
