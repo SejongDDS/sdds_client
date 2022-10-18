@@ -51,6 +51,7 @@ export const panels = {
                     command: "redo",
                 },
                 {
+                    //여기서 변수를 넘겨줄 수 있는지?
                     id: "domain",
                     className: "fa fa-browser",
                     command: "domain",
@@ -88,6 +89,25 @@ export const panels = {
                     command: "open-blocks",
                     togglable: 0,
                     attributes: { title: "Open Blocks" },
+                },
+            ],
+        },
+        {
+            id: "panel-devices",
+            el: ".panel__devices",
+            buttons: [
+                {
+                    id: "device-desktop",
+                    label: '<i class="fa fa-television"></i>',
+                    command: "set-device-desktop",
+                    active: true,
+                    togglable: false,
+                },
+                {
+                    id: "device-mobile",
+                    label: '<i class="fa fa-mobile"></i>',
+                    command: "set-device-mobile",
+                    togglable: false,
                 },
             ],
         },

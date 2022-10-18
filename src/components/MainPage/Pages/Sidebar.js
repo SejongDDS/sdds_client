@@ -1,6 +1,7 @@
 function Sidebar() {
     return (
         <>
+            {/* 이거 아이콘 크기 변경이 가능한 부분 변경하기 */}
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <button
@@ -16,6 +17,7 @@ function Sidebar() {
                         <i className="fa fa-cubes"></i>
                     </button>
                 </li>
+
                 <li className="nav-item" role="presentation">
                     <button
                         className="nav-link"
@@ -30,6 +32,7 @@ function Sidebar() {
                         <i className="fa fa-tasks"></i>
                     </button>
                 </li>
+
                 <li className="nav-item" role="presentation">
                     <button
                         className="nav-link"
@@ -44,6 +47,7 @@ function Sidebar() {
                         <i className="fa fa-paint-brush"></i>
                     </button>
                 </li>
+
                 <li className="nav-item" role="presentation">
                     <button
                         className="nav-link"
@@ -59,6 +63,7 @@ function Sidebar() {
                     </button>
                 </li>
             </ul>
+
             <div className="tab-content">
                 <div
                     className="tab-pane fade show active"

@@ -2,6 +2,8 @@ import grapesjs from "grapesjs";
 import gjsBlockBasic from "grapesjs-blocks-basic";
 import "../../styles/main.scss";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import grapesjsPluginExport from "grapesjs-plugin-export";
 import { panels } from "./util/Panels";
 import {
@@ -9,18 +11,28 @@ import {
     layerManager,
     traitManager,
     selectorManager,
+    deviceManager,
+    storageManager,
 } from "./util/Managers";
 import { addCommands } from "./util/Commands";
-import { storageManager } from "./util/StorageManager";
+import { scripts, styles } from "./util/Canvas";
 import ko from "./lang/korean";
 
 import $ from "jquery";
 
 import Sidebar from "./Pages/Sidebar";
 import TopNav from "./Pages/TopNav";
+import PageSection from "./util/PageSection";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
+    // const [assets, setAssets] = useState([]);
+    let domain = ""; //도메인 입력에 사용될 변수
+
+    // const { pageId } = useParams();
+
+    // const { pageStore } = useSelector((state) => state);
+    // const { pages } = pageStore;
 
     useEffect(() => {
         $(".panel__devices").html("");
@@ -40,9 +52,15 @@ function MainPage() {
             styleManager: styleManager, //스타일 관리자
             layerManager: layerManager,
             traitManager: traitManager,
+            deviceManager: deviceManager,
             selectorManager: selectorManager,
+            // assetManager: { assets: assets, upload: false },
             storageManager: storageManager, //저장 설정
             panels: panels, //상단 메뉴바 관리
+            canvas: {
+                styles: styles,
+                scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
+            },
             i18n: { messages: { ko } }, //한글 패치
             plugins: [gjsBlockBasic, grapesjsPluginExport],
             pluginsOpts: {
@@ -51,7 +69,8 @@ function MainPage() {
             },
         });
 
-        addCommands(editor);
+        addCommands(editor, domain);
+
         editor.on("run:preview", () => {
             console.log("It will trigger when we click on preview icon");
             // This will be used to hide border
@@ -64,6 +83,7 @@ function MainPage() {
             // This will hide top panel where we have added the button
             panelTopBar.addClass("d-none");
         });
+
         editor.on("stop:preview", () => {
             // This event is reverse of the above event.
             console.log("It will trigger when we click on cancel preview icon");
@@ -72,6 +92,7 @@ function MainPage() {
             mainContent.addClass("main-content");
             panelTopBar.removeClass("d-none");
         });
+
         editor.on("component:selected", (component) => {
             const newTool = {
                 icon: "fa fa-plus-square",
@@ -94,6 +115,12 @@ function MainPage() {
             }
         });
 
+        editor.BlockManager.add("my-first-block", {
+            label: "Simple block",
+            content:
+                '<div><script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script></div>',
+        }); //이거 안먹음
+
         setTimeout(() => {
             let categories = editor.BlockManager.getCategories();
             categories.each((category) => category.set("open", false));
@@ -108,7 +135,6 @@ function MainPage() {
                 id="navbar"
                 className="sidenav d-flex flex-column overflow-scroll position-fixed"
             >
-                //상단 바
                 <nav className="navbar navbar-light">
                     <div className="container-fluid">
                         <span className="navbar-brand mb-0 h3 logo">SDDS_</span>
@@ -117,6 +143,7 @@ function MainPage() {
                 {/* <PageSection pages={pages} /> */}
                 <Sidebar />
             </div>
+            {/* 여기까지가 사이드 바 */}
             <div
                 className="main-content position-relative w-85 start-15"
                 id="main-content"
