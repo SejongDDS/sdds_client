@@ -7,7 +7,7 @@ import OrderStateContainer from '../Container/OrderStateContainer';
 import TableStateContainer from '../Container/TableStateContainer';
 
 const ManagerContainer=styled.div`
-    height: minmax(100vh,auto);
+    height:150vh;
     
 `
 const DashboardContainer =styled.div`
@@ -66,7 +66,7 @@ function ManagerPage(){
                     <OrderStateContainer/>
                 </OrderContainer>
                 <TableContainer><TableStateContainer/></TableContainer>
-                <ProductContainer><OrderStateContainer/></ProductContainer>
+                <ProductContainer><TableStateContainer/></ProductContainer>
             </StateContainer>
             </DashboardContainer>
             
