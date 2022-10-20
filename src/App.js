@@ -10,6 +10,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import PersonalPage from './components/PersonalPage/PersonalPage';
 import ManagerPage from './components/ManagerPage/Pages/ManagerPage';
 import {RecoilRoot} from 'recoil';
+import ProductManagePage from './components/ManagerPage/Pages/ProductManagePage';
 
 function App() {
     return (
@@ -26,8 +27,8 @@ function App() {
                     <Route path="/manager" element={<ManagerPage/>}/>
                     <Route path="/manager/" element={<ManagerPage/>}/>
                     <Route path="/manager/client" element={<ManagerPage/>}/>
-                    <Route path="/manager/product" element={<ManagerPage/>}/>
-                    <Route path="/manager/shop" element={<ManagerPage/>}/>
+                    <Route path="/manager/product" element={<ProductManagePage/>}/>
+                    <Route path="/manager/order" element={<ManagerPage/>}/>
                     <Route path="/manager/statistic" element={<ManagerPage/>}/>
                     <Route path="/manager/setting" element={<ManagerPage/>}/>
                 </Routes>

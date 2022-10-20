@@ -5,6 +5,7 @@ import ManagerSidebar from './ManagerSidebar';
 import styled from 'styled-components';
 import OrderStateContainer from '../Container/OrderStateContainer';
 import TableStateContainer from '../Container/TableStateContainer';
+import ProductStateContainer from '../Container/ProductStateContainer';
 
 const ManagerContainer=styled.div`
     height:150vh;
@@ -65,8 +66,12 @@ function ManagerPage(){
                 <OrderContainer>
                     <OrderStateContainer/>
                 </OrderContainer>
-                <TableContainer><TableStateContainer/></TableContainer>
-                <ProductContainer><TableStateContainer/></ProductContainer>
+                <TableContainer>
+                    <TableStateContainer/>
+                </TableContainer>
+                <ProductContainer>
+                    <ProductStateContainer/>
+                </ProductContainer>
             </StateContainer>
             </DashboardContainer>
             

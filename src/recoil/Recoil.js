@@ -26,15 +26,7 @@ export const orderState=atom({
             date:"2022-10-22"
 
         },
-        {
-            id:1,
-            product:"프로덕트 이름",
-            buyer: 1,
-            order_status:"배송중",
-            address:"서울",
-            date:"2022-10-22"
-
-        }
+        
     ]
 });
 

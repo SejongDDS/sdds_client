@@ -25,7 +25,7 @@ const Table = (probs) => {
                             <tr>
                                 {
                                     Object.values(item).map((value,i)=>(<td>{value}</td>)
-
+                                        
                                     )
                                 }
 

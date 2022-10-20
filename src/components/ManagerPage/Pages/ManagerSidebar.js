@@ -32,7 +32,7 @@ function ManagerSidebar(){
         { name: "대시보드",path:"/manager/"},
         { name: "사용자 관리", path:"/manager/client"},
         { name: "상품 관리", path:"/manager/product"},
-        { name: "쇼핑", path:"/manager/shop"},
+        { name: "주문 관리", path:"/manager/order"},
         { name: "통계", path:"/manager/statistic"},
         { name: "환경설정", path:"/manager/setting"}
     ]
