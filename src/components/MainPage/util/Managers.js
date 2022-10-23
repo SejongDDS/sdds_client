@@ -302,3 +302,46 @@ export const styleManager = {
         },
     ],
 };
+
+export const layerManager = {
+    appendTo: "#layers-container",
+};
+
+export const traitManager = {
+    appendTo: "#trait-container",
+};
+
+export const selectorManager = {
+    appendTo: "#styles-container",
+};
+
+export const deviceManager = {
+    devices: [
+        {
+            name: "Desktop",
+            width: "",
+        },
+        {
+            name: "Mobile",
+            width: "320px",
+            widthMedia: "480px",
+        },
+    ],
+};
+
+export const storageManager = {
+    type: "local", // Storage type. Available: local | remote
+    autosave: true, // Store data automatically
+    autoload: true, // Autoload stored data on init
+    stepsBeforeSave: 1, // If autosave is enabled, indicates how many changes are necessary before the store method is triggered
+    // ...
+    // Default storage options
+    options: {
+        local: {
+            /* ... */
+        },
+        remote: {
+            /* ... */
+        },
+    },
+};
