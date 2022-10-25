@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import ManagerHeader from './ManagerHeader';
 import ManagerSidebar from './ManagerSidebar';
@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import Table from '../../utils/Table';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NewProductModal from '../../utils/Modal/NewProductModal';
 
 const ProductManageContainer=styled.div`
     height:100vh;
@@ -48,8 +49,10 @@ const ProductButtonBlock=styled.div`
 function ProductManagePage(){
     const tableColumn=['상품아이디','상품이름','가격','카테고리']
     const [product,setProduct]=useRecoilState(productState)
+    const [modalShow,setModalShow] = useState(false);
 
     return(
+        <>
         <ProductManageContainer>
             <ManagerHeader page_url={"https://google.com"} domain={"테스트"}/>
 
@@ -61,15 +64,19 @@ function ProductManagePage(){
                     <ProductTableBlock>
                         <h1>상품 관리</h1>
                         <hr/>
-                        <ProductButtonBlock><Button variant="primary">상품 추가</Button></ProductButtonBlock>
+                        <ProductButtonBlock><Button variant="primary" onClick={()=>setModalShow(true)}>상품 추가</Button></ProductButtonBlock>
                         
                         <Table columns={tableColumn} data={product}/>
 
                     </ProductTableBlock>
                 </ProductsBlock>
             </ProductsContainer>
+            
 
         </ProductManageContainer>
+        
+        <NewProductModal show={modalShow} onHide={()=> setModalShow(false)}/>
+        </>
     )
 }
 
