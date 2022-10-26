@@ -1,3 +1,4 @@
+// 개발 보류,,, 페이지 적용이 안됐음
 import { toggleSidebar } from "../util/toggleSidebar";
 
 function TopNav() {

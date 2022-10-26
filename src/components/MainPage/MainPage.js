@@ -19,6 +19,7 @@ import { scripts, styles } from "./util/Canvas";
 import ko from "./lang/korean";
 
 import $ from "jquery";
+import axios from "axios";
 
 import Sidebar from "./Pages/Sidebar";
 import TopNav from "./Pages/TopNav";
@@ -38,6 +39,30 @@ function MainPage() {
     // const { pageStore } = useSelector((state) => state);
     // const { pages } = pageStore;
 
+    //ajax 코드 예시
+    // $.ajax({
+    //     url: "", //현욱씨 주소
+    //     type: "post",
+    //     data: { id: "admin" },
+    //     success: function (data) {},
+    //     error: function (err) {},
+    // });
+
+    //axios 코드 예시
+    // axios({
+    //     method: "get",
+    //     url: "/test",
+    //     params: {
+    //         name: "veneas",
+    //     },
+    // })
+    //     .then(function (response) {
+    //         console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+
     useEffect(() => {
         $(".panel__devices").html("");
         $(".panel__basic-actions").html("");
@@ -53,10 +78,12 @@ function MainPage() {
 
         const editor = grapesjs.init({
             container: "#editor",
+            allowScripts: 1,
+            fromElement: true,
             styleManager: styleManager, //스타일 관리자
             layerManager: layerManager,
             traitManager: traitManager,
-            deviceManager: deviceManager,
+            //deviceManager: deviceManager, // 좌측 상단에 기기변경 표시하는것
             selectorManager: selectorManager,
             // assetManager: { assets: assets, upload: false },
             storageManager: storageManager, //저장 설정
@@ -66,64 +93,36 @@ function MainPage() {
                 scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
             },
             i18n: { messages: { ko } }, //한글 패치
-            plugins: [gjsBlockBasic, grapesjsPluginExport],
+            plugins: [
+                gjsBlockBasic,
+                grapesjsPluginExport,
+                "grapesjs-component-code-editor",
+            ],
             pluginsOpts: {
                 gjsBlockBasic: {},
                 grapesjsPluginExport: {},
+                "grapesjs-component-code-editor": {},
             },
         });
 
         addCommands(editor, domain);
 
-        // editor.on("run:preview", () => {
-        //     console.log("It will trigger when we click on preview icon");
-        //     // This will be used to hide border
-        //     editor.stopCommand("sw-visibility");
-        //     // This will hide the sidebar view
-        //     navbar.removeClass("sidebar");
-        //     // This will make the main-content to be full width
-        //     mainContent.removeClass("main-content");
+        editor.BlockManager.add("my-first-block", {
+            label: "Simple block",
+            content: {
+                content:
+                    '<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script><textarea name="editor1"></textarea>',
+            },
+        }); //이거 안먹음
 
-        //     // This will hide top panel where we have added the button
-        //     panelTopBar.addClass("d-none");
-        // });
-
-        // editor.on("stop:preview", () => {
-        //     // This event is reverse of the above event.
-        //     console.log("It will trigger when we click on cancel preview icon");
-        //     editor.runCommand("sw-visibility");
-        //     navbar.addClass("sidebar");
-        //     mainContent.addClass("main-content");
-        //     panelTopBar.removeClass("d-none");
-        // });
-
-        // editor.on("component:selected", (component) => {
-        //     const newTool = {
-        //         icon: "fa fa-plus-square",
-        //         title: "Check Toolbar",
-        //         commandName: "new-tool-cmd",
-        //         id: "new-tool",
-        //     };
-
-        //     const defaultToolbar = component.get("toolbar");
-        //     const checkAlreadyExist = defaultToolbar.find(
-        //         (toolbar) => toolbar.command === newTool.commandName
-        //     );
-        //     if (!checkAlreadyExist) {
-        //         defaultToolbar.unshift({
-        //             id: newTool.id,
-        //             attributes: { class: newTool.icon, title: newTool.title },
-        //             command: newTool.commandName,
-        //         });
-        //         component.set("toolbar", defaultToolbar);
-        //     }
-        // });
-
-        // editor.BlockManager.add("my-first-block", {
-        //     label: "Simple block",
-        //     content:
-        //         '<div><script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script></div>',
-        // }); //이거 안먹음
+        editor.BlockManager.add("test-block2", {
+            label: "Test block2",
+            attributes: { class: "fa fa-text" },
+            content: {
+                script: "var domain = domain; alert(domain);",
+                content: '<textarea name="editor1"></textarea>',
+            },
+        });
 
         setTimeout(() => {
             let categories = editor.BlockManager.getCategories();
@@ -135,26 +134,7 @@ function MainPage() {
 
     return (
         <div className="App">
-            <div
-                id="navbar"
-                className="sidenav d-flex flex-column overflow-scroll position-fixed"
-            >
-                <nav className="navbar navbar-light">
-                    <div className="container-fluid">
-                        <span className="navbar-brand mb-0 h3 logo">SDDS_</span>
-                    </div>
-                </nav>
-                {/* <PageSection pages={pages} /> */}
-                <Sidebar />
-            </div>
-            {/* 여기까지가 사이드 바 */}
-            <div
-                className="main-content position-relative w-85 start-15"
-                id="main-content"
-            >
-                <TopNav />
-                <div id="editor"></div>
-            </div>
+            <div id="editor"></div>
         </div>
     );
 }

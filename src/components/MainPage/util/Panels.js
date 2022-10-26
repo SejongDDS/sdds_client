@@ -36,6 +36,12 @@ export const panels = {
                     attributes: { title: "View code" },
                 },
                 {
+                    attributes: { title: "Open Code" },
+                    className: "fa fa-code",
+                    command: "open-code",
+                    id: "open-code",
+                },
+                {
                     id: "export",
                     className: "fa fa-download",
                     command: "export",
@@ -89,25 +95,6 @@ export const panels = {
                     command: "open-blocks",
                     togglable: 0,
                     attributes: { title: "Open Blocks" },
-                },
-            ],
-        },
-        {
-            id: "panel-devices",
-            el: ".panel__devices",
-            buttons: [
-                {
-                    id: "device-desktop",
-                    label: '<i class="fa fa-television"></i>',
-                    command: "set-device-desktop",
-                    active: true,
-                    togglable: false,
-                },
-                {
-                    id: "device-mobile",
-                    label: '<i class="fa fa-mobile"></i>',
-                    command: "set-device-mobile",
-                    togglable: false,
                 },
             ],
         },

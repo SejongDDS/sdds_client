@@ -1,3 +1,5 @@
+// 개발 보류,,, 페이지 적용이 안됐음
+
 import React, { useState, useReducer } from "react";
 import { useDispatch } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
