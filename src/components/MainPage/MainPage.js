@@ -43,25 +43,25 @@ function MainPage() {
     // $.ajax({
     //     url: "", //현욱씨 주소
     //     type: "post",
-    //     data: { id: "admin" },
+    //     data: { domain: domain },
     //     success: function (data) {},
     //     error: function (err) {},
     // });
 
     //axios 코드 예시
-    // axios({
-    //     method: "get",
-    //     url: "/test",
-    //     params: {
-    //         name: "veneas",
-    //     },
-    // })
-    //     .then(function (response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
+    axios({
+        method: "get",
+        url: "/test",
+        params: {
+            domain: domain,
+        },
+    })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     useEffect(() => {
         $(".panel__devices").html("");
@@ -88,16 +88,16 @@ function MainPage() {
             // assetManager: { assets: assets, upload: false },
             storageManager: storageManager, //저장 설정
             panels: panels, //상단 메뉴바 관리
-            canvas: {
-                styles: styles,
-                scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
-            },
+            // canvas: {
+            //     styles: styles,
+            //     scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
+            // },
             i18n: { messages: { ko } }, //한글 패치
             plugins: [
                 gjsBlockBasic,
                 grapesjsPluginExport,
                 "grapesjs-component-code-editor",
-            ],
+            ], //code-editor 아직 작업중
             pluginsOpts: {
                 gjsBlockBasic: {},
                 grapesjsPluginExport: {},
@@ -119,8 +119,9 @@ function MainPage() {
             label: "Test block2",
             attributes: { class: "fa fa-text" },
             content: {
-                script: "var domain = domain; alert(domain);",
-                content: '<textarea name="editor1"></textarea>',
+                script: "alert('avl 시험보세요');",
+                content:
+                    '<textarea name="editor1"></textarea><script>alert("avl 시험보세요");</script>',
             },
         });
 
