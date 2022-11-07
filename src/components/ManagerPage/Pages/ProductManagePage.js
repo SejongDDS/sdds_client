@@ -53,10 +53,6 @@ function ProductManagePage(){
     const [addModalShow,setAddModalShow] = useState(false);
     
 
-    
-
-
-
     return(
         <>
         <ProductManageContainer>

@@ -45,9 +45,12 @@ function UpdateProductModal(){
             <Button variant="secondary" onClick={handleClose}>
             취소
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            
+            <Button variant="outline-primary" onClick={handleClose}>
             상품 수정하기
             </Button>
+
+            <Button variant="outline-danger">상품 삭제</Button>
         </Modal.Footer>
         </Modal>
     )
