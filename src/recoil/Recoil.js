@@ -65,3 +65,13 @@ export const productState=atom({
         }
     ]
 });
+
+export const modifyModalShowState=atom({
+    key:'modifyModalShowState',
+    default:false
+})
+
+export const modifyModalDataState=atom({
+    key:'modifyModalDataState',
+    default:[]
+})
