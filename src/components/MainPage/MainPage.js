@@ -49,40 +49,40 @@ function MainPage() {
     // });
 
     //axios 코드 예시
-    axios({
-        method: "get",
-        url: "/test",
-        params: {
-            domain: domain,
-        },
-    })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    // axios({
+    //     method: "get",
+    //     url: "/test",
+    //     params: {
+    //         domain: domain,
+    //     },
+    // })
+    //     .then(function (response) {
+    //         console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
 
     useEffect(() => {
-        $(".panel__devices").html("");
-        $(".panel__basic-actions").html("");
-        $(".panel__editor").html("");
-        $("#blocks").html("");
-        $("#styles-container").html("");
-        $("#layers-container").html("");
-        $("#trait-container").html("");
+        // $(".panel__devices").html("");
+        // $(".panel__basic-actions").html("");
+        // $(".panel__editor").html("");
+        // $("#blocks").html("");
+        // $("#styles-container").html("");
+        // $("#layers-container").html("");
+        // $("#trait-container").html("");
 
-        const navbar = $("#navbar");
-        const mainContent = $("#main-content");
-        const panelTopBar = $("#main-content > .navbar-light");
+        // const navbar = $("#navbar");
+        // const mainContent = $("#main-content");
+        // const panelTopBar = $("#main-content > .navbar-light");
 
         const editor = grapesjs.init({
             container: "#editor",
             allowScripts: 1,
             fromElement: true,
             styleManager: styleManager, //스타일 관리자
-            layerManager: layerManager,
-            traitManager: traitManager,
+            // layerManager: layerManager, // 레이어 관리자
+            // traitManager: traitManager, // 컴포넌트 설정
             //deviceManager: deviceManager, // 좌측 상단에 기기변경 표시하는것
             selectorManager: selectorManager,
             // assetManager: { assets: assets, upload: false },

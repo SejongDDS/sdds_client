@@ -91,10 +91,10 @@ function LoginMain() {
 
                                 console.log(user); //(테스트 코드) 유져 정보 출력
 
-                                // 로그인 완료 모달 표시
+                                // 로그인 성공하면 그냥 홈화면으로 넘어가는게 어떤지?
 
-                                // 홈 화면으로 이동 ( 로그인 상태로 _ 리코일로 판단? )
-                                window.location.href = "../";
+                                // 홈 화면으로 이동 (성공 신호 넘어오면)
+                                //window.location.href = "../";
                             })
                             .catch(function (error) {
                                 //오류 로그 출력
