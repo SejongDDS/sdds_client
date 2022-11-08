@@ -1,25 +1,22 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 function CardItem(props){
     return(
-        <>
-            <li className='cardview__item'>
-                <Link className='cardview__item__link' to={props.path}>
-                <figure className='cardview__item__img-wrap' data-category={props.label}>
-                    <img
-                        className='cardview__item__img'
-                        alt='Travel Image'
-                        src={props.src}
-                    />
-                </figure>
-                <div className='cardview__item__info'>
-                    <h5 className='cardview__item__text'>{props.text}</h5>
-                </div>
-                </Link>
-            </li>
-        </>
+        <Card style={{ width: '25rem' }}>
+            <Card.Img variant="top" src={props.src} style={{height: '20rem'}} />
+            <Card.Body>
+                <Card.Title>{props.text}</Card.Title>
+                <Card.Text>
+                    {props.label}
+                </Card.Text>
+                <Button variant="primary" href={props.path}>관리페이지로 이동</Button>
+            </Card.Body>
+        </Card>
+            
     )
 }
 

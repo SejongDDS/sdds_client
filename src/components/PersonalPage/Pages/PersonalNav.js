@@ -1,30 +1,37 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import './PersonalNav.scss'
-import Button from '../../utils/Button';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function PersonalNav(){
 
     return(
-        <nav className="personal-navbar">
-            <div className="personal-navbar-container">
-                <Link to="/" className="personal__logo">
-                    SDDS
-                    <i className="fa-solid fa-laptop-code"></i>
-                </Link>
-                
-                <Button className="start_btn" buttonStyle="btn--blue" buttonSize="btn--large" name="디자인 시작하기"
-                    onClick={() => {
-                        window.location.href = "/main";
-                    }}
-                >
-                    디자인 시작하기
-                </Button> 
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+            <Container>
+                <Navbar.Brand><i class="fa-solid fa-code"></i></Navbar.Brand>
+                <Navbar.Brand href="/personal">
 
+                    SDDS
+                    </Navbar.Brand>
+                    
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                        
                 
-            </div>
-        
-        </nav>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link href="/main">새로운 사이트만들기</Nav.Link>
+                        <Nav.Link href="/">로그아웃</Nav.Link>
+                    </Nav>
+                    
+                    
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }
 
