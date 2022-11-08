@@ -12,6 +12,7 @@ import ManagerPage from './components/ManagerPage/Pages/ManagerPage';
 import {RecoilRoot} from 'recoil';
 import ProductManagePage from './components/ManagerPage/Pages/ProductManagePage';
 import OrderManagePage from './components/ManagerPage/Pages/OrderManagePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (
