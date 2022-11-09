@@ -49,6 +49,7 @@ export const productState = atom({
             category: "컴퓨터",
         },
         {
+
             id: 1,
             name: "mac",
             price: 17000000,
@@ -62,6 +63,16 @@ export const productState = atom({
         },
     ],
 });
+
+export const modifyModalShowState=atom({
+    key:'modifyModalShowState',
+    default:false
+})
+
+export const modifyModalDataState=atom({
+    key:'modifyModalDataState',
+    default:[]
+})
 
 //현재 로그인 유져 정보를 담는 atom
 export const userState = atom({

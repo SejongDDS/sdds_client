@@ -1,12 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import ManagerHeader from './ManagerHeader';
 import ManagerSidebar from './ManagerSidebar';
-import { productState } from '../../../recoil/Recoil';
+import { modifyModalDataState, modifyModalShowState, productState } from '../../../recoil/Recoil';
 import { useRecoilState } from 'recoil';
 import Table from '../../utils/Table';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NewProductModal from '../../utils/Modal/NewProductModal';
+import UpdateProductModal from '../../utils/Modal/UpdateProductModal';
 
 const ProductManageContainer=styled.div`
     height:100vh;
@@ -46,10 +48,13 @@ const ProductButtonBlock=styled.div`
 `
 
 function ProductManagePage(){
-    const tableColumn=['상품아이디','상품이름','가격','카테고리']
+    const tableColumn=['상품아이디','상품이름','가격','카테고리','수정/변경']
     const [product,setProduct]=useRecoilState(productState)
+    const [addModalShow,setAddModalShow] = useState(false);
+    
 
     return(
+        <>
         <ProductManageContainer>
             <ManagerHeader page_url={"https://google.com"} domain={"테스트"}/>
 
@@ -61,15 +66,21 @@ function ProductManagePage(){
                     <ProductTableBlock>
                         <h1>상품 관리</h1>
                         <hr/>
-                        <ProductButtonBlock><Button variant="primary">상품 추가</Button></ProductButtonBlock>
+                        <ProductButtonBlock><Button variant="primary" onClick={()=>setAddModalShow(true)}>상품 추가</Button></ProductButtonBlock>
                         
-                        <Table columns={tableColumn} data={product}/>
+                        <Table columns={tableColumn} data={product} kind={true}/>
 
                     </ProductTableBlock>
                 </ProductsBlock>
             </ProductsContainer>
+            
 
         </ProductManageContainer>
+        
+        <NewProductModal show={addModalShow} onHide={()=> setAddModalShow(false)}/>
+        <UpdateProductModal/>
+        
+        </>
     )
 }
 
