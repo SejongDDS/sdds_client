@@ -1,4 +1,4 @@
-.login_page{
+.login_page {
     align-items: center;
 
     min-width: 220px;
@@ -15,7 +15,7 @@
     cursor: pointer;
 }
 
-.text_input{
+.text_input {
     display: flex;
     font-size: 1.2rem;
     font-weight: bold;
@@ -23,19 +23,19 @@
     padding: 15px 0px;
 }
 
-.text_input label{
+.text_input label {
     padding-left: 15px;
     padding-bottom: 5px;
 }
 
-.input-blank{
+.input-blank {
     display: block;
     position: relative;
     width: 100%;
     height: 51px;
-    border: solid 1px rgba(109, 168, 56, .35);
+    border: solid 1px #d278c966;
     border-radius: 30px;
-    
+
     padding: 10px 110px 10px 30px;
     background: #fff;
     font-size: 1.2rem;
@@ -45,12 +45,12 @@
     vertical-align: top;
 }
 
-.logn_button {
-    margin: 40px 0px 60px 0px;
+.btn-login {
+    margin: 40px 0px 20px 0px;
     button {
         color: #fff;
         border: solid 1px rgba(0, 0, 0, 0.08);
-        background-color: rgba(109, 168, 56, 0.92);
+        background-color: #d278c9aa;
         display: block;
         width: 100%;
         padding: 15px 0 15px;
@@ -59,6 +59,27 @@
         text-align: center;
         cursor: pointer;
         box-sizing: border-box;
+        border-radius: 30px;
+    }
+}
+
+.btn-signup {
+    margin: 20px 0px 60px 0px;
+
+    button {
+        color: #000;
+        border: solid 1.5px #d278c9aa;
+        background-color: #fff;
+
+        display: block;
+        width: 100%;
+        padding: 15px 0 15px;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+        box-sizing: border-box;
+
         border-radius: 30px;
     }
 }

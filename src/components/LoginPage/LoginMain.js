@@ -33,7 +33,12 @@ function LoginMain() {
 
     return (
         <div className="login_page">
-            <div className="logo">
+            <div
+                className="logo"
+                onClick={(e) => {
+                    window.location.href = "/..";
+                }}
+            >
                 <img src={logo} className="header-logo" alt="React" />
             </div>
 
@@ -61,7 +66,7 @@ function LoginMain() {
                 />
             </div>
 
-            <div className="logn_button">
+            <div className="btn-login">
                 <button
                     type="button"
                     onClick={(e) => {
@@ -108,17 +113,16 @@ function LoginMain() {
                 </button>
             </div>
 
-            <Button
-                className="nav_btn"
-                buttonStyle="btn--white"
-                buttonSize="btn--medium"
-                name="회원가입"
-                onClick={() => {
-                    window.location.href = "/signup";
-                }}
-            >
-                회원가입
-            </Button>
+            <div className="btn-signup">
+                <button
+                    type="button"
+                    onClick={(e) => {
+                        window.location.href = "/signup";
+                    }}
+                >
+                    <span>회원가입</span>
+                </button>
+            </div>
         </div>
     );
 }
