@@ -20,7 +20,7 @@
             margin: 40px auto 0px auto;
             color: #fff;
             border: solid 1px rgba(0, 0, 0, 0.08);
-            background-color: rgba(109, 168, 56, 0.92);
+            background-color: #d278c9;
 
             display: block;
             width: 30%;
@@ -60,7 +60,7 @@
     position: relative;
     width: 100%;
     height: 51px;
-    border: solid 1px rgba(109, 168, 56, 0.35);
+    border: solid 1px #d278c966;
     border-radius: 30px;
 
     padding: 10px 110px 10px 30px;
@@ -72,13 +72,13 @@
     vertical-align: top;
 }
 
-.list_submit {
-    margin: 40px 0px 60px 0px;
+.btn-submit {
+    margin: 40px 0px 20px 0px;
 
     button {
         color: #fff;
         border: solid 1px rgba(0, 0, 0, 0.08);
-        background-color: rgba(109, 168, 56, 0.92);
+        background-color: #d278c9aa;
 
         display: block;
         width: 100%;
@@ -92,3 +92,26 @@
         border-radius: 30px;
     }
 }
+
+.btn-undo {
+    margin: 20px 0px 60px 0px;
+
+    button {
+        color: #000;
+        border: solid 1.5px #d278c9aa;
+        background-color: #fff;
+
+        display: block;
+        width: 100%;
+        padding: 15px 0 15px;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+        box-sizing: border-box;
+
+        border-radius: 30px;
+    }
+}
+
+//@at-root

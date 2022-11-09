@@ -18,7 +18,10 @@ export default {
     },
     domComponents: {
         names: {
-            "": "상자",
+            body: "구성",
+            div: "상자",
+            Row: "행",
+            Cell: "열",
             wrapper: "Body",
             text: "텍스트",
             comment: "코멘트",
@@ -83,7 +86,36 @@ export default {
         },
 
         properties: {
-            // float: 'Float',
+            float: "정렬",
+            display: "배치",
+            position: "위치",
+            top: "상단",
+            right: "우측",
+            left: "좌측",
+            bottom: "하단",
+
+            width: "너비",
+            height: "높이",
+            max_width: "최대 너비", //이거 어케함?
+            margin: "테두리 밖 공간",
+            padding: "테두리 안쪽 공간",
+
+            fontFamily: "글꼴", //띄어쓰기 어케하누
+            color: "색상",
+
+            opacity: "선명도",
+            border: "테두리",
+            background: "배경",
+
+            transition: "이동",
+            perspective: "관점",
+            transform: "변환",
+
+            direction: "방향",
+            justify: "정의",
+            align: "정렬",
+            order: "순서",
+            flex: "Flex",
         },
     },
     traitManager: {
@@ -91,10 +123,10 @@ export default {
         label: "컴포넌트 설정",
         traits: {
             labels: {
-                // id: 'Id',
-                // alt: 'Alt',
-                // title: 'Title',
-                // href: 'Href',
+                id: "아이디",
+                alt: "Alt",
+                title: "제목",
+                href: "Href",
             },
 
             attributes: {
