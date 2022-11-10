@@ -51,7 +51,7 @@ const ProductContainer= styled.div`
 `
 
 function ManagerPage(){
-
+    
     return(
         <ManagerContainer>
             <ManagerHeader page_url={"https://google.com"} domain={"테스트"}/>

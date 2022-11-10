@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import CardItem from './CardItem';
 import './PersonalCardView.scss';
 import imgsrc from '../../../resources/imgs/web.jpeg';
@@ -7,6 +7,9 @@ import styled from 'styled-components';
 import Carousel from 'react-multi-carousel';
 import {Card,Button} from 'react-bootstrap';
 import 'react-multi-carousel/lib/styles.css';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { tokenState, websiteState } from '../../../recoil/Recoil';
+import axios from 'axios';
 
 const CardViewContainer=styled.div`
     background: #fff;
@@ -24,7 +27,38 @@ const CardCarouselBlock=styled.div`
 
 
 function PersonalCardView(){
-    
+
+    const accessToken=useRecoilValue(tokenState);
+    const [websiteList,setWebsiteList]=useRecoilState(websiteState);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const fetchWebsites = async () => {
+        try{
+            setError(null);
+            setWebsiteList(null);
+
+            setLoading(true);
+            const response= await axios.get('http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000/api/v1/website',{
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
+
+            );
+            setWebsiteList(response.data)
+
+        } catch(e){
+            setError(e);
+        }
+        setLoading(false);
+    }
+
+    useEffect(()=>{
+        fetchWebsites();
+        console.log(websiteList);
+    },[]);
+
     var cardlist=[
         {
         img_src: imgsrc,
@@ -75,7 +109,9 @@ function PersonalCardView(){
         }
     };
 
-
+    if(loading) return <div>로딩중...</div>
+    if(error) return <div>에러 발생</div>
+    if (!websiteList) return null;
     return(
         <CardViewContainer>
             <CardViewTitle>
@@ -96,10 +132,10 @@ function PersonalCardView(){
                 
                 
                 {
-                    cardlist.map((item,idx)=>{
+                    websiteList.map((item,idx)=>{
                         return (
 
-                                <CardItem src={item.img_src} text={item.text} label={item.label} path={item.path}/>
+                                <CardItem src={imgsrc} text={item.website_url} label={item.label} path={item.path}/>
 
                         )
                     })
