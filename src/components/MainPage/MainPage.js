@@ -25,8 +25,12 @@ import Sidebar from "./Pages/Sidebar";
 import TopNav from "./Pages/TopNav";
 import PageSection from "./util/PageSection";
 
+import gjs_navbar from "grapesjs-navbar"; //위에 네비바 가져오기
+import gjs_forms from "grapesjs-plugin-forms"; //form요소들 가져오기
+import gjs_img_editor from "grapesjs-tui-image-editor"; //이미지 수정 가져오기
+import gjs_bg_custom from "grapesjs-style-bg";
+
 // html에 스크립트 들어가는거 확인
-// 그래프ql -> rest로 바꿔달라고?, 리코일
 // 플러그인 - 페이지
 
 function MainPage() {
@@ -41,27 +45,12 @@ function MainPage() {
 
     //ajax 코드 예시
     // $.ajax({
-    //     url: "", //현욱씨 주소
+    //     url: "",
     //     type: "post",
     //     data: { domain: domain },
     //     success: function (data) {},
     //     error: function (err) {},
     // });
-
-    //axios 코드 예시
-    // axios({
-    //     method: "get",
-    //     url: "/test",
-    //     params: {
-    //         domain: domain,
-    //     },
-    // })
-    //     .then(function (response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
 
     useEffect(() => {
         // $(".panel__devices").html("");
@@ -83,8 +72,8 @@ function MainPage() {
             styleManager: styleManager, //스타일 관리자
             // layerManager: layerManager, // 레이어 관리자
             // traitManager: traitManager, // 컴포넌트 설정
-            //deviceManager: deviceManager, // 좌측 상단에 기기변경 표시하는것
-            selectorManager: selectorManager,
+            deviceManager: deviceManager, // 좌측 상단에 기기변경 표시하는것
+            //selectorManager: selectorManager,
             // assetManager: { assets: assets, upload: false },
             storageManager: storageManager, //저장 설정
             panels: panels, //상단 메뉴바 관리
@@ -92,15 +81,23 @@ function MainPage() {
             //     styles: styles,
             //     scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
             // },
-            i18n: { messages: { ko } }, //한글 패치
+            i18n: { locale: "ko", messages: { ko } }, //한글 패치
             plugins: [
                 gjsBlockBasic,
                 grapesjsPluginExport,
+                gjs_navbar,
+                gjs_forms,
+                gjs_img_editor,
+                gjs_bg_custom,
                 "grapesjs-component-code-editor",
-            ], //code-editor 아직 작업중
+            ],
             pluginsOpts: {
                 gjsBlockBasic: {},
                 grapesjsPluginExport: {},
+                gjs_navbar: {},
+                gjs_forms: {},
+                gjs_img_editor: {},
+                gjs_bg_custom: {},
                 "grapesjs-component-code-editor": {},
             },
         });

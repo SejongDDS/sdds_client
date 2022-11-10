@@ -318,11 +318,11 @@ export const selectorManager = {
 export const deviceManager = {
     devices: [
         {
-            name: "Desktop",
+            name: "데스크탑",
             width: "",
         },
         {
-            name: "Mobile",
+            name: "모바일",
             width: "320px",
             widthMedia: "480px",
         },
@@ -345,3 +345,27 @@ export const storageManager = {
         },
     },
 };
+/*
+예시 코드.. 엔드 포인트에 임시저장 -- 서버에 가능?
+const projectID = 1;
+const projectEndpoint = `http://localhost:3000/projects/${projectID}`;
+
+storageManager: {
+    type: 'remote',
+    stepsBeforeSave: 3,
+    options: {
+      remote: {
+        urlLoad: projectEndpoint,
+        urlStore: projectEndpoint,
+        // The `remote` storage uses the POST method when stores data but
+        // the json-server API requires PATCH.
+        fetchOptions: opts => (opts.method === 'POST' ?  { method: 'PATCH' } : {}),
+        // As the API stores projects in this format `{id: 1, data: projectData }`,
+        // we have to properly update the body before the store and extract the
+        // project data from the response result.
+        onStore: data => ({ id: projectID, data }),
+        onLoad: result => result.data,
+      }
+    }
+  }
+*/
