@@ -26,7 +26,6 @@ import TopNav from "./Pages/TopNav";
 import PageSection from "./util/PageSection";
 
 // html에 스크립트 들어가는거 확인
-// 그래프ql -> rest로 바꿔달라고?, 리코일
 // 플러그인 - 페이지
 
 function MainPage() {
@@ -41,7 +40,7 @@ function MainPage() {
 
     //ajax 코드 예시
     // $.ajax({
-    //     url: "", //현욱씨 주소
+    //     url: "",
     //     type: "post",
     //     data: { domain: domain },
     //     success: function (data) {},
@@ -92,7 +91,7 @@ function MainPage() {
             //     styles: styles,
             //     scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
             // },
-            i18n: { messages: { ko } }, //한글 패치
+            i18n: { locale: "ko", messages: { ko } }, //한글 패치
             plugins: [
                 gjsBlockBasic,
                 grapesjsPluginExport,
