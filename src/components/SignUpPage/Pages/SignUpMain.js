@@ -114,12 +114,20 @@ function SighUpMain() {
                                 .then(function (res) {
                                     //회원가입 후 받은 로그 출력
                                     console.log(res);
+                                    if (res.data.ok === true) {
+                                        // 가입 후 완료 모달 띄우기
+                                        setModalIsOpen(true);
 
-                                    // 가입 후 완료 모달 띄우기
-                                    setModalIsOpen(true);
-
+                                        setTimeout(function () {
+                                            window.location.href = "../";
+                                        }, 3000);
+                                    } else {
+                                        window.alert(
+                                            "이미 존재하거나 올바르지 않는 아이디입니다.\n다른 아이디를 다시 입력해주세요."
+                                        );
+                                    }
                                     // 홈으로 이동
-                                    window.location.href = "../";
+                                    //window.location.href = "../";
                                     // 이거 로그인 완료 페이지 따로 만드는거 필요?
                                 })
                                 .catch(function (error) {

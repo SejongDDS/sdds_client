@@ -318,11 +318,11 @@ export const selectorManager = {
 export const deviceManager = {
     devices: [
         {
-            name: "Desktop",
+            name: "데스크탑",
             width: "",
         },
         {
-            name: "Mobile",
+            name: "모바일",
             width: "320px",
             widthMedia: "480px",
         },

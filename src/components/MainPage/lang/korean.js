@@ -10,10 +10,10 @@ export default {
 
     blockManager: {
         labels: {
-            // 'block-id': 'Block Label',
+            text: "신지훈",
         },
         categories: {
-            // 'category-id': 'Category Label',
+            Basic: "신지훈",
         },
     },
     domComponents: {

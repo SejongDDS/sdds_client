@@ -5799,6 +5799,11 @@ grapesjs-navbar@^0.1.5:
   resolved "https://registry.yarnpkg.com/grapesjs-navbar/-/grapesjs-navbar-0.1.5.tgz#62e35eca0f391f94d455e96c206b74b5f495fa6e"
   integrity sha512-tVKPtzlTUNCpzk3lHW69II2NsSzLNQd3K32CXssWCP3M1V8fvc9jG/MQECBkd/gMS+DjldD4/4b00ri9F3tKSg==
 
+grapesjs-navbar@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/grapesjs-navbar/-/grapesjs-navbar-1.0.1.tgz#428d874018858dbd3ad32f89a180a0e7e21f5e87"
+  integrity sha512-/4ixXo2TcP3ao/rJFRO4WSK47OVZ/2tmJu4qQhCMXReOZ34NpYcASP2KN94mIbg+AQrAh1CvhA3/mECJXZxGcg==
+
 grapesjs-plugin-export@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/grapesjs-plugin-export/-/grapesjs-plugin-export-0.1.5.tgz#968631d8d22abdd1d05f14fa30ad86105690ce23"
@@ -5821,6 +5826,11 @@ grapesjs-plugin-forms@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/grapesjs-plugin-forms/-/grapesjs-plugin-forms-0.3.6.tgz#c55ee38ad74e2935e1e279deb0bca45ec0b1d301"
   integrity sha512-JGIxky3if7FLlXBDuX2T2UoWQnvm55PcNp5P2qoX64zlA0+2npz9zbPcj9g1PUHXVPlTXwTr2qu5x3U/pb+xdw==
+
+grapesjs-plugin-forms@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/grapesjs-plugin-forms/-/grapesjs-plugin-forms-2.0.5.tgz#62d51bbb0aa8ad8d2f8339570c85706fbb955a96"
+  integrity sha512-QiyCAepEzaF8dZAebZay3RRrHTt4Fp8nZlT8bddcPaLODxkqNONC6kiAMC89Fz4BOpwmSo5qFgJkUWw5ai242A==
 
 grapesjs-plugin-toolbox@^1.0.13:
   version "1.0.13"
@@ -5847,10 +5857,29 @@ grapesjs-react@^4.0.1:
   resolved "https://registry.yarnpkg.com/grapesjs-react/-/grapesjs-react-4.0.1.tgz#b7db61b1815ec807112faf0ca689259f028efbb9"
   integrity sha512-7Ael9Mj7WgwO1l+0QMDOqkgwfR+ceX+UF5WTRrjLHMhLXHXjLF+jLAiThNUVh8ksIke1unjAUeQlAxBRdt8V/A==
 
+grapesjs-style-bg@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/grapesjs-style-bg/-/grapesjs-style-bg-1.0.5.tgz#7a3af51e182e3b98caf6042495a8639064b6be2f"
+  integrity sha512-rQFSYRM8gkg6qsTK9x2f0y9a20NzXbQPcrHRdrQkp5SMfABNG3MRvebxiESVDxzdKNMPIweg1NawWdbUOtFCTg==
+  dependencies:
+    grapesjs-style-gradient "^2.0.14"
+
+grapesjs-style-gradient@^2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/grapesjs-style-gradient/-/grapesjs-style-gradient-2.0.14.tgz#ece4e40eacd409027b30a0df8eaa004569e6ca03"
+  integrity sha512-YLRKpRp0yv5uyPLheUWCedCHdbMzinRzrTFK5+QBGBzKzYxpBQjzX/N2+eEHIzny7UhILq/CxADLPBOdn+KuHw==
+  dependencies:
+    grapick "^0.1.13"
+
 grapesjs-tabs@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/grapesjs-tabs/-/grapesjs-tabs-1.0.6.tgz#d45377935c04e043325a65ddc695b0cd8fd0b9b6"
   integrity sha512-Xmdte7jMvmGDHIL29t8jlGWL/oSmXOEgswmlKSaYKc7z4ZJEfF0Vr+YTfF6MZq/FFYjzk+0kOad6dnS3TDgZ5Q==
+
+grapesjs-tui-image-editor@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/grapesjs-tui-image-editor/-/grapesjs-tui-image-editor-1.0.1.tgz#ad63123800fd88e12f10709e8ddb1e585de95ee8"
+  integrity sha512-6o4U7mXZ/3Gvu38Jzd8eBp00HXkrNAoVUNYfbZkmgDcuKJ8Db5blIq2hGNkpVHZombrTg5abLDnOZQtCdCHXCw==
 
 grapesjs@^0.20.1:
   version "0.20.1"
@@ -5880,6 +5909,11 @@ graphql@^16.6.0:
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
+
+grapick@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/grapick/-/grapick-0.1.13.tgz#075813a5a79003ce6523df39718e5ec618651599"
+  integrity sha512-2v7DdmXKbl9+GsL2ZRl2qEMD+PeczYJBSifwx+5SGbaSh0pZ+b6GLya87cBfN953wwXsZqyzuSVPBzqRz8F12g==
 
 gzip-size@^6.0.0:
   version "6.0.0"

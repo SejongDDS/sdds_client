@@ -17,19 +17,6 @@ function LoginMain() {
         password: "",
     });
     const [user, setUser] = useRecoilState(userState);
-    // const [, setState] = useRecoilState();
-
-    // let login_data = login();
-
-    // login_data.then(function (data) {
-    //     console.log(data);
-    //     // access_token 리코일에 저장
-    //     // 로그인 완료 모달 표시
-    //     // 홈 화면으로 이동 ( 로그인 상태로 _ 리코일로 판단? )
-    // });
-    // login_data.then(function (error) {
-    //     //오류 모달 표시
-    // });
 
     return (
         <div className="login_page">
@@ -85,21 +72,25 @@ function LoginMain() {
                                 //로그인 후 받은 로그 출력
                                 console.log(res);
 
-                                // access_token포함 계정 정보 리코일 저장
-                                setUser(() => [
-                                    {
-                                        login_id: state.login_id,
-                                        password: state.password,
-                                        access_token: res.data.access_token,
-                                    },
-                                ]);
+                                if (res.data.statusCode === 200) {
+                                    // access_token포함 계정 정보 리코일 저장
+                                    setUser(() => [
+                                        {
+                                            login_id: state.login_id,
+                                            password: state.password,
+                                            access_token: res.data.access_token,
+                                        },
+                                    ]);
 
-                                console.log(user); //(테스트 코드) 유져 정보 출력
+                                    console.log(user); //(테스트 코드) 유져 정보 출력
 
-                                // 로그인 성공하면 그냥 홈화면으로 넘어가는게 어떤지?
-
-                                // 홈 화면으로 이동 (성공 신호 넘어오면)
-                                //window.location.href = "../";
+                                    // 홈 화면으로 이동 (성공 신호 넘어오면)
+                                    window.location.href = "../";
+                                } else {
+                                    window.alert(
+                                        "아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요."
+                                    );
+                                }
                             })
                             .catch(function (error) {
                                 //오류 로그 출력
