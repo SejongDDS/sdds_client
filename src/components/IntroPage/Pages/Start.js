@@ -15,7 +15,7 @@ function Start() {
                 buttonSize="btn--large"
                 name="무료로 시작하기"
                 onClick={() => {
-                    window.location.href = "/main";
+                    window.location.href = "/layout";
                 }}
             ></Button>
         </div>

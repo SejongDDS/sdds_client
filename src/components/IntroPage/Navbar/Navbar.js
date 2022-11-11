@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../utils/Button";
 import "./Navbar.css";
-import LoginMain from "../../LoginPage/LoginMain";
 
 function Navbar({ history }) {
     const [click, setClick] = useState(false);
@@ -54,7 +53,7 @@ function Navbar({ history }) {
                     buttonSize="btn--medium"
                     name="시작하기"
                     onClick={() => {
-                        window.location.href = "/main";
+                        window.location.href = "/layout";
                     }}
                 >
                     시작하기

@@ -10,10 +10,10 @@ export default {
 
     blockManager: {
         labels: {
-            text: "신지훈",
+            text: "글자",
         },
         categories: {
-            Basic: "신지훈",
+            Basic: "기본 블록",
         },
     },
     domComponents: {
@@ -120,6 +120,7 @@ export default {
             "text-shadow": "글자 그림자",
 
             opacity: "선명도",
+            "background-color": "배경 색상",
             "border-radius": "모서리 설정",
             "border-top-left-radius-sub": "좌측 상단",
             "border-top-right-radius-sub": "우측 상단",

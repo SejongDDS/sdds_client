@@ -69,7 +69,7 @@ function LoginMain() {
                             },
                         })
                             .then(function (res) {
-                                //로그인 후 받은 로그 출력
+                                //[테스트 코드]로그인 후 받은 로그 출력
                                 console.log(res);
 
                                 if (res.data.statusCode === 200) {
@@ -87,6 +87,7 @@ function LoginMain() {
                                     // 홈 화면으로 이동 (성공 신호 넘어오면)
                                     window.location.href = "../";
                                 } else {
+                                    //이거 아디 비번 아래에 글자 뜨는걸로 변경??
                                     window.alert(
                                         "아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요."
                                     );
@@ -95,8 +96,6 @@ function LoginMain() {
                             .catch(function (error) {
                                 //오류 로그 출력
                                 console.log(error);
-
-                                //오류 모달 표시
                             });
                     }}
                 >
