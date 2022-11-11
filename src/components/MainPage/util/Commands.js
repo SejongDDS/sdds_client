@@ -1,5 +1,6 @@
 import "../styles/web_builder.scss";
 
+//명령들 한번에 묶어서 추가하는 함수
 export const addCommands = (editor, domain) => {
     editor.Commands.add("set-device-desktop", {
         run: (editor) => editor.setDevice("Desktop"),

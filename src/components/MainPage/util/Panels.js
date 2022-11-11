@@ -35,12 +35,12 @@ export const panels = {
                     command: "export-template",
                     attributes: { title: "View code" },
                 },
-                {
-                    attributes: { title: "Open Code" },
-                    className: "fa fa-code",
-                    command: "open-code",
-                    id: "open-code",
-                },
+                // {
+                //     attributes: { title: "Open Code" },
+                //     className: "fa fa-code",
+                //     command: "open-code",
+                //     id: "open-code",
+                // },//코드 수정 적용
                 {
                     id: "export",
                     className: "fa fa-download",
@@ -57,7 +57,6 @@ export const panels = {
                     command: "redo",
                 },
                 {
-                    //여기서 변수를 넘겨줄 수 있는지?
                     id: "domain",
                     className: "fa fa-browser",
                     command: "domain",
