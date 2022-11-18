@@ -1,11 +1,15 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect,useState } from 'react';
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import ManagerHeader from './ManagerHeader';
 import ManagerSidebar from './ManagerSidebar';
 import styled from 'styled-components';
 import OrderStateContainer from '../Container/OrderStateContainer';
 import TableStateContainer from '../Container/TableStateContainer';
 import ProductStateContainer from '../Container/ProductStateContainer';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { memberState, orderState, productState, tokenState } from '../../../recoil/Recoil';
+import axios from 'axios';
+import { asyncProductQuery, getProducts } from '../Controller/DashboardController';
 
 const ManagerContainer=styled.div`
     height:150vh;
@@ -51,10 +55,34 @@ const ProductContainer= styled.div`
 `
 
 function ManagerPage(){
+    let {website} = useParams();
+
     
+    
+    const accessToken=useRecoilValue(tokenState);
+    
+    const [product,setProduct]=useRecoilState(productState)
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(()=>{
+        setLoading(true);
+        getProducts(accessToken,website).then((data)=> setProduct(data)).then(()=>console.log(product));
+
+        console.log(product);
+        setLoading(false)
+
+    },[])
+
+    if (loading) return <div>로딩중..</div>; 
+    if (error) return <div>에러가 발생했습니다</div>;
+
+    
+
+
     return(
         <ManagerContainer>
-            <ManagerHeader page_url={"https://google.com"} domain={"테스트"}/>
+            <ManagerHeader page_url={"https://google.com"} domain={website}/>
             
             <DashboardContainer>
             <ManagerSidebar/>

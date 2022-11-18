@@ -8,7 +8,7 @@ import Carousel from 'react-multi-carousel';
 import {Card,Button} from 'react-bootstrap';
 import 'react-multi-carousel/lib/styles.css';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { tokenState, websiteState } from '../../../recoil/Recoil';
+import { memberState, orderState, productState, tokenState, websiteState } from '../../../recoil/Recoil';
 import axios from 'axios';
 
 const CardViewContainer=styled.div`
@@ -47,7 +47,7 @@ function PersonalCardView(){
 
             );
             setWebsiteList(response.data)
-
+            
         } catch(e){
             setError(e);
         }
@@ -58,38 +58,6 @@ function PersonalCardView(){
         fetchWebsites();
         console.log(websiteList);
     },[]);
-
-    var cardlist=[
-        {
-        img_src: imgsrc,
-        text:'프로젝트 1',
-        path:'/manager',
-        label:'shop'
-    },
-    {
-        img_src: imgsrc,
-        text:'프로젝트 2',
-        path:'/services',
-        label:'shop'
-    },
-    {
-        img_src: imgsrc,
-        text:'프로젝트 3',
-        path:'/services',
-        label:'shop'
-    },
-    {
-        img_src: imgsrc,
-        text:'프로젝트 2',
-        path:'/services',
-        label:'shop'
-    },
-    {
-        img_src: imgsrc,
-        text:'프로젝트 3',
-        path:'/services',
-        label:'shop'
-    }]
 
     const responsive = {
         desktop: {
@@ -112,6 +80,7 @@ function PersonalCardView(){
     if(loading) return <div>로딩중...</div>
     if(error) return <div>에러 발생</div>
     if (!websiteList) return null;
+
     return(
         <CardViewContainer>
             <CardViewTitle>
@@ -123,9 +92,7 @@ function PersonalCardView(){
                     <Card.Img variant="top" src={img_new} style={{height: '20rem'}} />
                     <Card.Body>
                         <Card.Title>새로운 웹사이트 만들기</Card.Title>
-                        <Card.Text>
-                        주저하지말고 SDDS를 이용해서 웹사이틀 만들어보세요!
-                        </Card.Text>
+                        
                         <Button variant="primary" href="/main">새로운 페이지 생성하러 이동</Button>
                     </Card.Body>
                 </Card>
@@ -135,7 +102,7 @@ function PersonalCardView(){
                     websiteList.map((item,idx)=>{
                         return (
 
-                                <CardItem src={imgsrc} text={item.website_url} label={item.label} path={item.path}/>
+                                <CardItem src={imgsrc} text={item.website_url} path={"/manager/"+item.website_url}/>
 
                         )
                     })
