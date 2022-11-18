@@ -50,9 +50,10 @@ function NewProductModal(props){
     }
 
     const handleAddButton=()=>{
-        
-        addProduct(name,price,category,props.website,count,thumnail,images,token);
+        setProduct([]);
+        addProduct(name,price,category,props.website,count,thumnail,images,token)
         getProducts(token,props.website).then((data)=> setProduct(data));
+        
         props.onHide();
 
     }

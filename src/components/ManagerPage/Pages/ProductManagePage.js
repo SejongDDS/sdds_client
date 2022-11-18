@@ -60,7 +60,13 @@ function ProductManagePage(){
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    useEffect(()=>{
+        setLoading(true);
+        getProducts(accessToken,website).then((data)=> setProduct(data)).then(()=>console.log(product));
 
+        console.log(product);
+        setLoading(false)
+    })
     if (loading) return <div>로딩중..</div>; 
     if (error) return <div>에러가 발생했습니다</div>;
 
