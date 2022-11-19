@@ -31,6 +31,8 @@ import gjs_forms from "grapesjs-plugin-forms"; //form요소들 가져오기
 import gjs_img_editor from "grapesjs-tui-image-editor"; //이미지 수정 가져오기
 import gjs_bg_custom from "grapesjs-style-bg";
 
+import html from "./layout/layout";
+
 function MainPage() {
     const [editor, setEditor] = useState(null);
     // const [assets, setAssets] = useState([]);
@@ -40,6 +42,17 @@ function MainPage() {
 
     // const { pageStore } = useSelector((state) => state);
     // const { pages } = pageStore;
+
+    const iframePrivacyPart = () => {
+        return {
+            __html: '<iframe src="./layout/product_layout.html" width="100%" height="700px"></iframe>',
+        };
+    };
+
+    const LandingPage = {
+        html: "",
+        css: null,
+    };
 
     useEffect(() => {
         // $(".panel__devices").html("");
@@ -66,16 +79,23 @@ function MainPage() {
             // assetManager: { assets: assets, upload: false },
             storageManager: storageManager, //저장 설정
             panels: panels, //상단 메뉴바 관리
+            domComponents: {
+                // options
+            },
             // canvas: {
             //     styles: styles,
             //     scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
             // },
             i18n: { locale: "ko", messages: { ko } }, //한글 패치
+            // components: "<h1>hello world. help me...</h1>", //LandingPage.html,
+            // style: LandingPage.css,
+
             plugins: [
                 gjsBlockBasic,
+                // 파일 다운 설정
                 (editor) =>
                     ExportFile(editor, {
-                        filenamePfx: "test",
+                        filenamePfx: domain, //파일 이름 앞 글자
                         // filename: "temp",
                         // addExportBtn: 1,
                         // btnLabel: "zip",
@@ -88,7 +108,7 @@ function MainPage() {
                      <html lang="en">
                      <head>
                      <meta charset="utf-8">
-                     <link rel="stylesheet" href="./css/style.css">
+                     <link rel="stylesheet" href="./css/style1.css">
                        
             </head>
             <body>${ed.getHtml()}<div>hi</div></body>
@@ -111,13 +131,6 @@ function MainPage() {
         });
 
         addCommands(editor, domain);
-
-        // grapesjs.plugins.add("gjs-export-zip", (editor, options) => {
-        //     console.log(options);
-        //     {
-        //         filenamePfx: "test";
-        //     }
-        // });
 
         editor.BlockManager.add("my-first-block", {
             label: "Simple block",
@@ -153,6 +166,20 @@ function MainPage() {
 
         setEditor(editor);
     }, []);
+
+    // alert(LandingPage.html);
+    editor.setComponents(html);
+    //editor.setStyle();
+
+    //     editor.addComponents(`<div>
+    //     <span data-gjs-type="custom-component" data-gjs-prop="someValue" title="foo">
+    //       Hello!
+    //     </span>
+    //   </div>`);
+
+    // editor.on("storage:start:load", () => {
+    //     "<div><h1>안녕하세요!!</h1></div>";
+    // });
 
     return (
         <div className="App">

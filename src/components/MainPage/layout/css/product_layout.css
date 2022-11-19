@@ -1,0 +1,161 @@
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+.gjs-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    padding: 10px;
+}
+
+.gjs-cell {
+    min-height: 75px;
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+#title-row{
+    width: 100%;
+    box-shadow: rgba(55, 55, 55, 0.2) 0 0 5px 0;
+    margin: auto;
+    margin-bottom: 100px;
+}
+
+#title-text{
+    padding: 30px 40px 30px 40px;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+#title-text:hover{
+    cursor:pointer;
+}
+
+#container-product {
+    width: 80%;
+
+    padding: 10px 10px 150px 10px;
+    margin: auto;
+    margin-bottom: 150px;
+}
+
+#container-product-thumbnail {
+    width: 60%;
+    color: black;
+    display: inline-block;
+}
+
+#container-product-thumbnail img{
+    width: 600px;
+    height: 600px;
+
+    margin: auto;
+}
+
+#container-product-info {
+    position: relative;
+    width: 40%;
+    padding-left: 100px;
+}
+
+#product-name {
+    font-size: 2.3em;
+    font-weight: 500;
+    padding: 10px;
+    margin: 50px 0 30px 30px;
+}
+#product-price {
+    font-size: 2em;
+    font-weight: 500;
+    padding: 10px;
+    margin: 50px 0 30px 30px;
+}
+#product-count {
+    font-size: 1.5em;
+    font-weight: 500;
+    padding: 10px;
+    margin: 50px 0 30px 30px;
+}
+
+
+#container-product-count{
+    margin: 50px 0 30px 30px;
+}
+
+#product-count-minus, #product-count-plus{
+    cursor:pointer;
+    width:40px;
+    height:40px;
+    background:#f2f2f2;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    padding:8px 5px 8px 5px;
+    border:1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#product-count-value{
+    height:40px;
+    width: 100px;
+    text-align: center;
+    font-size: 26px;
+    border:1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+#btn-order {
+    position: absolute;
+    width: 220px;
+    height: 55px;
+    
+    text-align: center;
+    font-size: 30px;
+    display: block;
+    
+    float: bottom;
+    bottom: 0;
+    
+    background: #ff5b59;
+    color: #fff;
+    border: 1px solid #ff5b59;
+    margin: 50px 0 0 30px;
+}
+
+#btn-order:hover{
+    cursor:pointer;
+}
+
+#container-description {
+    width: 60%; 
+    margin: 300px auto 150px auto;
+}
+
+#description-text {
+    font-size:1.5em;
+    font-weight: 500;
+    border-bottom: 4px solid black;
+}
+
+#container-detail-img img {
+    display: block;
+    width: 60%;
+    text-align:center;
+    margin:auto;
+}
+
+
+@media (max-width: 768px) {
+    .gjs-row {
+        flex-wrap: wrap;
+    }
+}
