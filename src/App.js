@@ -13,6 +13,7 @@ import {RecoilRoot} from 'recoil';
 import ProductManagePage from './components/ManagerPage/Pages/ProductManagePage';
 import OrderManagePage from './components/ManagerPage/Pages/OrderManagePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MemberManagePage from './components/ManagerPage/Pages/MemberManagePage';
 
 function App() {
     return (
@@ -28,9 +29,9 @@ function App() {
 
 
                     <Route path="/manager/:website" element={<ManagerPage/>}/>
-                    <Route path="/manager/:website/client" element={<ManagerPage/>}/>
                     <Route path="/manager/:website/product" element={<ProductManagePage/>}/>
                     <Route path="/manager/:website/order" element={<OrderManagePage/>}/>
+                    <Route path="/manager/:website/member" element={<MemberManagePage/>}/>
                     <Route path="/manager/:website/statistic" element={<ManagerPage/>}/>
                     <Route path="/manager/:website/setting" element={<ManagerPage/>}/>
                 </Routes>

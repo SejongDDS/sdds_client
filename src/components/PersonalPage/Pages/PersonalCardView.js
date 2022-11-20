@@ -8,7 +8,7 @@ import Carousel from 'react-multi-carousel';
 import {Card,Button} from 'react-bootstrap';
 import 'react-multi-carousel/lib/styles.css';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { memberState, orderState, productState, tokenState, websiteState } from '../../../recoil/Recoil';
+import { memberState, orderState, productState, tokenState, visitState, websiteState } from '../../../recoil/Recoil';
 import axios from 'axios';
 
 const CardViewContainer=styled.div`
@@ -29,7 +29,7 @@ const CardCarouselBlock=styled.div`
 function PersonalCardView(){
 
     const accessToken=useRecoilValue(tokenState);
-    const [websiteList,setWebsiteList]=useRecoilState(websiteState);
+    const [websiteList,setWebsiteList]=useRecoilState(visitState);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 

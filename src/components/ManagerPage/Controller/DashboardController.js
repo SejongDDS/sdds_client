@@ -32,15 +32,36 @@ export const getProducts =async (token,website)=> {
         console.log(err);
     }
 }
-export const addProduct = async (name,price,category,website,count,thumnail,images,token)=>{
+
+export const updateProduct = async (token,id,website,name,price,count,category_name) => {
+    const frm = new FormData();
+    frm.append('name',name);
+    frm.append('price',price);
+    frm.append('count',count);
+    frm.append('website_url',website);
+    frm.append('category_name',category_name);
+
+    try{
+        const response = await axios.post('http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000/api/v1/product/'+id,frm,{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(response);
+        
+    }catch(err){
+        console.log(err);
+    }
+}
+export const addProduct = async (name,price,category,website,count,thumbnail,images,token)=>{
     const frm = new FormData();
     frm.append('name',name);
     frm.append('price',price);
     frm.append('count',count);
     frm.append('website_url',website);
     frm.append('category_name',category);
-    let thumnails=[...thumnail];
-    thumnails.forEach(ele => frm.append('thumbnail_image',ele))
+    let thumbnails=[...thumbnail];
+    thumbnails.forEach(ele => frm.append('thumbnail_image',ele))
 
 
     let imgs=[...images];
@@ -57,4 +78,32 @@ export const addProduct = async (name,price,category,website,count,thumnail,imag
         console.log(err);
     }
     
+}
+
+export const getOrders = async (token,website) => {
+    try {
+        const response = await axios.get('http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000/api/v1/orders/'+website,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        return response.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const getMembers = async (token,website)=> {
+    try {
+        const response = await axios.get('http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000/api/v1/member/all/'+website,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        return response;
+    }catch(err){
+        console.log(err);
+    }
 }

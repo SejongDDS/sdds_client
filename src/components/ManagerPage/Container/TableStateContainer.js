@@ -2,9 +2,10 @@ import React from 'react';
 
 import styled from 'styled-components';
 import Table from '../../utils/Table';
-import { useRecoilState } from 'recoil';
-import { orderState } from '../../../recoil/Recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { orderState, websiteState } from '../../../recoil/Recoil';
 import { Link } from 'react-router-dom';
+import OrderTable from '../Table/OrderTable';
 
 const TableStateBlock=styled.div`
     background: white;
@@ -29,18 +30,19 @@ const TableLink=styled(Link)`
 `
 
 function TableStateContainer(){
-    const tableColumn=['주문아이디','상품이름','구매자 번호','배송 상태','주소','주문날짜']
+    const tableColumn=['주문아이디','구매자','상품이름','수량','배송 상태','주소']
     const [order,setOrder]=useRecoilState(orderState)
+    const website = useRecoilValue(websiteState);
 
     return(
     <TableStateBlock>
         <TableLinkBlock>
-            <TableLink to="/manager/order" >자세히보기</TableLink>
+            <TableLink to={`/manager/${website}/order`} >자세히보기</TableLink>
         </TableLinkBlock>
         
         <h2>주문</h2>
         <hr/>
-        <Table columns={tableColumn} data={order.slice(0,7)}/>
+        <OrderTable columns={tableColumn} data={order}/>
     </TableStateBlock>
     )
 }

@@ -7,9 +7,10 @@ import OrderStateContainer from '../Container/OrderStateContainer';
 import TableStateContainer from '../Container/TableStateContainer';
 import ProductStateContainer from '../Container/ProductStateContainer';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { memberState, orderState, productState, tokenState } from '../../../recoil/Recoil';
+import { memberState, orderState, productState, tokenState, websiteState } from '../../../recoil/Recoil';
 import axios from 'axios';
-import { asyncProductQuery, getProducts } from '../Controller/DashboardController';
+import { asyncProductQuery, getMembers, getOrders, getProducts } from '../Controller/DashboardController';
+import MemberStateContainer from '../Container/MemberStateContainer';
 
 const ManagerContainer=styled.div`
     height:150vh;
@@ -62,14 +63,19 @@ function ManagerPage(){
     const accessToken=useRecoilValue(tokenState);
     
     const [product,setProduct]=useRecoilState(productState)
+    const [order,setOrder]=useRecoilState(orderState);
+    const [member,setMember]=useRecoilState(memberState);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [websites,setWebsite]=useRecoilState(websiteState)
 
     useEffect(()=>{
         setLoading(true);
+        setWebsite(website);
         getProducts(accessToken,website).then((data)=> setProduct(data)).then(()=>console.log(product));
+        getOrders(accessToken,website).then((data)=> setOrder(data));
+        getMembers(accessToken,website).then((data)=> setMember(data.data.members));
 
-        console.log(product);
         setLoading(false)
 
     },[])
@@ -89,13 +95,13 @@ function ManagerPage(){
             <StateContainer>
                 
                 <ChartContainer>
-                    <OrderStateContainer/>
+                    <TableStateContainer/>
                 </ChartContainer>
                 <OrderContainer>
                     <OrderStateContainer/>
                 </OrderContainer>
                 <TableContainer>
-                    <TableStateContainer/>
+                    <MemberStateContainer/>
                 </TableContainer>
                 <ProductContainer>
                     <ProductStateContainer/>
