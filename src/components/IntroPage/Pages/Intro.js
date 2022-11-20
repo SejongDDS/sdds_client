@@ -25,7 +25,7 @@ function Intro() {
                 name="시작하기"
                 className="btn"
                 onClick={() => {
-                    window.location.href = "/main";
+                    window.location.href = "/layout";
                 }}
             ></Button>
         </div>

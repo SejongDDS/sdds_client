@@ -21,6 +21,7 @@ function Modal_SignUp({ modalIsOpen, setModalIsOpen }) {
             >
                 <div className="signup-model">
                     <p>가입이 완료되었습니다.</p>
+                    <p>잠시후 홈화면으로 돌아갑니다.</p>
                     <div className="signup-modal-button">
                         <button onClick={() => setModalIsOpen(false)}>
                             <span>확인</span>
