@@ -27,6 +27,7 @@
     "grapesjs-plugin-forms": "^2.0.5",
     "grapesjs-plugin-toolbox": "^1.0.13",
     "grapesjs-preset-webpage": "^0.1.11",
+    "grapesjs-project-manager": "^2.0.5",
     "grapesjs-react": "^4.0.1",
     "grapesjs-style-bg": "^1.0.5",
     "grapesjs-tabs": "^1.0.6",

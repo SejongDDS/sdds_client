@@ -55,6 +55,7 @@ export const addCommands = (editor, domain) => {
 
     // console.log(content);
     // 앞으로가기 버튼
+
     editor.Commands.add("domain", {
         run: (editor) =>
             //변경 필요: 여기 값을 props로 전달 받아서 콘텐츠에 나오게
