@@ -1,4 +1,3 @@
-
 import {atom,selector} from 'recoil';
 
 
@@ -38,26 +37,26 @@ export const productState=atom({
     default:[
         
     ]
-
+})
 
 
 export const memberState=atom({
     key:'memberState',
     default:[]
-})
+});
 
 export const modifyModalShowState=atom({
     key:'modifyModalShowState',
     default:false
-})
+});
 
 export const modifyModalDataState=atom({
     key:'modifyModalDataState',
     default:[]
-})
+});
 
-//현재 로그인 유져 정보를 담는 atom
+
 export const userState = atom({
     key: "userState",
     default: [],
-});
+});;
