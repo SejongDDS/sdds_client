@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import styled from 'styled-components';
 
 const OrderStateBlock=styled.div`
@@ -36,6 +36,10 @@ const OrderNumber=styled.span`
 `
 
 function OrderStateContainer(){
+
+    useEffect(()=>{
+        
+    },[])
 
     return(
         <OrderStateBlock>

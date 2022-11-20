@@ -2,9 +2,12 @@ import React from 'react';
 
 import styled from 'styled-components';
 import Table from '../../utils/Table';
-import { useRecoilState } from 'recoil';
-import { productState } from '../../../recoil/Recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { productState, websiteState } from '../../../recoil/Recoil';
 import { Link } from 'react-router-dom';
+import { asyncProductQuery } from '../Controller/DashboardController';
+import ProductTable from '../Table/ProductTable';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 const ProductStateBlock=styled.div`
     background: white;
@@ -29,19 +32,20 @@ const ProductLink=styled(Link)`
 `
 
 function ProductStateContainer(){
-    const tableColumn=['상품아이디','상품이름','가격','카테고리']
-    const [product,setProduct]=useRecoilState(productState)
+    const tableColumn=['상품아이디','상품이름','가격','수량','카테고리']
 
+    const [product,setProduct]=useRecoilState(productState);
+    const website=useRecoilValue(websiteState);
     
     return(
     <ProductStateBlock>
         <ProductLinkBlock>
-            <ProductLink to="/manager/product" >자세히보기</ProductLink>
+            <ProductLink to={`/manager/${website}/product`} >자세히보기</ProductLink>
         </ProductLinkBlock>
         
         <h2>상품 관리</h2>
         <hr/>
-        <Table columns={tableColumn} data={product.slice(0,7)}/>
+        <ProductTable columns={tableColumn} data={product}/>
     </ProductStateBlock>
     )
 }

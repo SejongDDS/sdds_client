@@ -1,14 +1,16 @@
-import React,{useState} from 'react';
+import React,{useState,useParams, useEffect} from 'react';
 import styled from 'styled-components';
 import ManagerHeader from './ManagerHeader';
 import ManagerSidebar from './ManagerSidebar';
-import { modifyModalDataState, modifyModalShowState, productState } from '../../../recoil/Recoil';
-import { useRecoilState } from 'recoil';
+import { modifyModalDataState, modifyModalShowState, productState, tokenState, websiteState } from '../../../recoil/Recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import Table from '../../utils/Table';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NewProductModal from '../../utils/Modal/NewProductModal';
 import UpdateProductModal from '../../utils/Modal/UpdateProductModal';
+import ProductTable from '../Table/ProductTable';
+import { asyncProductQuery, getProducts } from '../Controller/DashboardController';
 
 const ProductManageContainer=styled.div`
     height:100vh;
@@ -48,15 +50,33 @@ const ProductButtonBlock=styled.div`
 `
 
 function ProductManagePage(){
-    const tableColumn=['상품아이디','상품이름','가격','카테고리','수정/변경']
-    const [product,setProduct]=useRecoilState(productState)
+    let website = useRecoilValue(websiteState);
+    const accessToken=useRecoilValue(tokenState);
+    const tableColumn=['상품아이디','상품이름','가격','수량','카테고리','수정/변경']
+    const [product,setProduct]=useRecoilState(productState);
+
     const [addModalShow,setAddModalShow] = useState(false);
     
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(()=>{
+        setLoading(true);
+        getProducts(accessToken,website).then((data)=> setProduct(data)).then(()=>console.log(product));
+
+        console.log(product);
+        setLoading(false)
+    },[])
+
+    if (loading) return <div>로딩중..</div>; 
+    if (error) return <div>에러가 발생했습니다</div>;
+
+
 
     return(
         <>
         <ProductManageContainer>
-            <ManagerHeader page_url={"https://google.com"} domain={"테스트"}/>
+            <ManagerHeader page_url={"https://google.com"} domain={website}/>
 
             <ProductsContainer>
                 <ManagerSidebar/>
@@ -68,7 +88,7 @@ function ProductManagePage(){
                         <hr/>
                         <ProductButtonBlock><Button variant="primary" onClick={()=>setAddModalShow(true)}>상품 추가</Button></ProductButtonBlock>
                         
-                        <Table columns={tableColumn} data={product} kind={true}/>
+                        <ProductTable columns={tableColumn} data={product} kind={true}/>
 
                     </ProductTableBlock>
                 </ProductsBlock>
@@ -77,7 +97,7 @@ function ProductManagePage(){
 
         </ProductManageContainer>
         
-        <NewProductModal show={addModalShow} onHide={()=> setAddModalShow(false)}/>
+        <NewProductModal show={addModalShow} onHide={()=> setAddModalShow(false)} website={website}/>
         <UpdateProductModal/>
         
         </>

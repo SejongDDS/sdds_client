@@ -1,31 +1,31 @@
 import React,{useEffect, useState} from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { orderState, productState, tokenState, websiteState } from '../../../recoil/Recoil';
+import { memberState, orderState, tokenState, websiteState } from '../../../recoil/Recoil';
 import UpdateOrderModal from '../../utils/Modal/UpdateOrderModal';
 import Table from '../../utils/Table';
-import { getOrders } from '../Controller/DashboardController';
-import OrderTable from '../Table/OrderTable';
+import { getMembers, getOrders } from '../Controller/DashboardController';
+import MemberTable from '../Table/MemberTable';
 import ManagerHeader from './ManagerHeader';
 import ManagerSidebar from './ManagerSidebar';
 
-const OrderManageContainer=styled.div`
+const MemberManageContainer=styled.div`
     height:100vh;
 `
 
-const OrdersContainer=styled.div`
+const MemberContainer=styled.div`
     display:flex;
     width:100%;
     height:100%;
 `
 
-const OrdersBlock=styled.div`
+const MemberBlock=styled.div`
     width:80%;
     background: gray;
     padding:10px;
 `
 
-const OrderTableBlock=styled.div`
+const MemberTableBlock=styled.div`
     background: white;
     border: none;   
     border-radius: 5px;
@@ -37,26 +37,26 @@ const OrderTableBlock=styled.div`
     padding: 20px;
 `
 
-const OrderButtonBlock=styled.div`
+const MemberButtonBlock=styled.div`
     text-align:right;
 
     margin-right:20px;
     margin-bottom:20px;
 `
 
-function OrderManagePage(){
+function MemberManagePage(){
     let website = useRecoilValue(websiteState);
     const accessToken=useRecoilValue(tokenState);
 
-    const tableColumn=['주문아이디','구매자','상품이름','수량','배송 상태','주소','수정/변경']
-    const [order,setOrder]=useRecoilState(orderState);
+    const tableColumn=['회원아이디','이메일','전화번호','생년월일','수정/변경']
+    const [member,setMember]=useRecoilState(memberState);
     
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(()=>{
         setLoading(true);
-        getOrders(accessToken,website).then((data)=> setOrder(data));
+        getMembers(accessToken,website).then((data)=> setMember(data.data.members));
 
 
         setLoading(false)
@@ -66,24 +66,24 @@ function OrderManagePage(){
 
     return(
         <>
-            <OrderManageContainer>
-                <ManagerHeader page_url={"https://google.com"} domain={"테스트"}/>
+            <MemberManageContainer>
+                <ManagerHeader page_url={"https://google.com"} domain={website}/>
 
-                <OrdersContainer>
+                <MemberContainer>
                     <ManagerSidebar/>
-                    <OrdersBlock>
-                        <OrderTableBlock>
+                    <MemberBlock>
+                        <MemberTableBlock>
                             <h1>주문 관리</h1>
                             <hr/>
-                            <OrderTable columns={tableColumn} data={order} kind={true}/>
-                        </OrderTableBlock>
-                    </OrdersBlock>
-                </OrdersContainer>
-            </OrderManageContainer>
+                            <MemberTable columns={tableColumn} data={member} kind={true}/>
+                        </MemberTableBlock>
+                    </MemberBlock>
+                </MemberContainer>
+            </MemberManageContainer>
 
             <UpdateOrderModal/>
         </>
     )
 }
 
-export default OrderManagePage;
+export default MemberManagePage;
