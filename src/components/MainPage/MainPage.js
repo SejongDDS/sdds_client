@@ -32,26 +32,23 @@ import gjs_forms from "grapesjs-plugin-forms"; //form요소들 가져오기
 import gjs_img_editor from "grapesjs-tui-image-editor"; //이미지 수정 가져오기
 import gjs_bg_custom from "grapesjs-style-bg";
 import gjs_pj_manager from "grapesjs-project-manager";
+import gjs_tail from "grapesjs-tailwind";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
-    // const [assets, setAssets] = useState([]);
-    let domain = ""; //도메인 입력에 사용될 변수 - 서버로 보낼때 다시 사용
-    const txt = "12321312333333";
-    // const { pageId } = useParams();
+    //const [page, setPage] = useState("1");
 
-    // const { pageStore } = useSelector((state) => state);
+    let page = "1";
+    let domain = ""; //도메인 입력에 사용될 변수 - 서버로 보낼때 다시 사용
+    // let { pageId } = useParams();
+
+    // const { pages } = useSelector((state) => state);
     // const { pages } = pageStore;
 
     // const iframePrivacyPart = () => {
     //     return {
     //         __html: '<iframe src="./layout/product_layout.html" width="100%" height="700px"></iframe>',
     //     };
-    // };
-
-    // const LandingPage = {
-    //     html: "",
-    //     css: null,
     // };
 
     useEffect(() => {
@@ -89,8 +86,6 @@ function MainPage() {
             //     scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
             // },
             i18n: { locale: "ko", messages: { ko } }, //한글 패치
-            // components: "<h1>hello world. help me...</h1>", //LandingPage.html,
-            // style: LandingPage.css,
 
             plugins: [
                 gjsBlockBasic,
@@ -107,14 +102,13 @@ function MainPage() {
                             },
                             "test1.html": (ed) =>
                                 `<!doctype html>
-                     <html lang="en">
-                     <head>
-                     <meta charset="utf-8">
-                     <link rel="stylesheet" href="./css/style1.css">
-                       
-            </head>
-            ${ed.getHtml()}
-          </html>`,
+                                <html lang="en">
+                                <head>
+                                    <meta charset="utf-8">
+                                    <link rel="stylesheet" href="./css/style1.css">
+                                </head>
+                                ${ed.getHtml()}
+                            </html>`,
                         },
                     }),
                 gjs_navbar,
@@ -122,6 +116,7 @@ function MainPage() {
                 gjs_img_editor,
                 gjs_bg_custom,
                 gjs_pj_manager,
+                gjs_tail,
             ],
             pluginsOpts: {
                 gjsBlockBasic: {},
@@ -131,10 +126,11 @@ function MainPage() {
                 gjs_img_editor: {},
                 gjs_bg_custom: {},
                 gjs_pj_manager: {},
+                gjs_tail: {},
             },
         });
 
-        addCommands(editor, domain);
+        addCommands(editor, domain, page);
 
         editor.BlockManager.add("my-first-block", {
             label: "Simple block",
@@ -162,24 +158,24 @@ function MainPage() {
         //     success: function (data) {},
         //     error: function (err) {},
         // });
-        const pn = editor.Panels;
-        pn.addButton("options", {
-            id: "open-templates",
-            className: "fa fa-folder-o",
-            attributes: {
-                title: "Open projects and templates",
-            },
-            command: "open-templates", //Open modal
-        });
-        pn.addButton("views", {
-            id: "open-pages",
-            className: "fa fa-file-o",
-            attributes: {
-                title: "Take Screenshot",
-            },
-            command: "open-pages",
-            togglable: false,
-        });
+        // const pn = editor.Panels;
+        // pn.addButton("options", {
+        //     id: "open-templates",
+        //     className: "fa fa-folder-o",
+        //     attributes: {
+        //         title: "Open projects and templates",
+        //     },
+        //     command: "open-templates", //Open modal
+        // });
+        // pn.addButton("views", {
+        //     id: "open-pages",
+        //     className: "fa fa-file-o",
+        //     attributes: {
+        //         title: "Take Screenshot",
+        //     },
+        //     command: "open-pages",
+        //     togglable: false,
+        // });
 
         setTimeout(() => {
             let categories = editor.BlockManager.getCategories();
@@ -210,12 +206,13 @@ function MainPage() {
         // });
 
         setEditor(editor);
-        editor.on("load", () => {
-            const pageManager = editor.Pages;
 
-            const somePage = pageManager.get("cqcq");
-            pageManager.select(somePage);
-        });
+        // editor.on("load", () => {
+        // const pageManager = editor.Pages;
+
+        // const somePage = pageManager.get("cqcq");
+        // pageManager.select(somePage);
+        // });
 
         // const currentPage = pageManager.get("page1");;
         // currentPage.components = editor.getComponents();

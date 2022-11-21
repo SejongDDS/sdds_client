@@ -1,6 +1,7 @@
 export const layoutManager = {
     pages: [
         {
+            id: "page-1",
             component: `
             
             <div class="gjs-row" id="title-row">
@@ -268,8 +269,44 @@ flex-wrap: wrap;
           `,
         },
         {
-            id: "cqcq",
-            component: "<h1>하이하이123</h1>",
+            id: "page-2",
+            component: `
+            
+            <div class="el-X"><div class="el-Y el-A"><div class="media"><img class="mr-3" src="">
+<div class="media-body">
+            <h5>제목</h5>
+            <div>신지훈</div>
+            </div>
+            </div></div>
+            <div class="el-Y el-A"><div class="media">
+            <img class="mr-3" src="">
+            <div class="media-body">
+            <h5>제목</h5>
+            <div>신지훈</div>
+            </div>
+            </div></div>
+            <div class="el-Y el-A"><div class="media">
+            <img class="mr-3" src="">
+            <div class="media-body">
+            <h5>제목</h5>
+            <div>신지훈</div>
+            </div>
+            </div></div>
+            <div class="el-Y el-A"><div class="media">
+            <img class="mr-3" src="">
+            <div class="media-body">
+            <h5>제목</h5>
+            <div>신지훈</div>
+            </div>
+            </div></div>
+            <div class="el-Y el-A"><div class="media">
+            <img class="mr-3" src="">
+            <div class="media-body">
+            <h5>제목</h5>
+            <div>신지훈</div>
+            </div>
+            </div></div>
+          </div>          `,
         },
     ],
 };
