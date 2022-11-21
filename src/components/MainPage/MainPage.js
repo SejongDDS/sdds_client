@@ -15,6 +15,7 @@ import {
 import { addCommands } from "./util/Commands";
 import { scripts, styles } from "./util/Canvas";
 import ko from "./lang/korean";
+import { layoutManager } from "./layout/LayoutManager";
 
 import $ from "jquery";
 import axios from "axios";
@@ -30,16 +31,25 @@ import gjs_navbar from "grapesjs-navbar"; //위에 네비바 가져오기
 import gjs_forms from "grapesjs-plugin-forms"; //form요소들 가져오기
 import gjs_img_editor from "grapesjs-tui-image-editor"; //이미지 수정 가져오기
 import gjs_bg_custom from "grapesjs-style-bg";
+import gjs_pj_manager from "grapesjs-project-manager";
+import gjs_tail from "grapesjs-tailwind";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
-    // const [assets, setAssets] = useState([]);
+    //const [page, setPage] = useState("1");
+
+    let page = "1";
     let domain = ""; //도메인 입력에 사용될 변수 - 서버로 보낼때 다시 사용
+    // let { pageId } = useParams();
 
-    // const { pageId } = useParams();
-
-    // const { pageStore } = useSelector((state) => state);
+    // const { pages } = useSelector((state) => state);
     // const { pages } = pageStore;
+
+    // const iframePrivacyPart = () => {
+    //     return {
+    //         __html: '<iframe src="./layout/product_layout.html" width="100%" height="700px"></iframe>',
+    //     };
+    // };
 
     useEffect(() => {
         // $(".panel__devices").html("");
@@ -66,16 +76,23 @@ function MainPage() {
             // assetManager: { assets: assets, upload: false },
             storageManager: storageManager, //저장 설정
             panels: panels, //상단 메뉴바 관리
+            // domComponents: {
+            //     // options
+            // },
+            projectData: layoutManager,
+            // pageManager: true,
             // canvas: {
             //     styles: styles,
             //     scripts: ["https://code.jquery.com/jquery-3.6.1.slim.min.js"],
             // },
             i18n: { locale: "ko", messages: { ko } }, //한글 패치
+
             plugins: [
                 gjsBlockBasic,
+                // 파일 다운 설정
                 (editor) =>
                     ExportFile(editor, {
-                        filenamePfx: "test",
+                        filenamePfx: "domain", //파일 이름 앞 글자
                         // filename: "temp",
                         // addExportBtn: 1,
                         // btnLabel: "zip",
@@ -85,20 +102,21 @@ function MainPage() {
                             },
                             "test1.html": (ed) =>
                                 `<!doctype html>
-                     <html lang="en">
-                     <head>
-                     <meta charset="utf-8">
-                     <link rel="stylesheet" href="./css/style.css">
-                       
-            </head>
-            <body>${ed.getHtml()}<div>hi</div></body>
-          </html>`,
+                                <html lang="en">
+                                <head>
+                                    <meta charset="utf-8">
+                                    <link rel="stylesheet" href="./css/style1.css">
+                                </head>
+                                ${ed.getHtml()}
+                            </html>`,
                         },
                     }),
                 gjs_navbar,
                 gjs_forms,
                 gjs_img_editor,
                 gjs_bg_custom,
+                gjs_pj_manager,
+                gjs_tail,
             ],
             pluginsOpts: {
                 gjsBlockBasic: {},
@@ -107,17 +125,12 @@ function MainPage() {
                 gjs_forms: {},
                 gjs_img_editor: {},
                 gjs_bg_custom: {},
+                gjs_pj_manager: {},
+                gjs_tail: {},
             },
         });
 
-        addCommands(editor, domain);
-
-        // grapesjs.plugins.add("gjs-export-zip", (editor, options) => {
-        //     console.log(options);
-        //     {
-        //         filenamePfx: "test";
-        //     }
-        // });
+        addCommands(editor, domain, page);
 
         editor.BlockManager.add("my-first-block", {
             label: "Simple block",
@@ -145,14 +158,89 @@ function MainPage() {
         //     success: function (data) {},
         //     error: function (err) {},
         // });
+        // const pn = editor.Panels;
+        // pn.addButton("options", {
+        //     id: "open-templates",
+        //     className: "fa fa-folder-o",
+        //     attributes: {
+        //         title: "Open projects and templates",
+        //     },
+        //     command: "open-templates", //Open modal
+        // });
+        // pn.addButton("views", {
+        //     id: "open-pages",
+        //     className: "fa fa-file-o",
+        //     attributes: {
+        //         title: "Take Screenshot",
+        //     },
+        //     command: "open-pages",
+        //     togglable: false,
+        // });
 
         setTimeout(() => {
             let categories = editor.BlockManager.getCategories();
             categories.each((category) => category.set("open", false));
         }, 1000);
 
+        // editor.on("load", () => {
+        //     const pageManager = editor.Pages;
+
+        //     // pageManager.setPages(pageManager.getAll());
+
+        //     pageManager.add({
+        //         id: "page-1", // without an explicit ID, a random one will be created
+        //         styles: `.my-class { color: green }`, // or a JSON of styles
+        //         component: '<div class="my-class">My element plus</div>', // or a JSON of components
+        //     });
+
+        //     pageManager.add({
+        //         id: "page-2", // without an explicit ID, a random one will be created
+        //         styles: `.my-class1 { color: red }`, // or a JSON of styles
+        //         component: '<div class="my-class1">My element plus two</div>', // or a JSON of components
+        //     });
+
+        //     const somePage = pageManager.get("page-2");
+        //     pageManager.select(somePage);
+
+        //     //이건 된다...
+        // });
+
         setEditor(editor);
+
+        // editor.on("load", () => {
+        // const pageManager = editor.Pages;
+
+        // const somePage = pageManager.get("cqcq");
+        // pageManager.select(somePage);
+        // });
+
+        // const currentPage = pageManager.get("page1");;
+        // currentPage.components = editor.getComponents();
+        // currentPage.style = editor.getStyle();
+
+        // const nextPage = pageManager.get("page1");
+        // editor.setComponents("<div><h1>하이하이</h1></div>");
+        // editor.setStyle(nextPage.styles);
+        // editor.setComponents({
+        //     type: "text",
+        //     classes: ["cls"],
+        //     content: "new one",
+        // });
     }, []);
+
+    // alert(LandingPage.html);
+    // editor.setComponents(JSON.stringify("<h1>ㅎㅇㅇㅇㅇ</h1>"));
+    //editor.setStyle();
+
+    //     editor.addComponents(`<div>
+    //     <span data-gjs-type="custom-component" data-gjs-prop="someValue" title="foo">
+    //       Hello!
+    //     </span>
+    //   </div>`);
+
+    // editor.on("storage:start:load", () => {
+    //     "<div><h1>안녕하세요!!</h1></div>";
+    // });
 
     return (
         <div className="App">

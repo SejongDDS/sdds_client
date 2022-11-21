@@ -35,12 +35,11 @@ export const panels = {
                     command: "export-template",
                     attributes: { title: "View code" },
                 },
-                // {
-                //     attributes: { title: "Open Code" },
-                //     className: "fa fa-code",
-                //     command: "open-code",
-                //     id: "open-code",
-                // },//코드 수정 적용
+                {
+                    id: "pages",
+                    className: "fa fa-pager",
+                    command: "pages",
+                }, //코드 수정 적용
                 {
                     id: "export",
                     className: "fa fa-download",

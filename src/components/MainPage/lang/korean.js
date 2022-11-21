@@ -14,6 +14,7 @@ export default {
         },
         categories: {
             Basic: "기본 블록",
+            Blog: "블로그",
         },
     },
     domComponents: {
