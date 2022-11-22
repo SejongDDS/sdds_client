@@ -73,7 +73,7 @@ function MemberManagePage(){
                     <ManagerSidebar/>
                     <MemberBlock>
                         <MemberTableBlock>
-                            <h1>주문 관리</h1>
+                            <h1>회원 관리</h1>
                             <hr/>
                             <MemberTable columns={tableColumn} data={member} kind={true}/>
                         </MemberTableBlock>
