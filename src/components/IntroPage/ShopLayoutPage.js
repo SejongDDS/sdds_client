@@ -17,7 +17,7 @@ function ShopLayoutPage() {
                         className="card-container"
                         //이거 레이아웃 다르게 불러오는 세팅 필요
                         onClick={() => {
-                            window.location.href = "/main";
+                            window.location.href = "/main/1";
                         }}
                     >
                         <div className="img-container">
@@ -40,7 +40,7 @@ function ShopLayoutPage() {
                     <div
                         className="card-container"
                         onClick={() => {
-                            window.location.href = "/main";
+                            window.location.href = "/main/2";
                         }}
                     >
                         <div className="img-container">
@@ -63,7 +63,7 @@ function ShopLayoutPage() {
                     <div
                         className="card-container"
                         onClick={() => {
-                            window.location.href = "/main";
+                            window.location.href = "/main/3";
                         }}
                     >
                         <div className="img-container">

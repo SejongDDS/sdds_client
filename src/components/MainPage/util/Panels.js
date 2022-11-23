@@ -36,11 +36,6 @@ export const panels = {
                     attributes: { title: "View code" },
                 },
                 {
-                    id: "pages",
-                    className: "fa fa-pager",
-                    command: "pages",
-                }, //코드 수정 적용
-                {
                     id: "export",
                     className: "fa fa-download",
                     command: "export",
