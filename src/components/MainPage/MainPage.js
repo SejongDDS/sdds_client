@@ -15,7 +15,7 @@ import {
 import { addCommands } from "./util/Commands";
 import { scripts, styles } from "./util/Canvas";
 import ko from "./lang/korean";
-import { layoutManager } from "./layout/LayoutManager";
+import { addPages, layoutManager } from "./layout/LayoutManager";
 
 import $ from "jquery";
 import axios from "axios";
@@ -36,20 +36,11 @@ import gjs_tail from "grapesjs-tailwind";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
-    //const [page, setPage] = useState("1");
+    // const [canvas_page, setPage] = useState(1);
 
-    let page = "1";
+    let params = useParams();
+    let page_id = params.layout_id;
     let domain = ""; //도메인 입력에 사용될 변수 - 서버로 보낼때 다시 사용
-    // let { pageId } = useParams();
-
-    // const { pages } = useSelector((state) => state);
-    // const { pages } = pageStore;
-
-    // const iframePrivacyPart = () => {
-    //     return {
-    //         __html: '<iframe src="./layout/product_layout.html" width="100%" height="700px"></iframe>',
-    //     };
-    // };
 
     useEffect(() => {
         // $(".panel__devices").html("");
@@ -130,25 +121,35 @@ function MainPage() {
             },
         });
 
-        addCommands(editor, domain, page);
+        addPages(editor, page_id);
+        addCommands(editor, domain);
 
-        editor.BlockManager.add("my-first-block", {
-            label: "Simple block",
-            content: {
-                content:
-                    '<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script><textarea name="editor1"></textarea>',
-            },
-        }); //스크립트 코드를 만드는 곳에 넣으려면 이걸 쓰면 됨
+        if (page_id !== "0") {
+            const panelManager = editor.Panels;
+            panelManager.addButton("options", {
+                id: "pages",
+                className: "fa fa-pager",
+                command: "pages",
+            });
+        }
 
-        editor.BlockManager.add("test-block2", {
-            label: "Test block2",
-            attributes: { class: "fa fa-text" },
-            content: {
-                script: "alert('alert 추가 테스트');",
-                content:
-                    '<textarea name="editor1"></textarea><script>alert("avl 시험보세요");</script>',
-            },
-        }); //스크립트 코드를 바로 실행하려면 이걸 쓰면 됨
+        // editor.BlockManager.add("my-first-block", {
+        //     label: "Simple block",
+        //     content: {
+        //         content:
+        //             '<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script><textarea name="editor1"></textarea>',
+        //     },
+        // }); //스크립트 코드를 만드는 곳에 넣으려면 이걸 쓰면 됨
+
+        // editor.BlockManager.add("test-block2", {
+        //     label: "Test block2",
+        //     attributes: { class: "fa fa-text" },
+        //     content: {
+        //         script: "alert('alert 추가 테스트');",
+        //         content:
+        //             '<textarea name="editor1"></textarea><script>alert("avl 시험보세요");</script>',
+        //     },
+        // }); //스크립트 코드를 바로 실행하려면 이걸 쓰면 됨
 
         //ajax 코드 예시
         // $.ajax({
@@ -158,63 +159,14 @@ function MainPage() {
         //     success: function (data) {},
         //     error: function (err) {},
         // });
-        // const pn = editor.Panels;
-        // pn.addButton("options", {
-        //     id: "open-templates",
-        //     className: "fa fa-folder-o",
-        //     attributes: {
-        //         title: "Open projects and templates",
-        //     },
-        //     command: "open-templates", //Open modal
-        // });
-        // pn.addButton("views", {
-        //     id: "open-pages",
-        //     className: "fa fa-file-o",
-        //     attributes: {
-        //         title: "Take Screenshot",
-        //     },
-        //     command: "open-pages",
-        //     togglable: false,
-        // });
-
         setTimeout(() => {
             let categories = editor.BlockManager.getCategories();
             categories.each((category) => category.set("open", false));
         }, 1000);
 
-        // editor.on("load", () => {
-        //     const pageManager = editor.Pages;
-
-        //     // pageManager.setPages(pageManager.getAll());
-
-        //     pageManager.add({
-        //         id: "page-1", // without an explicit ID, a random one will be created
-        //         styles: `.my-class { color: green }`, // or a JSON of styles
-        //         component: '<div class="my-class">My element plus</div>', // or a JSON of components
-        //     });
-
-        //     pageManager.add({
-        //         id: "page-2", // without an explicit ID, a random one will be created
-        //         styles: `.my-class1 { color: red }`, // or a JSON of styles
-        //         component: '<div class="my-class1">My element plus two</div>', // or a JSON of components
-        //     });
-
-        //     const somePage = pageManager.get("page-2");
-        //     pageManager.select(somePage);
-
-        //     //이건 된다...
-        // });
-
         setEditor(editor);
 
-        // editor.on("load", () => {
-        // const pageManager = editor.Pages;
-
-        // const somePage = pageManager.get("cqcq");
-        // pageManager.select(somePage);
-        // });
-
-        // const currentPage = pageManager.get("page1");;
+        // const currentPage = pageManager.get("page1");
         // currentPage.components = editor.getComponents();
         // currentPage.style = editor.getStyle();
 
@@ -227,20 +179,6 @@ function MainPage() {
         //     content: "new one",
         // });
     }, []);
-
-    // alert(LandingPage.html);
-    // editor.setComponents(JSON.stringify("<h1>ㅎㅇㅇㅇㅇ</h1>"));
-    //editor.setStyle();
-
-    //     editor.addComponents(`<div>
-    //     <span data-gjs-type="custom-component" data-gjs-prop="someValue" title="foo">
-    //       Hello!
-    //     </span>
-    //   </div>`);
-
-    // editor.on("storage:start:load", () => {
-    //     "<div><h1>안녕하세요!!</h1></div>";
-    // });
 
     return (
         <div className="App">

@@ -1,7 +1,7 @@
 import "../styles/web_builder.scss";
 
 //명령들 한번에 묶어서 추가하는 함수
-export const addCommands = (editor, domain, page) => {
+export const addCommands = (editor, domain) => {
     editor.Commands.add("set-device-desktop", {
         run: (editor) => editor.setDevice("Desktop"),
     });
@@ -65,47 +65,33 @@ export const addCommands = (editor, domain, page) => {
             }),
     });
 
-    title.innerHTML = "페이지 설정";
+    //     title.innerHTML = "페이지 설정";
 
-    content.value = page;
-    content.focus = true;
-    content.size = 40;
-    content.placeholder = "페이지를 입력해주세요.";
-    content.insertAdjacentHTML(
-        "afterbegin",
-        `
-    <button onclick="openModal()">Open Modal</button>
-`
-    );
+    //     content.value = page;
+    //     content.focus = true;
+    //     content.size = 40;
+    //     content.placeholder = "페이지를 입력해주세요.";
+    //     content.insertAdjacentHTML(
+    //         "afterbegin",
+    //         `
+    //     <button onclick="openModal()">Open Modal</button>
+    // `
+    //     );
 
     editor.Commands.add("pages", {
         run: (editor) => {
+            //canvas_page 메인 레이아웃 페이지(1은 메인, 2는 상품 정보)
             const pageManager = editor.Pages;
 
-            const somePage = pageManager.get("page-2");
-            pageManager.select(somePage);
+            const selectedPage = pageManager.getSelected();
+            const mainPage = pageManager.get("main-layout");
+            const productPage = pageManager.get("product-page");
 
-            // editor.Modal.open({
-            //     title: title,
-            //     content: content,
-            //     attributes: {
-            //         class: "pannel-pages-modal",
-            //     },
-            // });
-            // editor.Modal.onceClose(() => {
-            //     alert("page-" + page);
-            //     const pageManager = editor.Pages;
-            //     const somePage = pageManager.get("page-" + page);
-            //     pageManager.select(somePage);
-            // });
+            if (selectedPage === mainPage) {
+                pageManager.select(productPage);
+            } else {
+                pageManager.select(mainPage);
+            }
         },
-        //변경 필요: 여기 값을 props로 전달 받아서 콘텐츠에 나오게
-        // editor.Modal.open({
-        //     title: title,
-        //     content: content,
-        //     attributes: {
-        //         class: "pannel-pages-modal",
-        //     },
-        // }),
     });
 };

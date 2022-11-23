@@ -17,7 +17,7 @@ function LayoutPage() {
                     <div
                         className="card-container"
                         onClick={() => {
-                            window.location.href = "/main";
+                            window.location.href = "/main/0";
                         }}
                     >
                         <div className="img-container">

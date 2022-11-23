@@ -11,6 +11,7 @@ export default {
     blockManager: {
         labels: {
             text: "글자",
+            Link: "링크",
         },
         categories: {
             Basic: "기본 블록",
