@@ -65,19 +65,6 @@ export const addCommands = (editor, domain) => {
             }),
     });
 
-    //     title.innerHTML = "페이지 설정";
-
-    //     content.value = page;
-    //     content.focus = true;
-    //     content.size = 40;
-    //     content.placeholder = "페이지를 입력해주세요.";
-    //     content.insertAdjacentHTML(
-    //         "afterbegin",
-    //         `
-    //     <button onclick="openModal()">Open Modal</button>
-    // `
-    //     );
-
     editor.Commands.add("pages", {
         run: (editor) => {
             //canvas_page 메인 레이아웃 페이지(1은 메인, 2는 상품 정보)

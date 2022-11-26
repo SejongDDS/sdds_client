@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
 import shop_logo from "../../resources/imgs/smart_shop.png";
+import layout_logo1 from "../../resources/imgs/layout_logo1.png";
+import layout_logo2 from "../../resources/imgs/layout_logo2.png";
 import "./LayoutPage.scss";
 
 function ShopLayoutPage() {
@@ -23,13 +25,13 @@ function ShopLayoutPage() {
                         <div className="img-container">
                             <img
                                 className="card-img"
-                                src={shop_logo}
+                                src={layout_logo1}
                                 alt="layout_1"
                             ></img>
                         </div>
                         <p className="card-title">레이아웃 1</p>
                         <p className="card-description">
-                            좌우슬라이더를 활용해서
+                            카드 형식 메뉴를 활용해서
                             <br />
                             자유롭게 쇼핑몰을
                             <br />
@@ -46,7 +48,7 @@ function ShopLayoutPage() {
                         <div className="img-container">
                             <img
                                 className="card-img"
-                                src={shop_logo}
+                                src={layout_logo2}
                                 alt="layout_1"
                             ></img>
                         </div>
@@ -75,7 +77,7 @@ function ShopLayoutPage() {
                         </div>
                         <p className="card-title">레이아웃 3</p>
                         <p className="card-description">
-                            카드 형식 메뉴를 활용해서
+                            좌우슬라이더를 활용해서
                             <br />
                             자유롭게 쇼핑몰을
                             <br />

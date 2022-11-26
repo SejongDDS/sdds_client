@@ -36,7 +36,6 @@ import gjs_tail from "grapesjs-tailwind";
 
 function MainPage() {
     const [editor, setEditor] = useState(null);
-    // const [canvas_page, setPage] = useState(1);
 
     let params = useParams();
     let page_id = params.layout_id;
@@ -62,7 +61,7 @@ function MainPage() {
             // styleManager: styleManager, //스타일 관리자
             // layerManager: layerManager, // 레이어 관리자
             // traitManager: traitManager, // 컴포넌트 설정
-            deviceManager: deviceManager, // 좌측 상단에 기기변경 표시하는것
+            // deviceManager: deviceManager, // 좌측 상단에 기기변경 표시하는것
             //selectorManager: selectorManager,
             // assetManager: { assets: assets, upload: false },
             storageManager: storageManager, //저장 설정
@@ -81,7 +80,7 @@ function MainPage() {
             plugins: [
                 gjsBlockBasic,
                 // 파일 다운 설정
-                (editor) =>
+                (editor) => {
                     ExportFile(editor, {
                         filenamePfx: "domain", //파일 이름 앞 글자
                         // filename: "temp",
@@ -89,19 +88,49 @@ function MainPage() {
                         // btnLabel: "zip",
                         root: {
                             css: {
-                                "style1.css": (ed) => ed.getCss(),
+                                "style.css": (ed) => {
+                                    const pageManager = ed.Pages;
+                                    const somePage =
+                                        pageManager.get("main-layout");
+                                    const component =
+                                        somePage.getMainComponent();
+
+                                    return ed.getCss({ component });
+                                },
+                                "style1.css": (ed) => {
+                                    const pageManager = ed.Pages;
+                                    const somePage =
+                                        pageManager.get("product-page");
+                                    const component =
+                                        somePage.getMainComponent();
+
+                                    return ed.getCss({ component });
+                                },
                             },
-                            "test1.html": (ed) =>
-                                `<!doctype html>
-                                <html lang="en">
+                            "index.html": (ed) => `<!doctype html>
+                                <html lang="ko">
                                 <head>
                                     <meta charset="utf-8">
+                                    <link rel="stylesheet" href="./css/style.css">
+                                </head>
+                                ${ed.Pages.get("main-layout")
+                                    .getMainComponent()
+                                    .toHTML()}
+                            </html>`,
+                            //위 수정
+                            "index1.html": (ed) => `<!doctype html>
+                                <html lang="ko">
+                                <head>
+                                    <meta charset="utf-8">  
                                     <link rel="stylesheet" href="./css/style1.css">
                                 </head>
-                                ${ed.getHtml()}
+                                ${ed.Pages.get("product-page")
+                                    .getMainComponent()
+                                    .toHTML()}
                             </html>`,
                         },
-                    }),
+                    });
+                },
                 gjs_navbar,
                 gjs_forms,
                 gjs_img_editor,
@@ -159,25 +188,13 @@ function MainPage() {
         //     success: function (data) {},
         //     error: function (err) {},
         // });
+
         setTimeout(() => {
             let categories = editor.BlockManager.getCategories();
             categories.each((category) => category.set("open", false));
         }, 1000);
 
         setEditor(editor);
-
-        // const currentPage = pageManager.get("page1");
-        // currentPage.components = editor.getComponents();
-        // currentPage.style = editor.getStyle();
-
-        // const nextPage = pageManager.get("page1");
-        // editor.setComponents("<div><h1>하이하이</h1></div>");
-        // editor.setStyle(nextPage.styles);
-        // editor.setComponents({
-        //     type: "text",
-        //     classes: ["cls"],
-        //     content: "new one",
-        // });
     }, []);
 
     return (
@@ -186,5 +203,5 @@ function MainPage() {
         </div>
     );
 }
-//추가 테스트
+
 export default MainPage;
