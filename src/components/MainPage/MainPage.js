@@ -70,6 +70,7 @@ function MainPage() {
 
             plugins: [
                 gjsBlockBasic,
+                // ExportFile,
                 // 파일 다운 설정
                 (editor) => {
                     ExportFile(editor, {
@@ -90,9 +91,10 @@ function MainPage() {
                                         "style",
                                         ed.getCss({ component })
                                     );
-                                    console.log(
-                                        sessionStorage.getItem("style")
-                                    );
+                                    // console.log(
+                                    //     "<Main> : " +
+                                    //         sessionStorage.getItem("style")
+                                    // );
                                     return ed.getCss({ component });
                                 },
                                 "style2.css": (ed) => {
@@ -106,9 +108,10 @@ function MainPage() {
                                         "style2",
                                         ed.getCss({ component })
                                     );
-                                    console.log(
-                                        sessionStorage.getItem("style2")
-                                    );
+                                    // console.log(
+                                    //     "<Main> : " +
+                                    //         sessionStorage.getItem("style2")
+                                    // );
 
                                     return ed.getCss({ component });
                                 },
@@ -125,8 +128,8 @@ function MainPage() {
                                 .toHTML()}
                             </html>`;
 
-                                sessionStorage.setItem("html", code);
-                                console.log(sessionStorage.getItem("html"));
+                                // sessionStorage.setItem("html", code);
+                                // console.log(sessionStorage.getItem("html"));
 
                                 return code;
                             },
@@ -135,7 +138,7 @@ function MainPage() {
                                 let code = `<!doctype html>
                                 <html lang="ko">
                                 <head>
-                                    <meta charset="utf-8">  
+                                    <meta charset="utf-8">
                                     <link rel="stylesheet" href="./css/style2.css">
                                 </head>
                                 ${ed.Pages.get("product-page")
@@ -143,8 +146,8 @@ function MainPage() {
                                     .toHTML()}
                                 </html>`;
 
-                                sessionStorage.setItem("html2", code);
-                                console.log(sessionStorage.getItem("html2"));
+                                // sessionStorage.setItem("html2", code);
+                                // console.log(sessionStorage.getItem("html2"));
 
                                 return code;
                             },
@@ -183,6 +186,9 @@ function MainPage() {
         content.style.color = "#ffffff";
         content.style.height = "30px";
 
+        //페이지 2개로 변경
+        addPages(editor, page_id);
+
         editor.Commands.add("domain", {
             run: (editor, domain) => {
                 editor.Modal.open({
@@ -198,9 +204,6 @@ function MainPage() {
                 });
             },
         });
-
-        //페이지 2개로 변경
-        addPages(editor, page_id);
 
         if (page_id !== "0") {
             const panelManager = editor.Panels;

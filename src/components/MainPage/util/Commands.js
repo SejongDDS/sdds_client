@@ -11,12 +11,43 @@ export const addCommands = (editor, domain, token) => {
     });
     // 다운로드 버튼
     editor.Commands.add("export", {
-        run: (editor) => {
+        run: () => {
             if (domain === "") {
                 alert("도메인을 입력하고 다시 시도해주세요!");
             } else {
+                //다운로드 코드
                 editor.runCommand("gjs-export-zip");
-                console.log(domain);
+
+                let code_1 = `<!doctype html>
+                            <html lang="ko">
+                            <head>
+                                <meta charset="utf-8">
+                                <link rel="stylesheet" href="./css/style.css">
+                            </head>
+                            ${editor.Pages.get("main-layout")
+                                .getMainComponent()
+                                .toHTML()}
+                            </html>`;
+
+                sessionStorage.setItem("html", code_1);
+                console.log(sessionStorage.getItem("html"));
+
+                let code_2 = `<!doctype html>
+                <html lang="ko">
+                <head>
+                <meta charset="utf-8">
+                <link rel="stylesheet" href="./css/style2.css">
+                </head>
+                ${editor.Pages.get("product-page").getMainComponent().toHTML()}
+                </html>`;
+
+                sessionStorage.setItem("html2", code_2);
+                console.log(sessionStorage.getItem("html2"));
+
+                console.log("style : " + sessionStorage.getItem("style"));
+                console.log("style2 : " + sessionStorage.getItem("style2"));
+
+                console.log("domain: " + domain);
 
                 const frm = new FormData();
                 frm.append("website_url", domain);
