@@ -16,6 +16,7 @@ export const addCommands = (editor, domain, token) => {
                 alert("도메인을 입력하고 다시 시도해주세요!");
             } else {
                 editor.runCommand("gjs-export-zip");
+                console.log(domain);
 
                 const frm = new FormData();
                 frm.append("website_url", domain);
