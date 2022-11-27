@@ -51,7 +51,7 @@ const layout_pages = [
             </div>
 
             <script>
-                //website Url 받는거 수정할것!! ############수정
+                //website Url 받는거 수정할것!! ############ 
                 // const temp = location.href.split("?");
                 // const website_url = temp[0];
                 const website_url = "test";
@@ -75,7 +75,7 @@ const layout_pages = [
 
                 //쿼리로 넘겨주기
                 function sendData(website_url, product_id){
-                    location.href="index1.html?" + website_url + "&" + product_id;
+                    location.href="index2.html?" + website_url + "&" + product_id;
                 }
 
                 //물품 JSON 데이터 받아오기
@@ -545,6 +545,19 @@ export const layoutManager = {
                 // 서버 url
                 // const serverUrl = "http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000";
 
+                window.onload = function() {
+                    let e1 = document.getElementById("btn-order");
+                    e1.setAttribute("onClick", "send_order()");
+
+                    let e2 = document.getElementById("product-count-minus");
+                    e2.setAttribute("onClick", "count('minus')");
+
+                    let e3 = document.getElementById("product-count-plus");
+                    e3.setAttribute("onClick", "count('plus')");
+                }
+                
+
+
                 //물품 JSON 데이터 받아오기
                 async function loadData(){
                     let product = await fetch(serverUrl + "/api/v1/product/test/" + product_id, {
@@ -555,10 +568,34 @@ export const layoutManager = {
                     })
 
                     let productData = await product.json();
-
+                    
                     return productData;
                 }
-                
+
+                function send_order(){
+                    const countElement = document.getElementById('product-count-value');
+                    let count = countElement.value;
+                    
+                    let order = fetch(serverUrl + "/api/v1/orders/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            "count": count,
+                            "shipping_address": "home",
+                            "etc": "Unknown Type: any",
+                            "website_url": website_url,
+                            "product_id": product_id,
+                            "user_id":  1,
+                            //유져 아이디도 주소 파라미터로 받아야??
+                        }),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data));
+                    // 예외처리 및 주문 성공 모달 띄울지?
+                }
+
                 //주문 수 카운트할 함수
                 function count(type){
                     const resultElement = document.getElementById('product-count-value');
@@ -580,14 +617,7 @@ export const layoutManager = {
                     document.getElementById(id).appendChild(img);
                 }
 
-                //이거 안쓸듯?
-                // function add_element(perent_id, text, id) { 
-                //     var element = document.createElement("div"); 
-                //     element.innerHTML = text;
-                //     element.id = id;
-                //     document.getElementById(perent_id).appendChild(element);
-                // }
-                // 이건 서버에서 받아와야 함
+                // 썸네일은 서버에서 받아와야 함
                 const thumbnail = "https://blackboard.sejong.ac.kr/bbcswebdav/institution/login/images/sejong.png";
                 
                 loadData().then(res => {
@@ -776,7 +806,7 @@ export const layoutManager = {
         }
         
 </style>
-          `,
+        `,
         },
     ],
 };
