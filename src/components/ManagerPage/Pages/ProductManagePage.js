@@ -4,13 +4,11 @@ import ManagerHeader from './ManagerHeader';
 import ManagerSidebar from './ManagerSidebar';
 import { modifyModalDataState, modifyModalShowState, productState, tokenState, websiteState } from '../../../recoil/Recoil';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import Table from '../../utils/Table';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NewProductModal from '../../utils/Modal/NewProductModal';
-import UpdateProductModal from '../../utils/Modal/UpdateProductModal';
 import ProductTable from '../Table/ProductTable';
 import { asyncProductQuery, getProducts } from '../Controller/DashboardController';
+import { Link } from 'react-router-dom';
 
 const ProductManageContainer=styled.div`
     height:100vh;
@@ -62,6 +60,7 @@ function ProductManagePage(){
 
     useEffect(()=>{
         setLoading(true);
+
         getProducts(accessToken,website).then((data)=> setProduct(data)).then(()=>console.log(product));
 
         console.log(product);
@@ -76,7 +75,7 @@ function ProductManagePage(){
     return(
         <>
         <ProductManageContainer>
-            <ManagerHeader page_url={"https://google.com"} domain={website}/>
+            <ManagerHeader page_url={"http://www.hyeonuk.co.kr/"+website+"/"} domain={website}/>
 
             <ProductsContainer>
                 <ManagerSidebar/>
@@ -86,8 +85,12 @@ function ProductManagePage(){
                     <ProductTableBlock>
                         <h1>상품 관리</h1>
                         <hr/>
-                        <ProductButtonBlock><Button variant="primary" onClick={()=>setAddModalShow(true)}>상품 추가</Button></ProductButtonBlock>
-                        
+                        <ProductButtonBlock>
+                            <Link to={`/manager/${website}/product/new`}>
+                            <Button variant="primary">상품 추가</Button>
+                            </Link>
+                            </ProductButtonBlock>
+
                         <ProductTable columns={tableColumn} data={product} kind={true}/>
 
                     </ProductTableBlock>
@@ -97,8 +100,7 @@ function ProductManagePage(){
 
         </ProductManageContainer>
         
-        <NewProductModal show={addModalShow} onHide={()=> setAddModalShow(false)} website={website}/>
-        <UpdateProductModal/>
+
         
         </>
     )

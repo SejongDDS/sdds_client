@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import Table from '../../utils/Table';
+
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { orderState, websiteState } from '../../../recoil/Recoil';
 import { Link } from 'react-router-dom';

@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { modifyModalDataState, modifyModalShowState, productState } from '../../../recoil/Recoil';
+import { Link } from 'react-router-dom';
 
 const StyledButton = styled.button`
     /*공통 스타일*/
@@ -34,12 +35,11 @@ const StyledButton = styled.button`
 `
 
 const ProductTable = (probs) => {
-    const [modifyModalShow,setModifyModalShow]=useRecoilState(modifyModalShowState);
-    const [modifyModalData,setModifyModalData]=useRecoilState(modifyModalDataState);
+
     const [visible,setVisible]=useState(probs.kind)
     const products=useRecoilValue(productState);
 
-    const handleClose= () => setModifyModalShow(false);
+
     return (
         <>
         <table class="table">
@@ -67,10 +67,7 @@ const ProductTable = (probs) => {
                                 <td>{item.category.name}</td>
                                 
                                 {visible && 
-                                <td><StyledButton variant="primary" size="sm" onClick={() => {
-                                    setModifyModalData(item)
-                                    setModifyModalShow(true)
-                                }}>수정/변경</StyledButton></td>
+                                <td><Link to={`/manager/${item.website.website_url}/product/detail?id=${item.id}`}><StyledButton variant="primary" size="sm">수정/변경</StyledButton></Link></td>
                                 }
                                 
                                 
