@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { productState, websiteState } from '../../../recoil/Recoil';
 import { Link } from 'react-router-dom';
-import { asyncProductQuery } from '../Controller/DashboardController';
+
 import ProductTable from '../Table/ProductTable';
-import { text } from '@fortawesome/fontawesome-svg-core';
+
 
 const ProductStateBlock=styled.div`
     background: white;

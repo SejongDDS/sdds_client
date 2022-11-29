@@ -93,7 +93,7 @@ function PersonalCardView(){
                     <Card.Body>
                         <Card.Title>새로운 웹사이트 만들기</Card.Title>
                         
-                        <Button variant="primary" href="/main">새로운 페이지 생성하러 이동</Button>
+                        <Button variant="primary" href="/layout">새로운 페이지 생성하러 이동</Button>
                     </Card.Body>
                 </Card>
                 
