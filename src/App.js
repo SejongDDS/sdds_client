@@ -8,6 +8,7 @@ import ShopLayoutPage from "./components/IntroPage/ShopLayoutPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import MainPage from "./components/MainPage/MainPage";
 import LoginPage from "./components/LoginPage/LoginPage";
+
 import PersonalPage from './components/PersonalPage/PersonalPage';
 import ManagerPage from './components/ManagerPage/Pages/ManagerPage';
 import {RecoilRoot} from 'recoil';
@@ -18,6 +19,7 @@ import MemberManagePage from './components/ManagerPage/Pages/MemberManagePage';
 import ProductDetailPage from './components/ManagerPage/DetailPages/ProductDetailPage';
 import NewProductPage from './components/ManagerPage/DetailPages/NewProductPage';
 import OrderDetailPage from './components/ManagerPage/DetailPages/OrderDetailPage';
+
 
 
 function App() {
@@ -33,7 +35,7 @@ function App() {
                             element={<ShopLayoutPage />}
                         />
                         <Route path="/personal" element={<PersonalPage />} />
-                        <Route path="/main" element={<MainPage />} />
+                        <Route path="/main/:layout_id" element={<MainPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/signup" element={<SignUpPage />} />
 
@@ -51,6 +53,7 @@ function App() {
                 </Routes>
             </BrowserRouter>
         </div>
+
 
         </RecoilRoot>
     );

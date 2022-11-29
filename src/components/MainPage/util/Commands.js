@@ -1,7 +1,9 @@
 import "../styles/web_builder.scss";
+import axios from "axios";
+import { dom } from "@fortawesome/fontawesome-svg-core";
 
 //명령들 한번에 묶어서 추가하는 함수
-export const addCommands = (editor, domain) => {
+export const addCommands = (editor, domain, token) => {
     editor.Commands.add("set-device-desktop", {
         run: (editor) => editor.setDevice("Desktop"),
     });
@@ -10,15 +12,106 @@ export const addCommands = (editor, domain) => {
     });
     // 다운로드 버튼
     editor.Commands.add("export", {
-        run: (editor) => editor.runCommand("gjs-export-zip"),
-        // run: (editor) => {
-        //     const exportData = {
-        //         html: editor.getHtml(),
-        //         css: editor.getCss(),
-        //     };
-        //     console.log("exprotData :>> ", exportData);
-        // },
-        // 위 코드는 텍스트로 html, css 받는 코드
+        run: () => {
+            if (domain === "") {
+                alert("도메인을 입력하고 다시 시도해주세요!");
+            } else {
+                //다운로드 코드
+                editor.runCommand("gjs-export-zip");
+
+                //setitem 시간이 느려지는듯함
+                setTimeout(function () {
+                    let code_1 = `<!doctype html>
+                    <html lang="ko">
+                    <head>
+                        <meta charset="utf-8">
+                        <link rel="stylesheet" href="./css/style.css">
+                    </head>
+                    ${editor.Pages.get("main-layout")
+                        .getMainComponent()
+                        .toHTML()}
+                    </html>`;
+
+                    sessionStorage.setItem("html", code_1);
+                    console.log(sessionStorage.getItem("html"));
+
+                    let code_2 = `<!doctype html>
+        <html lang="ko">
+        <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./css/style2.css">
+        </head>
+        ${editor.Pages.get("product-page").getMainComponent().toHTML()}
+        </html>`;
+
+                    sessionStorage.setItem("html2", code_2);
+                    console.log(sessionStorage.getItem("html2"));
+
+                    console.log("style : " + sessionStorage.getItem("style"));
+                    console.log("style2 : " + sessionStorage.getItem("style2"));
+
+                    console.log("domain: " + domain);
+
+                    const frm = new FormData();
+                    frm.append("website_url", domain);
+                    let html = new File(
+                        [sessionStorage.getItem("html")],
+                        "index.html"
+                    );
+                    let html2 = new File(
+                        [sessionStorage.getItem("html2")],
+                        "index2.html"
+                    );
+                    let css = new File(
+                        [sessionStorage.getItem("style")],
+                        "style.css"
+                    );
+                    let css2 = new File(
+                        [sessionStorage.getItem("style2")],
+                        "style2.css"
+                    );
+
+                    frm.append("html", html);
+                    frm.append("html", html2);
+                    frm.append("css", css);
+                    frm.append("css", css2);
+
+                    axios
+                        .post(
+                            "http://52.231.107.168:3000/api/v1/website",
+                            frm,
+                            {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                },
+                            }
+                        )
+                        .then((data) => console.log(data))
+                        .catch((err) => console.log(err));
+
+                    axios({
+                        method: "post",
+                        url:
+                            "http://52.231.107.168:3000/api/v1/member/sign-up/" +
+                            domain,
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        data: {
+                            id: 1,
+                            login_id: "admin",
+                            password: "admin",
+                            email: "admin@sju.ac.kr",
+                            phone: "010-1234-1234",
+                            birth: "981129",
+                        },
+                        timeout: 1000,
+                    })
+                        .then((data) => console.log(data))
+                        .catch((err) => console.log(err));
+                }, 2000);
+            }
+        },
     });
 
     // 뒤로가기 버튼
@@ -31,39 +124,52 @@ export const addCommands = (editor, domain) => {
         run: (editor) => editor.UndoManager.redo(),
     });
 
-    //domain 입력 변수 설정
-    const title = document.createElement("b");
-    title.innerHTML = "도메인 설정";
+    // //domain 입력 변수 설정
+    // const title = document.createElement("b");
+    // title.innerHTML = "도메인 설정";
 
-    const content = document.createElement("input");
-    content.value = domain;
-    content.focus = true;
-    content.size = 40;
-    content.placeholder = "도메인에 들어갈 단어를 입력해주세요.";
+    // const content = document.createElement("input");
+    // content.value = domain;
+    // content.focus = true;
+    // content.size = 40;
+    // content.placeholder = "도메인에 들어갈 단어를 입력해주세요.";
 
-    content.style.margin = "20px";
-    content.style.backgroundColor = "#2D2D2D";
-    content.style.border = "#222222 1px solid";
-    content.style.color = "#ffffff";
-    content.style.height = "30px";
+    // content.style.margin = "20px";
+    // content.style.backgroundColor = "#2D2D2D";
+    // content.style.border = "#222222 1px solid";
+    // content.style.color = "#ffffff";
+    // content.style.height = "30px";
 
-    // const content1 = document.createElement("b");
-    // content1.innerHTML = "확인";
+    // editor.Commands.add("domain", {
+    //     run: (editor) =>{
+    //         editor.Modal.open({
+    //             title: title,
+    //             content: content,
+    //             attributes: {
+    //                 class: "pannel-domain-modal",
+    //             },
+    //         })
+    //         editor.Modal.close({
 
-    // //이거 합쳐지는거 안되는거 해결 방안?? or 버튼 빼버리기
-    // content.insertAdjacentElement("beforebegin", content1);
+    //         })
 
-    // console.log(content);
-    // 앞으로가기 버튼
-    editor.Commands.add("domain", {
-        run: (editor) =>
-            //변경 필요: 여기 값을 props로 전달 받아서 콘텐츠에 나오게
-            editor.Modal.open({
-                title: title,
-                content: content,
-                attributes: {
-                    class: "pannel-domain-modal",
-                },
-            }),
+    //     }
+    // });
+
+    editor.Commands.add("pages", {
+        run: (editor) => {
+            //canvas_page 메인 레이아웃 페이지(1은 메인, 2는 상품 정보)
+            const pageManager = editor.Pages;
+
+            const selectedPage = pageManager.getSelected();
+            const mainPage = pageManager.get("main-layout");
+            const productPage = pageManager.get("product-page");
+
+            if (selectedPage === mainPage) {
+                pageManager.select(productPage);
+            } else {
+                pageManager.select(mainPage);
+            }
+        },
     });
 };
