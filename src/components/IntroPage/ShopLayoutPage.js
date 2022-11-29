@@ -62,7 +62,7 @@ function ShopLayoutPage() {
                         </p>
                     </div>
 
-                    <div
+                    {/* <div
                         className="card-container"
                         onClick={() => {
                             window.location.href = "/main/3";
@@ -83,7 +83,7 @@ function ShopLayoutPage() {
                             <br />
                             만들어 보세요!
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

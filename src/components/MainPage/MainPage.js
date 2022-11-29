@@ -158,6 +158,7 @@ function MainPage() {
                 gjs_forms,
                 gjs_img_editor,
                 gjs_pj_manager,
+                gjs_tail,
             ],
             pluginsOpts: {
                 gjsBlockBasic: {},
