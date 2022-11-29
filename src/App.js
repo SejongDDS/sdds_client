@@ -15,6 +15,9 @@ import ProductManagePage from './components/ManagerPage/Pages/ProductManagePage'
 import OrderManagePage from './components/ManagerPage/Pages/OrderManagePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MemberManagePage from './components/ManagerPage/Pages/MemberManagePage';
+import ProductDetailPage from './components/ManagerPage/DetailPages/ProductDetailPage';
+import NewProductPage from './components/ManagerPage/DetailPages/NewProductPage';
+import OrderDetailPage from './components/ManagerPage/DetailPages/OrderDetailPage';
 
 
 function App() {
@@ -41,6 +44,10 @@ function App() {
                     <Route path="/manager/:website/member" element={<MemberManagePage/>}/>
                     <Route path="/manager/:website/statistic" element={<ManagerPage/>}/>
                     <Route path="/manager/:website/setting" element={<ManagerPage/>}/>
+                    <Route path="/manager/:website/product/detail" element={<ProductDetailPage/>}/>
+                    <Route path="/manager/:website/product/new" element={<NewProductPage/>}/>
+                    <Route path='/manager/:website/order/detail' element={<OrderDetailPage/>}/>
+                    
                 </Routes>
             </BrowserRouter>
         </div>

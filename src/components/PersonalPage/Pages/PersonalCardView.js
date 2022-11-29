@@ -39,7 +39,7 @@ function PersonalCardView(){
             setWebsiteList(null);
 
             setLoading(true);
-            const response= await axios.get('http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000/api/v1/website',{
+            const response= await axios.get('http://52.231.107.168:3000/api/v1/website',{
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
