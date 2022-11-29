@@ -3,8 +3,12 @@ import Navbar from "./Navbar/Navbar";
 import "./LayoutPage.scss";
 import shop_logo from "../../resources/imgs/smart_shop.png";
 import folder_logo from "../../resources/imgs/folder_logo.png";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { tokenState } from "../../recoil/Recoil";
 
 function LayoutPage() {
+    const [token, setToken] = useRecoilState(tokenState);
+
     return (
         <div className="page">
             <Navbar />
@@ -17,6 +21,7 @@ function LayoutPage() {
                     <div
                         className="card-container"
                         onClick={() => {
+                            // console.log(token);
                             window.location.href = "/main/0";
                         }}
                     >

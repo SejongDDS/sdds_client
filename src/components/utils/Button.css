@@ -1,5 +1,5 @@
 :root {
-    --promary: #fff;
+    --primary: red;
     --pink:#FF86AA;
     --white:#FFFFFF;
     --gray:#606060;
@@ -17,9 +17,9 @@
 }
 
 .btn--primary{
-    background-color: var(--primary);
+    background-color: red;
     color:#242424;
-    border: 1px solid var(--primary);
+    border: 1px solid red;
 }
 
 .btn--pink {
@@ -33,7 +33,7 @@
 .btn--white {
     border: none;
     background-color: var(--white);
-    color: var(--gray);
+    color: #606060;
     padding:8px 20px;
     transition: all 0.3s ease-in-out;
 }
@@ -60,10 +60,10 @@
 }
 
 .btn--pink:hover{
-    background-color: var(--purple);
+    background-color: #CE7BB1;
 } 
 .btn--white:hover{
-    background-color: var(--purple);
+    background-color: #CE7BB1;
     color: var(--white);
     
 

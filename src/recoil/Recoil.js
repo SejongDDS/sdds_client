@@ -48,8 +48,3 @@ export const modifyModalDataState = atom({
     key: "modifyModalDataState",
     default: [],
 });
-
-export const userState = atom({
-    key: "userState",
-    default: [],
-});

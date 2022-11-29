@@ -5,8 +5,8 @@ import gql from "graphql-tag";
 import { useMutation } from "react-apollo";
 import logo from "../../resources/imgs/logo.png";
 import Button from "../utils/Button";
-import { useRecoilState } from "recoil";
-import { userState } from "../../recoil/Recoil";
+import { useSetRecoilState } from "recoil";
+import { tokenState } from "../../recoil/Recoil";
 import axios from "axios";
 
 //access_token을 recoil로 저장해야 함
@@ -16,14 +16,17 @@ function LoginMain() {
         login_id: "",
         password: "",
     });
-    const [user, setUser] = useRecoilState(userState);
+
+    const setToken = useSetRecoilState(tokenState);
+
+    // console.log(token);
 
     return (
         <div className="login_page">
             <div
                 className="logo"
                 onClick={(e) => {
-                    window.location.href = "/..";
+                    window.location.href = "/";
                 }}
             >
                 <img src={logo} className="header-logo" alt="React" />
@@ -68,24 +71,14 @@ function LoginMain() {
                                 password: state.password,
                             },
                         })
-                            .then(function (res) {
-                                //[테스트 코드]로그인 후 받은 로그 출력
+                            .then((res) => {
                                 console.log(res);
-
                                 if (res.data.statusCode === 200) {
-                                    // access_token포함 계정 정보 리코일 저장
-                                    setUser(() => [
-                                        {
-                                            login_id: state.login_id,
-                                            password: state.password,
-                                            access_token: res.data.access_token,
-                                        },
-                                    ]);
+                                    // access_token포함 계정 정보 리코일 저장]
+                                    setToken(res.data.access_token);
 
-                                    console.log(user); //(테스트 코드) 유져 정보 출력
-
-                                    // 홈 화면으로 이동 (성공 신호 넘어오면)
-                                    window.location.href = "../";
+                                    // 홈 화면으로 이동 (성공 신호 넘어오면 )
+                                    window.location.href = "/";
                                 } else {
                                     //이거 아디 비번 아래에 글자 뜨는걸로 변경??
                                     window.alert(

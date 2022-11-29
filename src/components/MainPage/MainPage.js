@@ -158,7 +158,7 @@ function MainPage() {
                 gjs_forms,
                 gjs_img_editor,
                 gjs_pj_manager,
-                gjs_tail,
+                //gjs_tail,
             ],
             pluginsOpts: {
                 gjsBlockBasic: {},
@@ -201,7 +201,7 @@ function MainPage() {
                 });
                 editor.Modal.onceClose(() => {
                     domain = content.value;
-                    addCommands(editor, domain, token);
+                    addCommands(editor, domain, page_id, token);
                 });
             },
         });
