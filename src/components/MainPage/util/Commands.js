@@ -36,13 +36,15 @@ export const addCommands = (editor, domain, token) => {
                     console.log(sessionStorage.getItem("html"));
 
                     let code_2 = `<!doctype html>
-        <html lang="ko">
-        <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="./css/style2.css">
-        </head>
-        ${editor.Pages.get("product-page").getMainComponent().toHTML()}
-        </html>`;
+                    <html lang="ko">
+                    <head>
+                    <meta charset="utf-8">
+                    <link rel="stylesheet" href="./css/style2.css">
+                    </head>
+                    ${editor.Pages.get("product-page")
+                        .getMainComponent()
+                        .toHTML()}
+                    </html>`;
 
                     sessionStorage.setItem("html2", code_2);
                     console.log(sessionStorage.getItem("html2"));
@@ -109,6 +111,8 @@ export const addCommands = (editor, domain, token) => {
                     })
                         .then((data) => console.log(data))
                         .catch((err) => console.log(err));
+
+                    window.location.href = "/personal";
                 }, 2000);
             }
         },
