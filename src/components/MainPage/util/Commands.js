@@ -125,16 +125,19 @@ export const addCommands = (editor, domain, page_id, token) => {
                                     .then((data) => {
                                         console.log(data);
                                         console.log("domain: " + domain);
+
+                                        if (page_id === "0") {
+                                            window.location.href =
+                                                "http://www.hyeonuk.co.kr/" +
+                                                domain +
+                                                "/";
+                                        } else {
+                                            window.location.replace(
+                                                "/personal"
+                                            );
+                                        }
                                     })
                                     .catch((err) => console.log(err));
-                                if (page_id === "0") {
-                                    window.location.href =
-                                        "http://www.hyeonuk.co.kr/" +
-                                        domain +
-                                        "/";
-                                } else {
-                                    window.location.replace("/personal");
-                                }
                             }, 1500);
                         }
                     })
