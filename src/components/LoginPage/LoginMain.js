@@ -77,6 +77,7 @@ function LoginMain() {
 
                                     // 홈 화면으로 이동 (성공 신호 넘어오면)
                                     navigate("/personal");
+                                    
                                 } else {
                                     //이거 아디 비번 아래에 글자 뜨는걸로 변경??
                                     window.alert(

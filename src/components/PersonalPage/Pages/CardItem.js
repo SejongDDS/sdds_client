@@ -13,7 +13,9 @@ function CardItem(props){
             <Card.Img variant="top" src={props.src} style={{height: '20rem'}} />
             <Card.Body>
                 <Card.Title>{props.text}</Card.Title>
-                <Button variant="primary" href={props.path} onClick={()=>setWebsite(props.text)}>관리페이지로 이동</Button>
+                <Link to={props.path}>
+                    <Button variant="primary" onClick={()=>setWebsite(props.text)}>관리페이지로 이동</Button>
+                </Link>
             </Card.Body>
         </Card>
             
