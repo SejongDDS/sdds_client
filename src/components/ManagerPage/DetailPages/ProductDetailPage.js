@@ -109,7 +109,7 @@ function ProductDetailPage(){
     return(
         <>
         <ProductDetailContainer>
-            <ManagerHeader page_url={"https://google.com"} domain={website}/>
+            <ManagerHeader page_url={"http://www.hyeonuk.co.kr/"+website+"/"} domain={website}/>
 
             <ProductsContainer>
                 <ManagerSidebar/>

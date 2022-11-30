@@ -185,6 +185,20 @@ export const getMembers = async (token,website)=> {
     }
 }
 
+export const getMemberDetail= async(token,website,id)=>{
+    try {
+        const response = await axios.get('http://52.231.107.168:3000/api/v1/member/'+website+"/"+id,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        return response.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
 
 
 

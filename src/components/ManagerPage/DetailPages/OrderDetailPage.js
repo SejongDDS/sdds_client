@@ -12,7 +12,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ManagerHeader from '../Pages/ManagerHeader';
 import ManagerSidebar from '../Pages/ManagerSidebar';
 import { Link, useSearchParams } from 'react-router-dom';
-import { deleteOrder, deleteProduct, getOrders, getProductDetail, getProducts, updateOrder, updateProduct } from '../Controller/DashboardController';
+import { deleteOrder, deleteProduct, getOrderDetail, getOrders, getProductDetail, getProducts, updateOrder, updateProduct } from '../Controller/DashboardController';
 
 
 const OrderDetailContainer=styled.div`
@@ -58,6 +58,7 @@ function OrderDetailPage(){
     const id = searchParams.get('id'); // test
     const accessToken=useRecoilValue(tokenState);
     
+    const [data,setData] = useState({});
     const [orders,setOrders]=useRecoilState(orderState);
     const [count,setCount]=useState(0);
     const [shipping_address,setShipping_Address]=useState('');
@@ -67,7 +68,13 @@ function OrderDetailPage(){
 
     useEffect(()=>{
         setLoading(true);
-        //getOrderDetail(accessToken,website,id).then((data)=>setData(data));
+        getOrderDetail(accessToken,website,id).then((data)=>{
+            setData(data)
+            setCount(data.count)
+            setShipping_Address(data.shipping_address)
+            setOrder_Status(data.order_status)
+        });
+        
         setLoading(false)
     },[])
 
@@ -101,7 +108,7 @@ function OrderDetailPage(){
     return(
         <>
         <OrderDetailContainer>
-            <ManagerHeader page_url={"https://google.com"} domain={website}/>
+            <ManagerHeader page_url={"http://www.hyeonuk.co.kr/"+website+"/"} domain={website}/>
 
             <OrdersContainer>
                 <ManagerSidebar/>
@@ -126,7 +133,7 @@ function OrderDetailPage(){
                                         주문 상품
                                     </Form.Label>
                                 <Col sm="10">
-                                <Form.Control plaintext readOnly defaultValue='주문 상품'  />
+                                <Form.Control plaintext readOnly defaultValue={data.product_id}  />
                                 </Col>
                                 </Form.Group>
 
@@ -135,7 +142,7 @@ function OrderDetailPage(){
                                         주문자
                                     </Form.Label>
                                 <Col sm="10">
-                                <Form.Control plaintext readOnly defaultValue='주문자'  />
+                                <Form.Control plaintext readOnly defaultValue={data.buyer} />
                                 </Col>
                                 </Form.Group>
 
@@ -144,7 +151,7 @@ function OrderDetailPage(){
                                         주문 수량
                                     </Form.Label>
                                 <Col sm="10">
-                                <Form.Control type="text" placeholder='주문 수량' onChange={onChangeCount} />
+                                <Form.Control type="text" placeholder={data.count} onChange={onChangeCount} />
                                 </Col>
                                 </Form.Group>
 
@@ -153,7 +160,7 @@ function OrderDetailPage(){
                                         주문자 주소
                                     </Form.Label>
                                 <Col sm="10">
-                                <Form.Control type="text" placeholder='주문자 주소' onChange={onChangeAddress} />
+                                <Form.Control type="text" placeholder={data.shipping_address} onChange={onChangeAddress} />
                                 </Col>
                                 </Form.Group>
 
@@ -162,7 +169,7 @@ function OrderDetailPage(){
                                         주문 상태
                                     </Form.Label>
                                 <Col sm="10">
-                                <Form.Control type="text" placeholder='주문 상태' onChange={onChangeStatus}/>
+                                <Form.Control type="text" placeholder={data.order_status} onChange={onChangeStatus}/>
                                 </Col>
                                 </Form.Group>
 
@@ -171,7 +178,7 @@ function OrderDetailPage(){
                                         주문 취소
                                     </Form.Label>
                                 <Col sm="10">
-                                <Form.Control plaintext readOnly defaultValue='주문 취소'  />
+                                <Form.Control plaintext readOnly defaultValue={data.order_cancel} />
                                 </Col>
                                 </Form.Group>
                         </Form>
@@ -181,10 +188,10 @@ function OrderDetailPage(){
                             <Link to={`/manager/${website}/order`}>
                                 <Button variant="secondary">취소</Button>
 
-                                <Button variant="secondary">수정</Button>
+                                <Button variant="secondary" onClick={handleUpdateOrder}>수정</Button>
 
 
-                                <Button variant="secondary">삭제</Button>
+                                <Button variant="secondary" onClick={handleDeleteOrder}>삭제</Button>
                             </Link>
                         </ButtonGroup>
                         </OrderButtonBlock>
