@@ -11,6 +11,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// import { useNavigate } from "react-router-dom";
+// const navigate = useNavigate();
+// navigate("/");
+
 function LoginMain() {
     const [state, setState] = useState({
         login_id: "",
@@ -19,8 +23,6 @@ function LoginMain() {
 
     const setToken = useSetRecoilState(tokenState);
     const navigate = useNavigate();
-
-    // console.log(token);
 
     return (
         <div className="login_page">

@@ -3,11 +3,10 @@ import Navbar from "./Navbar/Navbar";
 import "./LayoutPage.scss";
 import shop_logo from "../../resources/imgs/smart_shop.png";
 import folder_logo from "../../resources/imgs/folder_logo.png";
-import { useRecoilValue, useRecoilState } from "recoil";
-import { tokenState, getToken } from "../../recoil/Recoil";
+import { useNavigate } from "react-router-dom";
 
 function LayoutPage() {
-    const token = useRecoilValue(getToken);
+    const navigate = useNavigate();
 
     return (
         <div className="page">
@@ -21,8 +20,7 @@ function LayoutPage() {
                     <div
                         className="card-container"
                         onClick={() => {
-                            console.log(token);
-                            // window.location.href = "/main/0";
+                            navigate("/main/0");
                         }}
                     >
                         <div className="img-container">
@@ -45,7 +43,7 @@ function LayoutPage() {
                     <div
                         className="card-container"
                         onClick={() => {
-                            window.location.href = "/shoplayout";
+                            navigate("/shoplayout");
                         }}
                     >
                         <div className="img-container">
