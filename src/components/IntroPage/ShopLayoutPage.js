@@ -12,7 +12,6 @@ function ShopLayoutPage() {
 
     return (
         <div className="page">
-            <Navbar2 />
             <div className="layout_page">
                 <div className="notice">
                     <p>원하는 쇼핑몰 레이아웃을 선택해주세요</p>
