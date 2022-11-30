@@ -62,7 +62,7 @@ const OrderTable = (probs) => {
                             <>
                             <tr>
                                 <td>{item.id}</td>
-                                <td>{item.buyer.id}</td>
+                                <td>{item.buyer}</td>
                                 <td>{item.product.name}</td>
                                 <td>{item.count}</td>
                                 <td>{item.shipping_address}</td>
@@ -70,7 +70,7 @@ const OrderTable = (probs) => {
                                 
                                 {visible && 
                                 <td>
-                                    <Link to={`/manager/${item.website}/order?id=${item.id}`}>
+                                    <Link to={`/manager/${item.website}/order/detail?id=${item.id}`}>
                                     <StyledButton variant="primary" size="sm" >수정/변경</StyledButton>
                                     </Link>
                                 </td>

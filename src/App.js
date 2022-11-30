@@ -19,6 +19,7 @@ import MemberManagePage from './components/ManagerPage/Pages/MemberManagePage';
 import ProductDetailPage from './components/ManagerPage/DetailPages/ProductDetailPage';
 import NewProductPage from './components/ManagerPage/DetailPages/NewProductPage';
 import OrderDetailPage from './components/ManagerPage/DetailPages/OrderDetailPage';
+import MemberDetailPage from './components/ManagerPage/DetailPages/MemberDetailPage';
 
 
 
@@ -49,6 +50,7 @@ function App() {
                     <Route path="/manager/:website/product/detail" element={<ProductDetailPage/>}/>
                     <Route path="/manager/:website/product/new" element={<NewProductPage/>}/>
                     <Route path='/manager/:website/order/detail' element={<OrderDetailPage/>}/>
+                    <Route path='/manager/:website/member/detail' element={<MemberDetailPage/>}/>
                     
                 </Routes>
             </BrowserRouter>
