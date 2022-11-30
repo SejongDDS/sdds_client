@@ -51,7 +51,7 @@ const layout_pages = [
                 //                 alt="상품 이미지"
                 //                 ></img>
 
-                const serverUrl = "http://52.231.107.168:3000";
+                const serverUrl = "https://sddsapi.paas-ta.org";
 
                 const split_domain = location.href.split("/");
                 const website_url = split_domain[3];
@@ -298,7 +298,7 @@ body {
             <script>
 
                 //긴 화면으로 표현하는 레이아웃
-                const serverUrl = "http://52.231.107.168:3000";
+                const serverUrl = "https://sddsapi.paas-ta.org";
 
                 const split_domain = location.href.split("/");
                 const website_url = split_domain[3];
@@ -531,7 +531,7 @@ export const layoutManager = {
             </div>
 
             <script>
-                const serverUrl = "http://52.231.107.168:3000";
+                const serverUrl = "https://sddsapi.paas-ta.org";
 
                 const split_domain1 = location.href.split("/");
                 const website_url = split_domain1[3];
