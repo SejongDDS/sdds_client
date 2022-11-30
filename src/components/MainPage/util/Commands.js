@@ -1,7 +1,6 @@
 import "../styles/web_builder.scss";
 import axios from "axios";
 import { dom } from "@fortawesome/fontawesome-svg-core";
-import { useNavigate } from "react-router-dom";
 
 //명령들 한번에 묶어서 추가하는 함수
 export const addCommands = (editor, domain, page_id, token) => {
@@ -32,7 +31,6 @@ export const addCommands = (editor, domain, page_id, token) => {
 
                         if (res.data === true) {
                             alert(
-                                //
                                 "이미 존재하는 도메인입니다. 새로운 도메인을 입력해주세요."
                             );
                         } else {
@@ -94,6 +92,7 @@ export const addCommands = (editor, domain, page_id, token) => {
                                 frm.append("html", html2);
                                 frm.append("css", css);
                                 frm.append("css", css2);
+
                                 axios
                                     .post(
                                         "http://52.231.107.168:3000/api/v1/website",
@@ -124,20 +123,18 @@ export const addCommands = (editor, domain, page_id, token) => {
                                         }
                                     )
                                     .then((data) => {
-                                        const navigate = useNavigate();
                                         console.log(data);
                                         console.log("domain: " + domain);
-                                        if (page_id === "0") {
-                                            navigate(
-                                                "http://www.hyeonuk.co.kr/" +
-                                                    domain +
-                                                    "/"
-                                            );
-                                        } else {
-                                            navigate("/personal");
-                                        }
                                     })
                                     .catch((err) => console.log(err));
+                                if (page_id === "0") {
+                                    window.location.href =
+                                        "http://www.hyeonuk.co.kr/" +
+                                        domain +
+                                        "/";
+                                } else {
+                                    window.location.replace("/personal");
+                                }
                             }, 1500);
                         }
                     })
