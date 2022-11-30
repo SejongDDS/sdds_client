@@ -2,8 +2,6 @@ import React,{useEffect, useState} from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { memberState, orderState, tokenState, websiteState } from '../../../recoil/Recoil';
-import UpdateOrderModal from '../../utils/Modal/UpdateOrderModal';
-import Table from '../../utils/Table';
 import { getMembers, getOrders } from '../Controller/DashboardController';
 import MemberTable from '../Table/MemberTable';
 import ManagerHeader from './ManagerHeader';
@@ -67,13 +65,13 @@ function MemberManagePage(){
     return(
         <>
             <MemberManageContainer>
-                <ManagerHeader page_url={"https://google.com"} domain={website}/>
+                <ManagerHeader page_url={"http://www.hyeonuk.co.kr/"+website+"/"} domain={website}/>
 
                 <MemberContainer>
                     <ManagerSidebar/>
                     <MemberBlock>
                         <MemberTableBlock>
-                            <h1>주문 관리</h1>
+                            <h1>회원 관리</h1>
                             <hr/>
                             <MemberTable columns={tableColumn} data={member} kind={true}/>
                         </MemberTableBlock>
@@ -81,7 +79,7 @@ function MemberManagePage(){
                 </MemberContainer>
             </MemberManageContainer>
 
-            <UpdateOrderModal/>
+
         </>
     )
 }

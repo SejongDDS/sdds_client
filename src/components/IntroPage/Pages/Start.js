@@ -17,7 +17,7 @@ function Start() {
 
             <button
                 type="button"
-                class="btn btn-outline-secondary btn-lg btn-block"
+                class="btn btn-outline-secondary btn-lg"
                 onClick={() => {
                     navigate("/layout");
                 }}

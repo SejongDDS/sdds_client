@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
+import Navbar2 from "./Navbar/Navbar2";
 import shop_logo from "../../resources/imgs/smart_shop.png";
 import layout_logo1 from "../../resources/imgs/layout_logo1.png";
 import layout_logo2 from "../../resources/imgs/layout_logo2.png";
@@ -11,7 +12,7 @@ function ShopLayoutPage() {
 
     return (
         <div className="page">
-            <Navbar />
+            <Navbar2 />
             <div className="layout_page">
                 <div className="notice">
                     <p>원하는 쇼핑몰 레이아웃을 선택해주세요</p>

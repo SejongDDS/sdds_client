@@ -7,12 +7,13 @@ export const visitState = atom({
 
 export const websiteState = atom({
     key: "websiteState",
-    default: "test",
+    default: "test1",
 });
 
 export const tokenState = atom({
     key: "tokenState",
-    default: "",
+    default:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoiMTExMSIsImlhdCI6MTY2OTUyOTM0NCwiZXhwIjoxNjcyMTIxMzQ0fQ.k6YpTzdcV3ODyduaI9wNv7JrSYNfBaVh7QJtoV42aqw",
 });
 
 export const getToken = selector({

@@ -2,8 +2,6 @@ import React,{useEffect, useState} from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { orderState, productState, tokenState, websiteState } from '../../../recoil/Recoil';
-import UpdateOrderModal from '../../utils/Modal/UpdateOrderModal';
-import Table from '../../utils/Table';
 import { getOrders } from '../Controller/DashboardController';
 import OrderTable from '../Table/OrderTable';
 import ManagerHeader from './ManagerHeader';
@@ -67,7 +65,7 @@ function OrderManagePage(){
     return(
         <>
             <OrderManageContainer>
-                <ManagerHeader page_url={"https://google.com"} domain={"테스트"}/>
+                <ManagerHeader page_url={"http://www.hyeonuk.co.kr/"+website+"/"} domain={"테스트"}/>
 
                 <OrdersContainer>
                     <ManagerSidebar/>
@@ -81,7 +79,7 @@ function OrderManagePage(){
                 </OrdersContainer>
             </OrderManageContainer>
 
-            <UpdateOrderModal/>
+
         </>
     )
 }

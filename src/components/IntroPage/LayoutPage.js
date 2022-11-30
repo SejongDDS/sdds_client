@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
+import Navbar2 from "./Navbar/Navbar2";
 import "./LayoutPage.scss";
 import shop_logo from "../../resources/imgs/smart_shop.png";
 import folder_logo from "../../resources/imgs/folder_logo.png";
@@ -10,7 +11,7 @@ function LayoutPage() {
 
     return (
         <div className="page">
-            <Navbar />
+            <Navbar2 />
             <div className="layout_page">
                 <div className="notice">
                     <p>만들 페이지를 선택해주세요</p>
