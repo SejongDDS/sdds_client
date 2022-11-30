@@ -65,7 +65,7 @@ function OrderManagePage(){
     return(
         <>
             <OrderManageContainer>
-                <ManagerHeader page_url={"http://www.hyeonuk.co.kr/"+website+"/"} domain={"테스트"}/>
+                <ManagerHeader page_url={"http://www.hyeonuk.co.kr/"+website+"/"} domain={website}/>
 
                 <OrdersContainer>
                     <ManagerSidebar/>
