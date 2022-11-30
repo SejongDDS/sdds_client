@@ -36,12 +36,6 @@ export const panels = {
                     attributes: { title: "코드로 보기" },
                 },
                 {
-                    id: "pages",
-                    className: "fa fa-pager",
-                    command: "pages",
-                    attributes: { title: "다른 페이지 보기" },
-                },
-                {
                     id: "export",
                     className: "fa fa-download",
                     command: "export",
