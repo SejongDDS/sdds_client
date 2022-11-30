@@ -17,6 +17,7 @@ import {
     websiteState,
 } from "../../../recoil/Recoil";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const CardViewContainer = styled.div`
     background: #fff;
@@ -101,15 +102,6 @@ function PersonalCardView() {
                 <h1>내 디자인</h1>
             </CardViewTitle>
             <CardCarouselBlock>
-                <Carousel responsive={responsive}>
-                    <Card style={{ width: "25rem" }}>
-                        <Card.Img
-                            variant="top"
-                            src={img_new}
-                            style={{ height: "20rem" }}
-                        />
-                        <Card.Body>
-                            <Card.Title>새로운 웹사이트 만들기</Card.Title>
 
             <Carousel responsive={responsive}>
                 <Card style={{ width: '25rem' }}>
@@ -117,10 +109,11 @@ function PersonalCardView() {
                     <Card.Body>
                         <Card.Title>새로운 웹사이트 만들기</Card.Title>
                         
-                        <Button variant="primary" href="/layout">새로운 페이지 생성하러 이동</Button>
+                        <Link to='/layout'>
+                            <Button variant="primary">새로운 페이지 생성하러 이동</Button>
+                        </Link>
                     </Card.Body>
                 </Card>
-
 
                     {websiteList.map((item, idx) => {
                         return (
