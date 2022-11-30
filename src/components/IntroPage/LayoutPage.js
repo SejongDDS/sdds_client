@@ -11,7 +11,6 @@ function LayoutPage() {
 
     return (
         <div className="page">
-            <Navbar2 />
             <div className="layout_page">
                 <div className="notice">
                     <p>만들 페이지를 선택해주세요</p>

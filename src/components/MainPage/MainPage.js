@@ -182,9 +182,6 @@ function MainPage() {
         content.size = 40;
         content.placeholder = "도메인에 들어갈 단어를 입력해주세요.";
 
-        //페이지 2개로 설정
-        addPages(editor, page_id);
-
         editor.Commands.add("domain", {
             run: (editor, domain) => {
                 editor.Modal.open({
@@ -201,12 +198,16 @@ function MainPage() {
             },
         });
 
+        //페이지 2개로 설정
+        addPages(editor, page_id);
+
         if (page_id !== "0") {
             const panelManager = editor.Panels;
             panelManager.addButton("options", {
                 id: "pages",
                 className: "fa fa-pager",
                 command: "pages",
+                attributes: { title: "다른 페이지 보기" },
             });
         }
 
