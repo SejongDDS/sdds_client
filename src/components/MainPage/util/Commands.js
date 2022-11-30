@@ -32,6 +32,7 @@ export const addCommands = (editor, domain, page_id, token) => {
 
                         if (res.data === true) {
                             alert(
+                                //
                                 "이미 존재하는 도메인입니다. 새로운 도메인을 입력해주세요."
                             );
                         } else {
