@@ -1,6 +1,14 @@
 const layout_pages = [
     `
-    <div class="gjs-row" id="title-row">
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>SDDS</title>
+            <link rel="stylesheet" href="./css/main_layout1.css">
+        </head>
+        <body id="ino3">
+            <div class="gjs-row" id="title-row">
                 <div class="gjs-cell" id="title-cell">
                     <div id="title-text">SDDS.COM</div>
                 </div>
@@ -11,21 +19,22 @@ const layout_pages = [
                     <div class="gjs-row category-container" id="row-0">
 
                         <div class="gjs-cell card-container" id="card-0">
-                            <div class="gjs-row img-container" id="img-0">
+                            <div class="img-container" id="img-0">
+                                
                             </div>
                             <p class="product-name" id="name-0">상품 준비중입니다.</p>
                             <p class="product-price" id="price-0"></p>
                         </div>
 
                         <div class="gjs-cell card-container" id="card-1">
-                            <div class="gjs-row img-container" id="img-1">
+                            <div class="img-container" id="img-1">
                             </div>
                             <p class="product-name" id="name-1">상품 준비중입니다.</p>
                             <p class="product-price" id="price-1"></p>
                         </div>
 
                         <div class="gjs-cell card-container" id="card-2">
-                            <div class="gjs-row img-container" id="img-2">
+                            <div class="img-container" id="img-2">
                             </div>
                             <p class="product-name" id="name-2">상품 준비중입니다.</p>
                             <p class="product-price" id="price-2"></p>
@@ -46,13 +55,9 @@ const layout_pages = [
 
                 const split_domain = location.href.split("/");
                 const website_url = split_domain[3];
-                // const website_url = "testing2";
+                // const website_url = "test1";
                 
-                console.log(website_url);
-                // console.log("server : " + location.href);
-                // console.log("server s : " + location.href.split("/")[3]);
-                // const temp = location.href.split("");
-                
+                console.log("website_url : " + website_url);
 
                 //쿼리로 데이터 넘겨주고 페이지 이동
                 function sendData(product_id){
@@ -90,7 +95,7 @@ const layout_pages = [
                     //onclick은 카드 만드는 함수 뒤에 추가
 
                     let e2 = document.createElement("div");
-                    e2.className = "gjs-row img-container";
+                    e2.className = "img-container";
                     e2.id = "img-" + index;
                     document.getElementById("card-" + index).appendChild(e2);
 
@@ -156,6 +161,8 @@ const layout_pages = [
                     });
                 })
             </script>
+        </body>
+    </html>
 
 <style>
 * {
@@ -218,12 +225,12 @@ body {
 }
 
 .card-container {
-    min-width: 150px;
-    max-width: 25vw;
+    min-width: 290px;
+    max-width: 290px;
+    height: 530px;
     background-color: white;
-    height: 430px;
     border-radius: 3px;
-    padding: 10px;
+    padding: 0px;
     margin: 0px 40px 0px 40px;
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -236,13 +243,15 @@ body {
 }
 
 .img-container {
-    /* width: 100%; */
-    height: 50%;
+    width: 290px;
+    max-width: 290px;
+    height: 290px;
+    max-height: 290px;
 }
 
 .product-img {
-    width: 100%;
-    margin: auto;
+    width: 290px;
+    height: 290px;
 }
 
 .product-info{
@@ -276,11 +285,6 @@ body {
     
                     <div class="gjs-row card-container" id="card-0">
                         <div class="gjs-cell img-container" id="img-0">
-                            <img
-                                class="product-img"
-                                src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fexam-154961781.jpg&type=sc960_832"
-                                alt="상품 이미지"
-                            ></img>
                         </div>
                         <div class="gjs-cell product-info" id="info-0">
                             <p class="product-name" id="name-0">상품명</p>
@@ -293,24 +297,22 @@ body {
 
             <script>
 
-                //긴 화면으로 표현하는 것
-                
-                const serverUrl = "http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000";
+                //긴 화면으로 표현하는 레이아웃
+                const serverUrl = "http://52.231.107.168:3000";
 
-                window.onload = function() {
-                    let e1 = document.getElementById("card-0");
-                    e1.setAttribute("onClick", "sendData('test', 1)");
+                const split_domain = location.href.split("/");
+                const website_url = split_domain[3];
 
-                }
+                console.log("website_url : " + website_url);
 
-                //쿼리로 넘겨주기
-                function sendData(website_url, product_id){
-                    location.href="index1.html?" + website_url + "&" + product_id;
+                //쿼리로 데이터 넘겨주고 페이지 이동
+                function sendData(product_id){
+                    location.href="index2.html?" + product_id;
                 }
 
                 //물품 JSON 데이터 받아오기
                 async function loadData(){
-                    let product = await fetch(serverUrl + "/api/v1/product/test/summary", {
+                    let product = await fetch(serverUrl + "/api/v1/product/" + website_url + "/summary" , {
                         headers: {
                             //토큰은 유동적으로 받아줘야 할듯
                             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoidGVzdDEyMzQiLCJpYXQiOjE2NjgzNjM2NTcsImV4cCI6MTY3MDk1NTY1N30.nEl8jXeuwa1qog0JxeaoXxxOO6vy3_q8Pj6aTMiOJ7Y",
@@ -320,14 +322,6 @@ body {
                     let productData = await product.json();
 
                     return productData;
-                }
-                
-                //이미지 추가하는 함수(매개변수: 부모요소 id, 불러올 이미지 url)
-                function add_img(id, url) {
-                    let img = document.createElement('img');
-                    img.className = "product-img";
-                    img.src = url;
-                    document.getElementById(id).appendChild(img);
                 }
 
                 //카드 추가하는 함수(매개변수: json파일 index)
@@ -360,16 +354,26 @@ body {
                     e5.innerHTML = "가격";
                     document.getElementById("info-" + index).appendChild(e5);
                 }
+
+                //이미지 추가하는 함수(매개변수: 부모요소 id, 불러올 이미지 url)
+                function add_img(parent_id, img_url) {
+                    let img = document.createElement('img');
+                    img.className = "product-img";
+                    img.src = img_url;
+                    document.getElementById(parent_id).appendChild(img);
+                }
                 
                 loadData().then(res => {
                     // 테스트용 이미지 주소
-                    const thumbnail = "https://blackboard.sejong.ac.kr/bbcswebdav/institution/login/images/sejong.png";
+                    // const thumbnail = "https://blackboard.sejong.ac.kr/bbcswebdav/institution/login/images/sejong.png";
 
                     res.forEach((element, index) => {
                         if(index != 0){
                             //새로운 카드를 생성하는 코드
                             add_product_card(index);
                         }
+                        let card = document.getElementById("card-" + index);
+                        card.setAttribute("onClick", "sendData(" + element.id + ")");
 
                         let name = document.getElementById('name-' + index);
                         name.innerHTML = element.name;
@@ -377,10 +381,8 @@ body {
                         let price = document.getElementById('price-' + index);
                         price.innerHTML = element.price.toLocaleString('ko-KR') + "원";
 
-                        //이미지 유동적으로 넣는 코드 ****************수정필요
-                        // let img_url = element.main_url[0];
-                        // add_img("img-container img-" + count, img_url)
-                        add_img("img-" + index, thumbnail)
+                        let thumbnail_url = element.thumbnail_url;
+                        add_img("img-" + index, thumbnail_url);
 
                     });
                 })
@@ -442,7 +444,7 @@ body {
     height: 40vh;
     width: 80vw;
     border-radius: 3px;
-    padding: 10px;
+    padding: 0px;
     margin: 30px 0px 90px 0px;
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -456,7 +458,6 @@ body {
 
 .img-container {
     float: left;
-    margin: 10px;
 }
 
 .product-img {
@@ -470,6 +471,7 @@ body {
 }
 
 .product-name {
+    height: 30%;
     font-size: 34px;
     font-weight: 400;
     color: #2c2c2c;
@@ -482,6 +484,7 @@ body {
     padding: 5px 0;
 }
 
+
 </style>
 `,
 ];
@@ -491,7 +494,6 @@ export const layoutManager = {
         {
             id: "product-page",
             component: `
-            
             <div class="gjs-row" id="title-row">
                 <div class="gjs-cell" id="title-cell">
                     <div id="title-text">SDDS.COM</div>
@@ -547,11 +549,28 @@ export const layoutManager = {
                     })
 
                     let productData = await product.json();
+
+                    console.log(productData);
                     
                     return productData;
                 }
 
-                function send_order(){
+                async function load_member_id(){
+                    let member1 = await fetch(serverUrl + "/api/v1/member/all/" + website_url, {
+                        headers: {
+                            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoidGVzdDEyMzQiLCJpYXQiOjE2NjgzNjM2NTcsImV4cCI6MTY3MDk1NTY1N30.nEl8jXeuwa1qog0JxeaoXxxOO6vy3_q8Pj6aTMiOJ7Y",
+                        },
+                    });
+
+                    console.log(member1);
+
+                    let memberData = await member1.json();
+
+                    return memberData.members[0].id;
+                    // 예외처리 및 주문 성공 모달 띄울지?
+                }
+
+                function send_order(userId){
                     //아직 설정 안함
                     const countElement = document.getElementById('product-count-value');
                     let count = countElement.value;
@@ -567,7 +586,7 @@ export const layoutManager = {
                             "etc": "Unknown Type: any",
                             "website_url": website_url,
                             "product_id": product_id,
-                            "user_id":  1,
+                            "user_id":  userId,
                             //유져 아이디도 주소 파라미터로 받아야??
                         }),
                     })
@@ -600,9 +619,6 @@ export const layoutManager = {
 
                 window.onload = function() {
                     // 버튼 JS 설정
-                    let e1 = document.getElementById("btn-order");
-                    e1.setAttribute("onClick", "send_order()");
-
                     let e2 = document.getElementById("product-count-minus");
                     e2.setAttribute("onClick", "count('minus')");
 
@@ -614,6 +630,12 @@ export const layoutManager = {
                 const ex_img = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fexam-154961781.jpg&type=sc960_832";
                 
                 loadData().then(res => {
+                    load_member_id().then(res1 => {
+                        let orderBtn = document.getElementById("btn-order");
+                        orderBtn.setAttribute("onClick", "send_order(" + res1 +")");
+                    });
+
+
                     let name = document.getElementById('product-name');
                     name.innerHTML = res.name;
 
@@ -623,21 +645,22 @@ export const layoutManager = {
                     let count = document.getElementById('product-count');
                     count.innerHTML = res.count + "개 남았습니다.";
 
-                    let thumbnail_url = res.image.thumbnail_url;
+                    let thumbnail_url = res.thumbnail_url;
                     add_img("container-product-thumbnail", thumbnail_url)
 
-                    let ary_main_url = res.image.main_url;
-                    add_img("container-detail-img", res.image.main_url);
+                    let ary_main_url = res.main_url;
+                    add_img("container-detail-img", res.main_url);
                     
                     ary_main_url.forEach(element => {
                         add_img("container-detail-img", element);
                     });
                 })
             </script>
-            
+
+
             <style>
 
-        
+            
 * {
     box-sizing: border-box;
 }
@@ -750,6 +773,8 @@ body {
     vertical-align: middle;
 }
 
+
+
 #btn-order {
     position: absolute;
     width: 220px;
@@ -797,7 +822,7 @@ body {
     }
 }
 
-        
+                    
 </style>
         `,
         },

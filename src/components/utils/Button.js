@@ -1,20 +1,24 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import './Button.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Button.css";
 
-const STYLES=['btn--primary','btn--pink','btn--white','btn--blue'];
+const STYLES = ["btn__primary", "btn__pink", "btn__white", "btn__blue"];
 
-const SIZES= ['btn--medium','btn--large'];
+const SIZES = ["btn__medium", "btn__large"];
 
-function Button(props){
-    const checkButtonStyle = STYLES.includes(props.buttonStyle) ? props.buttonStyle : STYLES[0];
+function Button(props) {
+    const checkButtonStyle = STYLES.includes(props.buttonStyle)
+        ? props.buttonStyle
+        : STYLES[0];
 
-    const checkButtonSize = SIZES.includes(props.buttonSize) ? props.buttonSize : SIZES[0];
+    const checkButtonSize = SIZES.includes(props.buttonSize)
+        ? props.buttonSize
+        : SIZES[0];
 
-    return(
-        <Link to = {props.buttonLink} className='btn-mobile'>
+    return (
+        <Link to={props.buttonLink} className="btn-mobile">
             <button
-                className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+                className={`btn--custom ${checkButtonStyle} ${checkButtonSize}`}
                 onClick={props.onClick}
                 type={props.type}
             >
@@ -22,6 +26,6 @@ function Button(props){
             </button>
         </Link>
     );
-};
+}
 
 export default Button;

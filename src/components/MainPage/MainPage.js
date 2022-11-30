@@ -158,7 +158,7 @@ function MainPage() {
                 gjs_forms,
                 gjs_img_editor,
                 gjs_pj_manager,
-                gjs_tail,
+                //gjs_tail,
             ],
             pluginsOpts: {
                 gjsBlockBasic: {},
@@ -176,18 +176,13 @@ function MainPage() {
 
         const content = document.createElement("input");
         content.id = "domain_value";
+        content.className = "domain-modal";
         content.value = domain;
         content.focus = true;
         content.size = 40;
         content.placeholder = "도메인에 들어갈 단어를 입력해주세요.";
 
-        content.style.margin = "20px";
-        content.style.backgroundColor = "#2D2D2D";
-        content.style.border = "#222222 1px solid";
-        content.style.color = "#ffffff";
-        content.style.height = "30px";
-
-        //페이지 2개로 변경
+        //페이지 2개로 설정
         addPages(editor, page_id);
 
         editor.Commands.add("domain", {
@@ -201,7 +196,7 @@ function MainPage() {
                 });
                 editor.Modal.onceClose(() => {
                     domain = content.value;
-                    addCommands(editor, domain, token);
+                    addCommands(editor, domain, page_id, token);
                 });
             },
         });

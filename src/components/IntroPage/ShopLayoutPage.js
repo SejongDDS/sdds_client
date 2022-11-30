@@ -1,14 +1,18 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
+import Navbar2 from "./Navbar/Navbar2";
 import shop_logo from "../../resources/imgs/smart_shop.png";
 import layout_logo1 from "../../resources/imgs/layout_logo1.png";
 import layout_logo2 from "../../resources/imgs/layout_logo2.png";
 import "./LayoutPage.scss";
+import { useNavigate } from "react-router-dom";
 
 function ShopLayoutPage() {
+    const navigate = useNavigate();
+
     return (
         <div className="page">
-            <Navbar />
+            <Navbar2 />
             <div className="layout_page">
                 <div className="notice">
                     <p>원하는 쇼핑몰 레이아웃을 선택해주세요</p>
@@ -19,7 +23,7 @@ function ShopLayoutPage() {
                         className="card-container"
                         //이거 레이아웃 다르게 불러오는 세팅 필요
                         onClick={() => {
-                            window.location.href = "/main/1";
+                            navigate("/main/1");
                         }}
                     >
                         <div className="img-container">
@@ -42,7 +46,7 @@ function ShopLayoutPage() {
                     <div
                         className="card-container"
                         onClick={() => {
-                            window.location.href = "/main/2";
+                            navigate("/main/2");
                         }}
                     >
                         <div className="img-container">

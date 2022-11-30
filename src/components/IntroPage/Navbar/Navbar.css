@@ -1,4 +1,4 @@
-.navbar {
+.navbar1 {
     background-color: white;
     height: 70px;
     display: flex;
@@ -8,7 +8,6 @@
     position: sticky;
     top:0;
     z-index: 999;
-
 }
 
 .navbar-container {
@@ -16,7 +15,7 @@
     justify-content: center;
     align-items: center;
     height: 70px;
-    max-width: 1500px;
+    min-width: 100vw;
 }
 
 .navbar-logo {
@@ -30,7 +29,7 @@
     align-items: center;
 }
 
-.nav-menu {
+.navbar-menu {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-gap: 10px;
@@ -41,24 +40,30 @@
     margin-right: 2rem;
 }
 
-.nav-item {
+.navbar-item {
     height: 70px;
 }
 
-.nav-link {
+.nav_btn{
+    min-width: 120px;
+    min-height: 65%;
+    background-color: aqua;
+    margin-left:20px;
+    margin-bottom: 15px;
+}
+
+.navbar-link {
     color: #000000;
     display:flex;
+    font-size: 20px;
     align-items: center;
     text-decoration: none;
     padding: 0 1rem;
     height: 100%;
 }
 
-.nav_btn{
-    margin-left:20px;
-}
-
-.nav-link:hover {
+.navbar-link:hover {
+    text-decoration: none;
     border-bottom: 4px solid #000000;
     transition: all 0.2s ease-out;
 }
@@ -77,3 +82,79 @@
 }
 
 
+
+:root {
+    --primary: brown;
+    --pink:#FF86AA;
+    --white:#FFFFFF;
+    --gray:#606060;
+    --purple:#CE7BB1;
+}
+
+.btn--custom {
+    padding:8px 20px;
+    border-radius: 2px;
+    
+    outline:none;
+    cursor:pointer;
+    height: 40px;
+    
+}
+
+.btn--primary{
+    background-color: brown;
+    color:#242424;
+    border: 1px solid brown;
+}
+
+.btn--pink {
+    background-color: var(--pink);
+    border: 1px #242424;
+    color:var(--white);
+    padding:8px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn--white {
+    border: none;
+    background-color: var(--white);
+    color: #606060;
+    padding:8px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn--blue {
+    border:none;
+    background-color: #009FDF;
+    color:var(--white);
+    padding:8px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn--medium {
+    padding: 8px 20px;
+    font-size: 20px;
+}
+
+.btn--large {
+    padding: 12px 30px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.btn--pink:hover{
+    background-color: #CE7BB1;
+} 
+.btn--white:hover{
+    background-color: #CE7BB1;
+    color: var(--white);
+    
+}
+
+.btn--blue:hover{
+    background-color: #00DBB9;
+}
+
+.btn-mobile {
+    margin-left: 10px;
+}

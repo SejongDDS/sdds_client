@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar/Navbar";
+import Navbar2 from "./Navbar/Navbar2";
 import Home from "./Pages/Home";
 
 function IntroPage() {
     return (
         <>
-            <Navbar />
+            <Navbar2 />
             <Home />
         </>
     );

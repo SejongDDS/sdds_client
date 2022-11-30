@@ -1,9 +1,10 @@
 import "../styles/web_builder.scss";
 import axios from "axios";
 import { dom } from "@fortawesome/fontawesome-svg-core";
+import { useNavigate } from "react-router-dom";
 
 //명령들 한번에 묶어서 추가하는 함수
-export const addCommands = (editor, domain, token) => {
+export const addCommands = (editor, domain, page_id, token) => {
     editor.Commands.add("set-device-desktop", {
         run: (editor) => editor.setDevice("Desktop"),
     });
@@ -19,8 +20,7 @@ export const addCommands = (editor, domain, token) => {
                 //다운로드 코드
                 editor.runCommand("gjs-export-zip");
 
-                //setitem 시간이 느려지는듯함
-                setTimeout(function () {
+                setTimeout(() => {
                     let code_1 = `<!doctype html>
                     <html lang="ko">
                     <head>
@@ -36,13 +36,15 @@ export const addCommands = (editor, domain, token) => {
                     console.log(sessionStorage.getItem("html"));
 
                     let code_2 = `<!doctype html>
-        <html lang="ko">
-        <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="./css/style2.css">
-        </head>
-        ${editor.Pages.get("product-page").getMainComponent().toHTML()}
-        </html>`;
+                    <html lang="ko">
+                    <head>
+                    <meta charset="utf-8">
+                    <link rel="stylesheet" href="./css/style2.css">
+                    </head>
+                    ${editor.Pages.get("product-page")
+                        .getMainComponent()
+                        .toHTML()}
+                    </html>`;
 
                     sessionStorage.setItem("html2", code_2);
                     console.log(sessionStorage.getItem("html2"));
@@ -89,27 +91,38 @@ export const addCommands = (editor, domain, token) => {
                         .then((data) => console.log(data))
                         .catch((err) => console.log(err));
 
-                    axios({
-                        method: "post",
-                        url:
+                    axios
+                        .post(
                             "http://52.231.107.168:3000/api/v1/member/sign-up/" +
-                            domain,
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                        data: {
-                            id: 1,
-                            login_id: "admin",
-                            password: "admin",
-                            email: "admin@sju.ac.kr",
-                            phone: "010-1234-1234",
-                            birth: "981129",
-                        },
-                        timeout: 1000,
-                    })
-                        .then((data) => console.log(data))
+                                domain,
+                            {
+                                login_id: domain + "_admin",
+                                password: domain + "_admin",
+                                email: domain + "admin@naver.com",
+                                phone: "010-0000-0000",
+                                birth: "000000",
+                            },
+                            {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                },
+                            }
+                        )
+                        .then((data) => {
+                            const navigate = useNavigate();
+                            console.log(data);
+                            console.log("domain: " + domain);
+
+                            if (page_id === "0") {
+                                navigate(
+                                    "http://www.hyeonuk.co.kr/" + domain + "/"
+                                );
+                            } else {
+                                navigate("/personal");
+                            }
+                        })
                         .catch((err) => console.log(err));
-                }, 2000);
+                }, 1500);
             }
         },
     });

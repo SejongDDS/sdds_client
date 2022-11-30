@@ -10,6 +10,7 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 
 import logo from "../../../resources/imgs/logo.png";
+import { useNavigate } from "react-router-dom";
 
 function SighUpMain() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -21,6 +22,7 @@ function SighUpMain() {
         phone_number: "",
         email: "",
     });
+    const navigate = useNavigate();
 
     return (
         <div className="signup_page">
@@ -32,7 +34,7 @@ function SighUpMain() {
             <div
                 className="logo"
                 onClick={(e) => {
-                    window.location.href = "/..";
+                    navigate("/");
                 }}
             >
                 <img src={logo} className="header-logo" alt="React" />
@@ -119,7 +121,7 @@ function SighUpMain() {
                                         setModalIsOpen(true);
 
                                         setTimeout(function () {
-                                            window.location.href = "../";
+                                            navigate("/");
                                         }, 3000);
                                     } else {
                                         window.alert(
@@ -151,7 +153,7 @@ function SighUpMain() {
                 <button
                     type="button"
                     onClick={(e) => {
-                        window.history.back();
+                        navigate(-1);
                     }}
                 >
                     <span>이전</span>
