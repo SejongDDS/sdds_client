@@ -12,7 +12,7 @@ function Modal_SignUp({ modalIsOpen, setModalIsOpen }) {
                     overlay: {
                         margin: "auto",
                         width: "500px",
-                        height: "250px",
+                        height: "300px",
                     },
                     content: {
                         border: "2px solid #ddd",

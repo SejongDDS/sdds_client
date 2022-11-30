@@ -105,7 +105,7 @@ function SighUpMain() {
                         if (state.password === state.check_password) {
                             axios({
                                 method: "post",
-                                url: "http://52.231.107.168:3000/api/v1/user/sign-up",
+                                url: "https://sddsapi.paas-ta.org/api/v1/user/sign-up",
                                 data: {
                                     login_id: state.login_id,
                                     password: state.password,

@@ -11,10 +11,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// import { useNavigate } from "react-router-dom";
-// const navigate = useNavigate();
-// navigate("/");
-
 function LoginMain() {
     const [state, setState] = useState({
         login_id: "",
@@ -65,7 +61,7 @@ function LoginMain() {
                         //로그인 post 전송
                         axios({
                             method: "post",
-                            url: "http://52.231.107.168:3000/api/v1/login",
+                            url: "https://sddsapi.paas-ta.org/api/v1/login",
                             data: {
                                 login_id: state.login_id,
                                 password: state.password,
@@ -80,11 +76,11 @@ function LoginMain() {
                                     console.log(res.data.access_token);
 
                                     // 홈 화면으로 이동 (성공 신호 넘어오면)
-                                    //navigate("/personal");
+                                    navigate("/personal");
                                 } else {
                                     //이거 아디 비번 아래에 글자 뜨는걸로 변경??
                                     window.alert(
-                                        "아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요."
+                                        "아이디 또는 비밀번호를 잘못 입력했습니다.\n입력한 내용을 다시 확인해주세요."
                                     );
                                 }
                             })

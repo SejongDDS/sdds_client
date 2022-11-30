@@ -18,7 +18,7 @@ export const addCommands = (editor, domain, page_id, token) => {
             } else {
                 axios
                     .get(
-                        "http://52.231.107.168:3000/api/v1/website/check/" +
+                        "https://sddsapi.paas-ta.org/api/v1/website/check/" +
                             domain,
                         {
                             headers: {
@@ -95,7 +95,7 @@ export const addCommands = (editor, domain, page_id, token) => {
 
                                 axios
                                     .post(
-                                        "http://52.231.107.168:3000/api/v1/website",
+                                        "https://sddsapi.paas-ta.org/api/v1/website",
                                         frm,
                                         {
                                             headers: {
@@ -107,7 +107,7 @@ export const addCommands = (editor, domain, page_id, token) => {
                                     .catch((err) => console.log(err));
                                 axios
                                     .post(
-                                        "http://52.231.107.168:3000/api/v1/member/sign-up/" +
+                                        "https://sddsapi.paas-ta.org/api/v1/member/sign-up/" +
                                             domain,
                                         {
                                             login_id: domain + "_admin",
