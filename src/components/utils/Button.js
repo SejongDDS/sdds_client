@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Button.css";
 
-const STYLES = ["btn--primary", "btn--pink", "btn--white", "btn--blue"];
+const STYLES = ["btn__primary", "btn__pink", "btn__white", "btn__blue"];
 
-const SIZES = ["btn--medium", "btn--large"];
+const SIZES = ["btn__medium", "btn__large"];
 
 function Button(props) {
     const checkButtonStyle = STYLES.includes(props.buttonStyle)
@@ -18,7 +18,7 @@ function Button(props) {
     return (
         <Link to={props.buttonLink} className="btn-mobile">
             <button
-                className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+                className={`btn--custom ${checkButtonStyle} ${checkButtonSize}`}
                 onClick={props.onClick}
                 type={props.type}
             >

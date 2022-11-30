@@ -28,13 +28,16 @@
 .sentence__container {
     height: 100%;
     width: 45%;
-    float:right;
-    color: white;
-    font-size: 30px;
     text-align: left;
+    float:right;
     display : flex;
-
+    
     align-items : center;
+}
+
+.sentence__container b{
+    color: white;
+    font-size: 55px;
 }
 
 .btn {

@@ -18,25 +18,45 @@ function Navbar({ history }) {
                 <div className="menu-icon">
                     <i className={click ? "fas fa-times" : "fas fa-bars"} />
                 </div>
-                <ul className={click ? "nav-menu active" : "nav-menu"}>
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">
+                <ul className={click ? "navbar-menu active" : "navbar-menu"}>
+                    <li className="navbar-item">
+                        <Link to="/" className="navbar-link">
                             주요기능
                         </Link>
                     </li>
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">
+                    <li className="navbar-item">
+                        <Link to="/" className="navbar-link">
                             템플릿
                         </Link>
                     </li>
-                    <li className="nav-item">
-                        <Link to="/" className="nav-links-moblie">
+                    {/* <li className="navbar-item">
+                        <Link to="/" className="navbar-links-moblie">
                             Login
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
 
-                <Button
+                <Link to="/login">
+                    <button
+                        className="nav_btn btn--custom btn--pink btn--medium"
+                        type="button"
+                        name="Login"
+                    >
+                        Login
+                    </button>
+                </Link>
+
+                <Link to="/layout">
+                    <button
+                        className="nav_btn btn--custom btn--white btn--medium"
+                        type="button"
+                        name="시작하기"
+                    >
+                        시작하기
+                    </button>
+                </Link>
+
+                {/* <Button
                     className="nav_btn"
                     buttonStyle="btn--pink"
                     buttonSize="btn--medium"
@@ -57,7 +77,7 @@ function Navbar({ history }) {
                     }}
                 >
                     시작하기
-                </Button>
+                </Button> */}
             </div>
         </nav>
     );

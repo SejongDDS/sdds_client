@@ -274,11 +274,6 @@ body {
     
                     <div class="gjs-row card-container" id="card-0">
                         <div class="gjs-cell img-container" id="img-0">
-                            <img
-                                class="product-img"
-                                src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fexam-154961781.jpg&type=sc960_832"
-                                alt="상품 이미지"
-                            ></img>
                         </div>
                         <div class="gjs-cell product-info" id="info-0">
                             <p class="product-name" id="name-0">상품명</p>
@@ -291,24 +286,22 @@ body {
 
             <script>
 
-                //긴 화면으로 표현하는 것
-                
-                const serverUrl = "http://simplelinuxvm-foic5rddd76ve.koreacentral.cloudapp.azure.com:3000";
+                //긴 화면으로 표현하는 레이아웃
+                const serverUrl = "http://52.231.107.168:3000";
 
-                window.onload = function() {
-                    let e1 = document.getElementById("card-0");
-                    e1.setAttribute("onClick", "sendData('test', 1)");
+                const split_domain = location.href.split("/");
+                const website_url = split_domain[3];
 
-                }
+                console.log("website_url : " + website_url);
 
-                //쿼리로 넘겨주기
-                function sendData(website_url, product_id){
-                    location.href="index1.html?" + website_url + "&" + product_id;
+                //쿼리로 데이터 넘겨주고 페이지 이동
+                function sendData(product_id){
+                    location.href="index2.html?" + product_id;
                 }
 
                 //물품 JSON 데이터 받아오기
                 async function loadData(){
-                    let product = await fetch(serverUrl + "/api/v1/product/test/summary", {
+                    let product = await fetch(serverUrl + "/api/v1/product/" + website_url + "/summary" , {
                         headers: {
                             //토큰은 유동적으로 받아줘야 할듯
                             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoidGVzdDEyMzQiLCJpYXQiOjE2NjgzNjM2NTcsImV4cCI6MTY3MDk1NTY1N30.nEl8jXeuwa1qog0JxeaoXxxOO6vy3_q8Pj6aTMiOJ7Y",
@@ -318,14 +311,6 @@ body {
                     let productData = await product.json();
 
                     return productData;
-                }
-                
-                //이미지 추가하는 함수(매개변수: 부모요소 id, 불러올 이미지 url)
-                function add_img(id, url) {
-                    let img = document.createElement('img');
-                    img.className = "product-img";
-                    img.src = url;
-                    document.getElementById(id).appendChild(img);
                 }
 
                 //카드 추가하는 함수(매개변수: json파일 index)
@@ -358,16 +343,26 @@ body {
                     e5.innerHTML = "가격";
                     document.getElementById("info-" + index).appendChild(e5);
                 }
+
+                //이미지 추가하는 함수(매개변수: 부모요소 id, 불러올 이미지 url)
+                function add_img(parent_id, img_url) {
+                    let img = document.createElement('img');
+                    img.className = "product-img";
+                    img.src = img_url;
+                    document.getElementById(parent_id).appendChild(img);
+                }
                 
                 loadData().then(res => {
                     // 테스트용 이미지 주소
-                    const thumbnail = "https://blackboard.sejong.ac.kr/bbcswebdav/institution/login/images/sejong.png";
+                    // const thumbnail = "https://blackboard.sejong.ac.kr/bbcswebdav/institution/login/images/sejong.png";
 
                     res.forEach((element, index) => {
                         if(index != 0){
                             //새로운 카드를 생성하는 코드
                             add_product_card(index);
                         }
+                        let card = document.getElementById("card-" + index);
+                        card.setAttribute("onClick", "sendData(" + element.id + ")");
 
                         let name = document.getElementById('name-' + index);
                         name.innerHTML = element.name;
@@ -375,10 +370,8 @@ body {
                         let price = document.getElementById('price-' + index);
                         price.innerHTML = element.price.toLocaleString('ko-KR') + "원";
 
-                        //이미지 유동적으로 넣는 코드 ****************수정필요
-                        // let img_url = element.main_url[0];
-                        // add_img("img-container img-" + count, img_url)
-                        add_img("img-" + index, thumbnail)
+                        let thumbnail_url = element.thumbnail_url;
+                        add_img("img-" + index, thumbnail_url);
 
                     });
                 })
@@ -440,7 +433,7 @@ body {
     height: 40vh;
     width: 80vw;
     border-radius: 3px;
-    padding: 10px;
+    padding: 0px;
     margin: 30px 0px 90px 0px;
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -454,7 +447,6 @@ body {
 
 .img-container {
     float: left;
-    margin: 10px;
 }
 
 .product-img {
@@ -468,6 +460,7 @@ body {
 }
 
 .product-name {
+    height: 30%;
     font-size: 34px;
     font-weight: 400;
     color: #2c2c2c;
@@ -480,6 +473,7 @@ body {
     padding: 5px 0;
 }
 
+
 </style>
 `,
 ];
@@ -490,14 +484,6 @@ export const layoutManager = {
             id: "product-page",
             component: `
             
-            <!doctype html>
-    <html lang="ko">
-        <head>
-            <meta charset="utf-8">
-            <title>SDDS</title>
-            <link rel="stylesheet" href="./css/style2.css">
-        </head>
-        <body id="ino3">
             <div class="gjs-row" id="title-row">
                 <div class="gjs-cell" id="title-cell">
                     <div id="title-text">SDDS.COM</div>
@@ -640,9 +626,6 @@ export const layoutManager = {
                     });
                 })
             </script>
-
-        </body>
-    </html>
 
             <style>
 

@@ -12,8 +12,7 @@ export const websiteState = atom({
 
 export const tokenState = atom({
     key: "tokenState",
-    default:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoiMTExMSIsImlhdCI6MTY2OTQ1NDQyMSwiZXhwIjoxNjcyMDQ2NDIxfQ.mvmPiq720tg76Tdvi3aOonpYQ5uq_9DH3zlPEH4ZtIQ",
+    default: "",
 });
 
 export const getToken = selector({
