@@ -44,6 +44,7 @@ function PersonalCardView() {
             setWebsiteList(null);
 
             setLoading(true);
+            
             const response = await axios.get(
                 "http://52.231.107.168:3000/api/v1/website",
                 {
@@ -52,9 +53,17 @@ function PersonalCardView() {
                     },
                 }
             );
-            setWebsiteList(response.data);
+            if(response===[]){
+                setWebsiteList([])
+            }else{
+                setWebsiteList(response.data);
+            }
+            
+            console.log(response);
         } catch (e) {
             setError(e);
+            setWebsiteList([]);
+            console.log(e);
         }
         setLoading(false);
     };
@@ -84,7 +93,7 @@ function PersonalCardView() {
 
     if (loading) return <div>로딩중...</div>;
     if (error) return <div>에러 발생</div>;
-    if (!websiteList) return null;
+    if (!websiteList) return <div>로그인 에러</div>;
 
     return (
         <CardViewContainer>
@@ -102,17 +111,6 @@ function PersonalCardView() {
                         <Button variant="primary" href="/layout">새로운 페이지 생성하러 이동</Button>
                     </Card.Body>
                 </Card>
-                
-                
-                {
-                    websiteList.map((item,idx)=>{
-                        return (
-
-                            <Button variant="primary" href="/main">
-                                새로운 페이지 생성하러 이동
-                            </Button>
-                        </Card.Body>
-                    </Card>
 
                     {websiteList.map((item, idx) => {
                         return (
