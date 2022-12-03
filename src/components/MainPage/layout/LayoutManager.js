@@ -649,8 +649,6 @@ export const layoutManager = {
                     add_img("container-product-thumbnail", thumbnail_url)
 
                     let ary_main_url = res.main_url;
-                    add_img("container-detail-img", res.main_url);
-                    
                     ary_main_url.forEach(element => {
                         add_img("container-detail-img", element);
                     });

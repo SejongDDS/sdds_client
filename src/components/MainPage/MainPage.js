@@ -172,27 +172,43 @@ function MainPage() {
 
         //domain 입력 변수 설정
         const title = document.createElement("b");
+        title.className = "domain_title";
         title.innerHTML = "도메인 설정";
 
+        const domainModal_container = document.createElement("div");
+
         const content = document.createElement("input");
-        content.id = "domain_value";
-        content.className = "domain-modal";
+        content.className = "domain-input";
         content.value = domain;
         content.focus = true;
-        content.size = 40;
+        content.size = 50;
         content.placeholder = "도메인에 들어갈 단어를 입력해주세요.";
+
+        const btn = document.createElement("button");
+        btn.className = "domain-btn";
+        btn.type = "button";
+        btn.setAttribute("data-close-modal", "");
+
+        const span = document.createElement("span");
+        span.innerHTML = "적용";
+
+        btn.appendChild(span);
+        domainModal_container.appendChild(content);
+        domainModal_container.appendChild(btn);
 
         editor.Commands.add("domain", {
             run: (editor, domain) => {
                 editor.Modal.open({
                     title: title,
-                    content: content,
+                    content: domainModal_container,
                     attributes: {
                         class: "pannel-domain-modal",
                     },
                 });
                 editor.Modal.onceClose(() => {
                     domain = content.value;
+                    // console.log(domain);
+
                     addCommands(editor, domain, page_id, token);
                 });
             },
@@ -237,11 +253,6 @@ function MainPage() {
         //     success: function (data) {},
         //     error: function (err) {},
         // });
-
-        // setTimeout(() => {
-        //     let categories = editor.BlockManager.getCategories();
-        //     categories.each((category) => category.set("open", false));
-        // }, 1000);
 
         setEditor(editor);
     }, []);
