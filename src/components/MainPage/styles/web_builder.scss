@@ -57,3 +57,20 @@
     opacity: 1;
     right: 0;
 }
+
+.side_page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 100vh;
+    background-color: rgb(68, 68, 68);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.main-content {
+    position: relative;
+    width: 90%;
+    left: 10%;
+}
