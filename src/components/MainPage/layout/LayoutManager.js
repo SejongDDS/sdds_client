@@ -7,42 +7,46 @@ const layout_pages = [
             <title>SDDS</title>
             <link rel="stylesheet" href="./css/main_layout1.css">
         </head>
-        <body id="ino3">
-            <div class="gjs-row" id="title-row">
-                <div class="gjs-cell" id="title-cell">
-                    <div id="title-text">SDDS.COM</div>
+        <body id="ino3" data-gjs-removable="false">
+            <div class="gjs-row" id="title-row" data-gjs-removable="false">
+                <div class="gjs-cell" id="title-cell" data-gjs-removable="false">
+                    <div id="title-text" data-gjs-removable="false">SDDS.COM</div>
                 </div>
             </div>
-            
-            <div class="gjs-row content-container">
-                <div class="gjs-cell products-container" id="products-container">
-                    <div class="gjs-row category-container" id="row-0">
 
-                        <div class="gjs-cell card-container" id="card-0">
-                            <div class="img-container" id="img-0">
+            <div class="gjs-row" data-gjs-removable="false"></div>
+            
+            <div class="gjs-row content-container" data-gjs-removable="false">
+                <div class="gjs-cell products-container" id="products-container" data-gjs-removable="false">
+                    <div class="gjs-row category-container" id="row-0" data-gjs-removable="false">
+
+                        <div class="gjs-cell card-container" id="card-0" data-gjs-removable="false">
+                            <div class="img-container" id="img-0" data-gjs-removable="false">
                                 
                             </div>
-                            <p class="product-name" id="name-0">상품 준비중입니다.</p>
-                            <p class="product-price" id="price-0"></p>
+                            <p class="product-name" id="name-0" data-gjs-removable="false">상품 준비중입니다.</p>
+                            <p class="product-price" id="price-0" data-gjs-removable="false"></p>
                         </div>
 
-                        <div class="gjs-cell card-container" id="card-1">
-                            <div class="img-container" id="img-1">
+                        <div class="gjs-cell card-container" id="card-1" data-gjs-removable="false">
+                            <div class="img-container" id="img-1" data-gjs-removable="false">
                             </div>
-                            <p class="product-name" id="name-1">상품 준비중입니다.</p>
-                            <p class="product-price" id="price-1"></p>
+                            <p class="product-name" id="name-1" data-gjs-removable="false">상품 준비중입니다.</p>
+                            <p class="product-price" id="price-1" data-gjs-removable="false"></p>
                         </div>
 
-                        <div class="gjs-cell card-container" id="card-2">
-                            <div class="img-container" id="img-2">
+                        <div class="gjs-cell card-container" id="card-2" data-gjs-removable="false">
+                            <div class="img-container" id="img-2" data-gjs-removable="false">
                             </div>
-                            <p class="product-name" id="name-2">상품 준비중입니다.</p>
-                            <p class="product-price" id="price-2"></p>
+                            <p class="product-name" id="name-2" data-gjs-removable="false">상품 준비중입니다.</p>
+                            <p class="product-price" id="price-2" data-gjs-removable="false"></p>
                         </div>
 
                     </div>
                 </div>
             </div>
+
+            <div class="gjs-row" data-gjs-removable="false"></div>
 
             <script>
                 // <img
@@ -275,25 +279,29 @@ body {
 </style>
 `,
     `
-    <div class="gjs-row" id="title-row">
-                <div class="gjs-cell" id="title-cell">
-                    <div id="title-text">SDDS.COM</div>
+            <div class="gjs-row" id="title-row" data-gjs-removable="false">
+                <div class="gjs-cell" id="title-cell" data-gjs-removable="false">
+                    <div id="title-text" data-gjs-removable="false">SDDS.COM</div>
                 </div>
             </div>
-            <div class="gjs-row content-container">
-                <div class="gjs-cell products-container" id="products-container">
+
+            <div class="gjs-row" data-gjs-removable="false"></div>
+
+            <div class="gjs-row content-container" data-gjs-removable="false">
+                <div class="gjs-cell products-container" id="products-container" data-gjs-removable="false">
     
-                    <div class="gjs-row card-container" id="card-0">
-                        <div class="gjs-cell img-container" id="img-0">
+                    <div class="gjs-row card-container" id="card-0" data-gjs-removable="false">
+                        <div class="gjs-cell img-container" id="img-0" data-gjs-removable="false">
                         </div>
-                        <div class="gjs-cell product-info" id="info-0">
-                            <p class="product-name" id="name-0">상품명</p>
-                            <p class="product-price" id="price-0">가격</p>
+                        <div class="gjs-cell product-info" id="info-0" data-gjs-removable="false">
+                            <p class="product-name" id="name-0" data-gjs-removable="false">상품명</p>
+                            <p class="product-price" id="price-0" data-gjs-removable="false">가격</p>
                         </div>
                     </div>
-
                 </div>
             </div>
+
+            <div class="gjs-row" data-gjs-removable="false"></div>
 
             <script>
 
@@ -494,41 +502,48 @@ export const layoutManager = {
         {
             id: "product-page",
             component: `
-            <div class="gjs-row" id="title-row">
-                <div class="gjs-cell" id="title-cell">
-                    <div id="title-text">SDDS.COM</div>
+            <div class="gjs-row" id="title-row" data-gjs-removable="false">
+                <div class="gjs-cell" id="title-cell" data-gjs-removable="false">
+                    <div id="title-text" data-gjs-removable="false">SDDS.COM</div>
                 </div>
             </div>
-            <div class="gjs-row" id="container-product">
-                <div class="gjs-cell" id="container-product-thumbnail"></div>
-                <div class="gjs-cell" id="container-product-info">
-                    <div class="gjs-cell" id="product-name">상품 이름</div>
-                    <div class="gjs-cell" id="product-price">가격</div>
-                    <div class="gjs-cell" id="product-count">남은 개수</div>
 
-                    <div class="gjs-cell" id="container-product-count">
-                        <span id="product-count-minus" onclick='count("minus")'>-</span>
-                        <input id="product-count-value" type="text" value="1"/>
-                        <span id="product-count-plus" onclick='count("plus")'>+</span>
+            <div class="gjs-row" data-gjs-removable="false"></div>
+
+            <div class="gjs-row" id="container-product" data-gjs-removable="false">
+                <div class="gjs-cell" id="container-product-thumbnail" data-gjs-removable="false"></div>
+                <div class="gjs-cell" id="container-product-info" data-gjs-removable="false">
+                    <div class="gjs-cell" id="product-name" data-gjs-removable="false">상품 이름</div>
+                    <div class="gjs-cell" id="product-price" data-gjs-removable="false">가격</div>
+                    <div class="gjs-cell" id="product-count" data-gjs-removable="false">남은 개수</div>
+
+                    <div class="gjs-cell" id="container-product-count" data-gjs-removable="false">
+                        <span id="product-count-minus" onclick='count("minus")' data-gjs-removable="false">-</span>
+                        <input id="product-count-value" type="text" value="1" data-gjs-removable="false"/>
+                        <span id="product-count-plus" onclick='count("plus")' data-gjs-removable="false">+</span>
                     </div>
                     
-                    <button type="button" id="btn-order" onclick="">
+                    <button type="button" id="btn-order" onclick="send_order(1)" data-gjs-removable="false">
                         주문하기
                     </button>
                 </div>
             </div>
+
+            <div class="gjs-row" data-gjs-removable="false"></div>
             
-            <div class="gjs-row" id="container-description">
-                <div class="gjs-cell" id="description-text">
+            <div class="gjs-row" id="container-description" data-gjs-removable="false">
+                <div class="gjs-cell" id="description-text" data-gjs-removable="false">
                     상품상세정보
                 </div>
             </div>
 
-            <div class="gjs-row" id="container-detail">
-                <div class="gjs-cell" id="container-detail-img">
+            <div class="gjs-row" id="container-detail" data-gjs-removable="false">
+                <div class="gjs-cell" id="container-detail-img" data-gjs-removable="false">
                     <!-- 동적인 개수의 이미지가 들어갈 위치 -->
                 </div>
             </div>
+
+            <div class="gjs-row" data-gjs-removable="false"></div>
 
             <script>
                 const serverUrl = "https://sddsapi.paas-ta.org";
@@ -592,7 +607,6 @@ export const layoutManager = {
                     })
                     .then((response) => response.json())
                     .then((data) => console.log(data));
-                    // 예외처리 및 주문 성공 모달 띄울지?
                 }
 
                 //주문 수 카운트할 함수

@@ -170,6 +170,127 @@ function MainPage() {
             },
         });
 
+        // editor.DomComponents.addType("button", {
+        //     isComponent: (el) => el.tagName == "BUTTON",
+        //     model: {
+        //         defaults: {
+        //             traits: [
+        //                 // Strings are automatically converted to text types
+        //                 "name", // Same as: { type: 'text', name: 'name' }
+        //                 "placeholder",
+        //                 {
+        //                     type: "select", // Type of the trait
+        //                     label: "클릭시", // The label you will see in Settings
+        //                     name: "onclick", // The name of the attribute/property to use on component
+        //                     options: [
+        //                         { id: "text", name: "홈 화면" },
+        //                         { id: "email", name: "상세 화면" },
+        //                         { id: "password", name: "주문 화면" },
+        //                         { id: "test()", name: "로그인 화면" },
+        //                     ],
+        //                 },
+        //                 {
+        //                     type: "checkbox",
+        //                     name: "required",
+        //                 },
+        //                 {
+        //                     type: "button",
+        //                     // ...
+        //                     text: "Click me",
+        //                     full: true, // Full width button
+        //                     command: (editor) => alert("Hello"),
+        //                     // or you can just specify the Command ID
+        //                     command: "some-command",
+        //                 },
+        //             ],
+        //             // As by default, traits are binded to attributes, so to define
+        //             // their initial value we can use attributes
+        //             attributes: { type: "text", required: true },
+        //         },
+        //     },
+        // });
+
+        // const cmp = editor.DomComponents;
+        // const eded = cmp.getWrapper().find("products-container")[0];
+        // const test = eded.get("components");
+        // test.removable = false;
+
+        // const component = editor.DomComponents.getWrapper().find(
+        //     ".products-container"
+        // )[0];
+        // component.set({ removable: false });
+
+        // component.components(`<div>Add some content inside</div>`);
+
+        // editor.TraitManager.addType("href-next", {
+        //     // Expects as return a simple HTML string or an HTML element
+        //     createInput({ trait }) {
+        //         // Here we can decide to use properties from the trait
+        //         const traitOpts = trait.get("options") || [];
+        //         const options = traitOpts.length
+        //             ? traitOpts
+        //             : [
+        //                   { id: "url", name: "URL" },
+        //                   { id: "email", name: "Email" },
+        //               ];
+
+        //         // Create a new element container and add some content
+        //         const el = document.createElement("div");
+        //         el.innerHTML = `
+        //         <select class="href-next__type">
+        //           ${options
+        //               .map(
+        //                   (opt) =>
+        //                       `<option value="${opt.id}">${opt.name}</option>`
+        //               )
+        //               .join("")}
+        //         </select>
+        //         <div class="href-next__url-inputs">
+        //           <input class="href-next__url" placeholder="Insert URL"/>
+        //         </div>
+        //         <div class="href-next__email-inputs">
+        //           <input class="href-next__email" placeholder="Insert email"/>
+        //           <input class="href-next__email-subject" placeholder="Insert subject"/>
+        //         </div>
+        //       `;
+
+        //         // Let's make our content interactive
+        //         const inputsUrl = el.querySelector(".href-next__url-inputs");
+        //         const inputsEmail = el.querySelector(
+        //             ".href-next__email-inputs"
+        //         );
+        //         const inputType = el.querySelector(".href-next__type");
+        //         inputType.addEventListener("change", (ev) => {
+        //             switch (ev.target.value) {
+        //                 case "url":
+        //                     inputsUrl.style.display = "";
+        //                     inputsEmail.style.display = "none";
+        //                     break;
+        //                 case "email":
+        //                     inputsUrl.style.display = "none";
+        //                     inputsEmail.style.display = "";
+        //                     break;
+        //             }
+        //         });
+
+        //         return el;
+        //     },
+        // });
+
+        // editor.DomComponents.addType("link", {
+        //     model: {
+        //         defaults: {
+        //             traits: [
+        //                 {
+        //                     type: "href-next",
+        //                     name: "href",
+        //                     label: "New href",
+        //                 },
+        //             ],
+        //         },
+        //     },
+        // });
+
         //domain 입력 변수 설정
         const title = document.createElement("b");
         title.className = "domain_title";
@@ -207,9 +328,43 @@ function MainPage() {
                 });
                 editor.Modal.onceClose(() => {
                     domain = content.value;
-                    // console.log(domain);
 
                     addCommands(editor, domain, page_id, token);
+
+                    //아래 코드 수정 #########################
+
+                    // console.log(domain);
+
+                    // 이거 테스트할 필요가 있음 -- 중복 테스트하는 코드
+                    // axios
+                    //     .get(
+                    //         "https://sddsapi.paas-ta.org/api/v1/website/check/" +
+                    //             domain,
+                    //         {
+                    //             headers: {
+                    //                 Authorization: `Bearer ${token}`,
+                    //             },
+                    //         }
+                    //     )
+                    //     .then((res) => {
+                    //         if (res.data === true) {
+                    //             alert(
+                    //                 "이미 존재하는 도메인입니다.\n새로운 도메인을 입력해주세요."
+                    //             );
+
+                    //             // 다시 모달 오픈
+                    //             editor.Modal.open({
+                    //                 title: title,
+                    //                 content: domainModal_container,
+                    //                 attributes: {
+                    //                     class: "pannel-domain-modal",
+                    //                 },
+                    //             });
+                    //         } else {
+                    //             addCommands(editor, domain, page_id, token);
+                    //         }
+                    //     })
+                    //     .catch((err) => console.log(err));
                 });
             },
         });

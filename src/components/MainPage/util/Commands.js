@@ -31,7 +31,7 @@ export const addCommands = (editor, domain, page_id, token) => {
 
                         if (res.data === true) {
                             alert(
-                                "이미 존재하는 도메인입니다. 새로운 도메인을 입력해주세요."
+                                "이미 존재하는 도메인입니다.\n새로운 도메인을 입력해주세요."
                             );
                         } else {
                             //다운로드 코드
@@ -197,11 +197,15 @@ export const addCommands = (editor, domain, page_id, token) => {
             const mainPage = pageManager.get("main-layout");
             const productPage = pageManager.get("product-page");
 
+            console.log("testtes");
+
             if (selectedPage === mainPage) {
                 pageManager.select(productPage);
             } else {
                 pageManager.select(mainPage);
             }
+
+            console.log("testtes");
         },
     });
 };

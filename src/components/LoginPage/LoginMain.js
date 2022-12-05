@@ -86,6 +86,9 @@ function LoginMain() {
                             })
                             .catch(function (error) {
                                 //오류 로그 출력
+                                window.alert(
+                                    "예기치못한 오류로 로그인을 할 수 없습니다."
+                                );
                                 console.log(error);
                             });
                     }}
