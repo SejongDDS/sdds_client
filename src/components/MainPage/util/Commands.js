@@ -44,7 +44,7 @@ export const addCommands = (editor, domain, page_id, token) => {
                                     <meta charset="utf-8">
                                     <link rel="stylesheet" href="./css/style.css">
                                 </head>
-                                ${editor.Pages.get("main-layout")
+                                ${editor.Pages.get("page-1")
                                     .getMainComponent()
                                     .toHTML()}
                                 </html>`;
@@ -56,7 +56,7 @@ export const addCommands = (editor, domain, page_id, token) => {
                                 <meta charset="utf-8">
                                 <link rel="stylesheet" href="./css/style2.css">
                                 </head>
-                                ${editor.Pages.get("product-page")
+                                ${editor.Pages.get("page-2")
                                     .getMainComponent()
                                     .toHTML()}
                                 </html>`;
@@ -188,24 +188,24 @@ export const addCommands = (editor, domain, page_id, token) => {
     //     }
     // });
 
-    editor.Commands.add("pages", {
-        run: (editor) => {
-            //canvas_page 메인 레이아웃 페이지(1은 메인, 2는 상품 정보)
-            const pageManager = editor.Pages;
+    // editor.Commands.add("pages", {
+    //     run: (editor) => {
+    //         //canvas_page 메인 레이아웃 페이지(1은 메인, 2는 상품 정보)
+    //         const pageManager = editor.Pages;
 
-            const selectedPage = pageManager.getSelected();
-            const mainPage = pageManager.get("main-layout");
-            const productPage = pageManager.get("product-page");
+    //         const selectedPage = pageManager.getSelected();
+    //         const mainPage = pageManager.get("main-layout");
+    //         const productPage = pageManager.get("product-page");
 
-            console.log("testtes");
+    //         console.log("testtes");
 
-            if (selectedPage === mainPage) {
-                pageManager.select(productPage);
-            } else {
-                pageManager.select(mainPage);
-            }
+    //         if (selectedPage === mainPage) {
+    //             pageManager.select(productPage);
+    //         } else {
+    //             pageManager.select(mainPage);
+    //         }
 
-            console.log("testtes");
-        },
-    });
+    //         console.log("testtes");
+    //     },
+    // });
 };

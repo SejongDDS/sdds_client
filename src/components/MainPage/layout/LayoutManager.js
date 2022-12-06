@@ -500,7 +500,7 @@ body {
 export const layoutManager = {
     pages: [
         {
-            id: "product-page",
+            id: "page-2",
             component: `
             <div class="gjs-row" id="title-row" data-gjs-removable="false">
                 <div class="gjs-cell" id="title-cell" data-gjs-removable="false">
@@ -846,11 +846,11 @@ export const addPages = (editor, page_id) => {
         const pageManager = editor.Pages;
 
         pageManager.add({
-            id: "main-layout",
+            id: "page-1",
             component: layout_pages[page_id - 1],
         });
 
-        const somePage = pageManager.get("main-layout");
+        const somePage = pageManager.get("page-1");
         pageManager.select(somePage);
     });
 };

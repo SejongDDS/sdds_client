@@ -2,10 +2,20 @@
     max-width: 515px;
 }
 
+.pannel-pages-modal .gjs-mdl-dialog {
+    max-width: 315px;
+}
+
 .domain_title {
     font-size: 30px;
+    font-weight: 500;
     margin-left: 20px;
     color: #ccc;
+}
+
+.modal-info-container {
+    padding-left: 20px;
+    margin: auto;
 }
 
 .domain-input {

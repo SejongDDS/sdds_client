@@ -82,8 +82,7 @@ function MainPage() {
                             css: {
                                 "style.css": (ed) => {
                                     const pageManager = ed.Pages;
-                                    const somePage =
-                                        pageManager.get("main-layout");
+                                    const somePage = pageManager.get("page-1");
                                     const component =
                                         somePage.getMainComponent();
 
@@ -99,8 +98,7 @@ function MainPage() {
                                 },
                                 "style2.css": (ed) => {
                                     const pageManager = ed.Pages;
-                                    const somePage =
-                                        pageManager.get("product-page");
+                                    const somePage = pageManager.get("page-2");
                                     const component =
                                         somePage.getMainComponent();
 
@@ -123,7 +121,7 @@ function MainPage() {
                                 <meta charset="utf-8">
                                 <link rel="stylesheet" href="./css/style.css">
                             </head>
-                            ${ed.Pages.get("main-layout")
+                            ${ed.Pages.get("page-1")
                                 .getMainComponent()
                                 .toHTML()}
                             </html>`;
@@ -141,7 +139,7 @@ function MainPage() {
                                     <meta charset="utf-8">
                                     <link rel="stylesheet" href="./css/style2.css">
                                 </head>
-                                ${ed.Pages.get("product-page")
+                                ${ed.Pages.get("page-2")
                                     .getMainComponent()
                                     .toHTML()}
                                 </html>`;
@@ -376,6 +374,70 @@ function MainPage() {
                                 }
                             })
                             .catch((err) => console.log(err));
+                    }
+                });
+            },
+        });
+
+        //domain 입력 변수 설정
+        const page_title = document.createElement("p");
+        page_title.className = "domain_title";
+        page_title.innerHTML = "페이지 설정";
+
+        const pageModal_container = document.createElement("div");
+
+        const pageInfo_container = document.createElement("div");
+        pageInfo_container.className = "modal-info-container";
+
+        const page_info = document.createElement("b");
+        page_info.className = "modal-info-text";
+        page_info.innerHTML =
+            "<h5>쇼핑몰 변경 가능 페이지</h5>1: 메인 페이지</br>2: 상품 상세정보 페이지</br>3: 주문 확인 페이지";
+
+        const page_content = document.createElement("input");
+        page_content.className = "domain-input";
+        page_content.value = domain;
+        page_content.focus = true;
+        page_content.size = 27;
+        page_content.placeholder = "이동할 페이지를 입력해주세요.";
+
+        const page_btn = document.createElement("button");
+        page_btn.className = "domain-btn";
+        page_btn.type = "button";
+        page_btn.setAttribute("data-close-modal", "");
+
+        const page_span = document.createElement("span");
+        page_span.innerHTML = "적용";
+
+        page_btn.appendChild(page_span);
+        pageModal_container.appendChild(pageInfo_container);
+        pageInfo_container.appendChild(page_info);
+        pageModal_container.appendChild(page_content);
+        pageModal_container.appendChild(page_btn);
+
+        editor.Commands.add("pages", {
+            run: (editor) => {
+                editor.Modal.open({
+                    title: page_title,
+                    content: pageModal_container,
+                    attributes: {
+                        class: "pannel-pages-modal",
+                    },
+                });
+                editor.Modal.onceClose(() => {
+                    const newPageId = page_content.value;
+
+                    if (newPageId >= 1 && newPageId <= 3) {
+                        const pageManager = editor.Pages;
+
+                        const newPage = pageManager.get(
+                            "page-" + page_content.value
+                        );
+                        pageManager.select(newPage);
+                    } else {
+                        alert(
+                            "올바르지 않은 페이지 숫자입니다.\n페이지 숫자만을 입력해주세요.\n(예) 2"
+                        );
                     }
                 });
             },
