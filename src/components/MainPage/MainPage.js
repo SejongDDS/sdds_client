@@ -42,6 +42,7 @@ function MainPage() {
 
     let params = useParams();
     let page_id = params.layout_id;
+    let page_count = "3"; //페이지 수(레이아웃의 경우 자동 3, 포트폴리오는 처음에 입력받음)
     let domain = ""; //도메인 입력에 사용될 변수
 
     useEffect(() => {
@@ -156,7 +157,7 @@ function MainPage() {
                 gjs_forms,
                 gjs_img_editor,
                 gjs_pj_manager,
-                //gjs_tail,
+                // gjs_tail,
             ],
             pluginsOpts: {
                 gjsBlockBasic: {},
@@ -180,9 +181,9 @@ function MainPage() {
                         {
                             type: "select", // Type of the trait
                             label: "클릭시", // The label you will see in Settings
-                            name: "onclick", // The name of the attribute/property to use on component
+                            name: "이것도 내맘대로 바꿈", // The name of the attribute/property to use on component
                             options: [
-                                { id: "text", name: "홈 화면" },
+                                { id: "내맘대로바꿈", name: "홈 화면" },
                                 { id: "email", name: "상세 화면" },
                                 { id: "password", name: "주문 화면" },
                                 { id: "test()", name: "로그인 화면" },
@@ -293,16 +294,28 @@ function MainPage() {
         //domain 입력 변수 설정
         const title = document.createElement("b");
         title.className = "domain_title";
-        title.innerHTML = "도메인 설정";
+        if (page_id === "0") {
+            title.innerHTML = "도메인 및 페이지 수 설정";
+        } else {
+            title.innerHTML = "도메인 설정";
+        }
 
         const domainModal_container = document.createElement("div");
 
         const content = document.createElement("input");
-        content.className = "domain-input";
+        content.className = "basic-input";
         content.value = domain;
         content.focus = true;
-        content.size = 50;
+        content.size = 45;
         content.placeholder = "도메인에 들어갈 단어를 입력해주세요.";
+
+        if (page_id === "0") {
+            var pageInput = document.createElement("input");
+            pageInput.className = "basic-input";
+            pageInput.value = page_count;
+            pageInput.size = 45;
+            pageInput.placeholder = "만들 페이지 수를 입력해주세요.";
+        }
 
         const btn = document.createElement("button");
         btn.className = "domain-btn";
@@ -314,8 +327,13 @@ function MainPage() {
 
         btn.appendChild(span);
         domainModal_container.appendChild(content);
+        if (page_id === "0") {
+            domainModal_container.appendChild(pageInput);
+        }
+
         domainModal_container.appendChild(btn);
 
+        //여기 while문 쓰면될듯 ###################### 설정 안되면 안꺼지게 && 다시 안켜지게
         editor.Commands.add("domain", {
             run: (editor, domain) => {
                 editor.Modal.open({
@@ -327,6 +345,9 @@ function MainPage() {
                 });
                 editor.Modal.onceClose(() => {
                     domain = content.value;
+                    if (page_id === "0") {
+                        page_count = pageInput.value;
+                    }
 
                     addCommands(editor, domain, page_id, token);
 
@@ -391,14 +412,18 @@ function MainPage() {
 
         const page_info = document.createElement("b");
         page_info.className = "modal-info-text";
-        page_info.innerHTML =
-            "<h5>쇼핑몰 변경 가능 페이지</h5>1: 메인 페이지</br>2: 상품 상세정보 페이지</br>3: 주문 확인 페이지";
+        if (page_id === "0") {
+            page_info.innerHTML = "현재 선택 가능 페이지: 1 ~ " + page_count;
+        } else {
+            page_info.innerHTML =
+                "<h5>쇼핑몰 변경 가능 페이지</h5>1: 메인 페이지</br>2: 상품 상세정보 페이지</br>3: 주문 확인 페이지";
+        }
 
         const page_content = document.createElement("input");
         page_content.className = "domain-input";
         page_content.value = domain;
         page_content.focus = true;
-        page_content.size = 27;
+        page_content.size = 34;
         page_content.placeholder = "이동할 페이지를 입력해주세요.";
 
         const page_btn = document.createElement("button");
@@ -425,15 +450,25 @@ function MainPage() {
                     },
                 });
                 editor.Modal.onceClose(() => {
+                    if (page_id === "0") {
+                    } else {
+                    }
                     const newPageId = page_content.value;
 
-                    if (newPageId >= 1 && newPageId <= 3) {
+                    if (newPageId >= 1 && newPageId <= page_count) {
                         const pageManager = editor.Pages;
 
-                        const newPage = pageManager.get(
-                            "page-" + page_content.value
-                        );
-                        pageManager.select(newPage);
+                        if (page_id === "0") {
+                            const newPage = pageManager.get(
+                                "page-" + page_content.value
+                            );
+                            pageManager.select(newPage);
+                        } else {
+                            const newPage = pageManager.get(
+                                "layout-page-" + page_content.value
+                            );
+                            pageManager.select(newPage);
+                        }
                     } else {
                         alert(
                             "올바르지 않은 페이지 숫자입니다.\n페이지 숫자만을 입력해주세요.\n(예) 2"
@@ -443,18 +478,16 @@ function MainPage() {
             },
         });
 
-        //페이지 2개로 설정
-        addPages(editor, page_id);
+        //페이지 여러개 설정
+        addPages(editor, page_id, page_count);
 
-        if (page_id !== "0") {
-            const panelManager = editor.Panels;
-            panelManager.addButton("options", {
-                id: "pages",
-                className: "fa fa-pager",
-                command: "pages",
-                attributes: { title: "다른 페이지 보기" },
-            });
-        }
+        const panelManager = editor.Panels;
+        panelManager.addButton("options", {
+            id: "pages",
+            className: "fa fa-pager",
+            command: "pages",
+            attributes: { title: "다른 페이지 보기" },
+        });
 
         // editor.BlockManager.add("my-first-block", {
         //     label: "Simple block",
@@ -488,7 +521,7 @@ function MainPage() {
 
     return (
         <div className="App">
-            <div className="side_page"></div>
+            {/* <div className="side_page"></div> */}
             <div className="main-content">
                 <div id="editor"></div>
             </div>

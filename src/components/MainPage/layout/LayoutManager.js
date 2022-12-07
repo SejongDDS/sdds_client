@@ -500,7 +500,7 @@ body {
 export const layoutManager = {
     pages: [
         {
-            id: "page-2",
+            id: "layout-page-2",
             component: `
             <div class="gjs-row" id="title-row" data-gjs-removable="false">
                 <div class="gjs-cell" id="title-cell" data-gjs-removable="false">
@@ -838,19 +838,357 @@ body {
 </style>
         `,
         },
+        {
+            id: "layout-page-3",
+            component: `
+            <div class="gjs-row" id="title-row" data-gjs-removable="false">
+                <div class="gjs-cell" id="title-cell" data-gjs-removable="false">
+                    <div id="title-text" data-gjs-removable="false">SDDS.COM</div>
+                </div>
+            </div>
+
+            <div class="gjs-row" data-gjs-removable="false"></div>
+
+            <div class="gjs-row product-order-container-row" data-gjs-removable="false">
+                <div class="gjs-cell product-order-container-cell" data-gjs-removable="false">
+                    <ul class="text-space" data-gjs-removable="false">
+                        <li class="cell-title" data-gjs-removable="false">상품 이름</li>
+                        <li class="product-content" id="blank-name" data-gjs-removable="false">MACBOOK Air</li>
+                    </ul>
+
+                    <ul class="text-space" data-gjs-removable="false">
+                        <li class="cell-title" data-gjs-removable="false">상품 가격</li>
+                        <li class="product-content" id="blank-price" data-gjs-removable="false">1,920,000 원</li>
+                    </ul>
+
+                    <ul class="text-space" data-gjs-removable="false">
+                        <li class="cell-title" data-gjs-removable="false">주문 개수</li>
+                        <li class="product-content" id="blank-count" data-gjs-removable="false">1 개</li>
+                    </ul>
+
+                    <ul class="text-space" data-gjs-removable="false">
+                        <li class="cell-title" data-gjs-removable="false">휴대전화</li>
+                        <input class="input-blank" type="tel" name="tel" id="order-tel" placeholder=" - 를 제외하고 입력해주세요"/ data-gjs-removable="false">
+                    </ul>
+
+                    <ul class="text-space" data-gjs-removable="false">
+                        <li class="cell-title"data-gjs-removable="false">배송지 주소</li>
+                        <input 
+                            class="input-blank"
+                            type="text"
+                            id="address_kakao"
+                            name="address"
+                            placeholder="주소를 입력해주세요"
+                            data-gjs-removable="false"
+                            readonly
+                        />
+                        <input
+                            class="input-blank"
+                            id="detail-address"
+                            placeholder="상세 주소를 입력해주세요"
+                            data-gjs-removable="false"
+                        />
+                    </ul>
+
+                    <ul class="text-space" data-gjs-removable="false">
+                        <li class="cell-title" data-gjs-removable="false">배송 메모</li>
+                        <select class="selbox" id="blank-memo" name="selbox" data-gjs-removable="false">
+                            <option value="1">배송 시 요청사항을 선택해주세요</option>
+                            <option value="2">부재 시 경비실에 맡겨주세요</option>
+                            <option value="3">부재 시 택배함에 넣어주세요</option>
+                            <option value="4">부재시 집 앞에 놔주세요</option>
+                            <option value="5">배송 전 연락 바랍니다</option>
+                            <option value="6">파손의 위험이 있는 상품입니다. 배송 시 주의해 주세요.</option>
+                            <option value="direct">직접입력</option>
+                        </select>
+                        <br/>
+                        <input class="input-blank" type="text" id="selboxDirect" name="selboxDirect" data-gjs-removable="false"/>
+                    </ul>
+
+                    <button type="button" id="btn-order" onclick="send_order(1)" data-gjs-removable="false" >
+                        주문하기
+                    </button>
+                    
+                </div>
+            </div>
+
+            <div class="gjs-row" d ata-gjs-removable="false"></div>
+            
+            <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+            <script>
+
+                $(function(){
+                    $("#selboxDirect").hide();
+
+                    $(".selbox").change(function(){
+                        if($(".selbox").val() == "direct"){
+                            $("#selboxDirect").show();
+                        } else {
+                            $("#selboxDirect").hide();
+                        }
+                    })
+                });
+                
+                window.onload = function(){
+                document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+                //카카오 지도 발생
+                new daum.Postcode({
+                oncomplete: function(data) { //선택시 입력값 세팅
+                    document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                    document.getElementById("detail-address").focus(); //상세입력 포커싱
+                    
+                }}).open();
+                });
+                }
+
+                const serverUrl = "http://52.231.107.168:3000";
+
+                const split_domain1 = location.href.split("/");
+                const website_url = split_domain1[3];
+
+                const split_domain2 = location.href.split("?");
+                const split_data = split_domain2[1].split("&");
+                const product_id = split_data[0].split("=")[1];
+                const count = split_data[1].split("=")[1];
+
+                console.log("log! id = " + product_id + " & count = " + count);
+
+                //물품 JSON 데이터 받아오기
+                async function loadData(){
+                    let product = await fetch(serverUrl + "/api/v1/product/" + website_url + "/" + product_id, {
+                        headers: {
+                            //토큰은 유동적으로 받아줘야 할듯
+                            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoidGVzdDEyMzQiLCJpYXQiOjE2NjgzNjM2NTcsImV4cCI6MTY3MDk1NTY1N30.nEl8jXeuwa1qog0JxeaoXxxOO6vy3_q8Pj6aTMiOJ7Y",
+                        },
+                    })
+
+                    let productData = await product.json();
+
+                    console.log(productData);
+                    
+                    return productData;
+                }
+
+                async function load_member_id(){
+                    let member1 = await fetch(serverUrl + "/api/v1/member/all/" + website_url, {
+                        headers: {
+                            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoidGVzdDEyMzQiLCJpYXQiOjE2NjgzNjM2NTcsImV4cCI6MTY3MDk1NTY1N30.nEl8jXeuwa1qog0JxeaoXxxOO6vy3_q8Pj6aTMiOJ7Y",
+                        },
+                    });
+
+                    console.log(member1);
+
+                    let memberData = await member1.json();
+
+                    return memberData.members[0].id;
+                }
+
+                function send_order(product_id){
+                    //아직 설정 안함
+                    const countElement = document.getElementById('product-count');
+                    let count = countElement.value;
+
+                    const addressElement = document.getElementById('address_kakao');
+                    const detailAddressElement = document.getElementById('detail-address');
+                    let address = addressElement.value + " " + detailAddressElement.value;
+                    
+                    // const telElement = document.getElementById('order-tel');
+                    // let tel = telElement.value;
+                    
+                    let order = fetch(serverUrl + "/api/v1/orders/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            "count": count,
+                            "shipping_address": address,
+                            "etc": "Unknown Type: any",
+                            "website_url": website_url,
+                            "product_id": product_id,
+                            "user_id":  userId,
+                            //유져 아이디도 주소 파라미터로 받아야??
+                        }),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data))
+                    .catch((err) => console.log(err));
+                    //주문 성공 모달 띄울지?
+                    //그냥 확인 취소 뜨는 창 뜨는거 하면 될듯
+
+                    console.log(count + " address: " + address + "tel: " + tel);
+                }
+                
+                //이미지 추가하는 함수(매개변수: 부모요소 id, 불러올 이미지 url)
+                function add_img(parent_id, img_url) {
+                    let img = document.createElement('img');
+                    img.className = "product-img";
+                    img.src = img_url;
+                    document.getElementById(parent_id).appendChild(img);
+                }
+
+                window.onload = function() {
+                    let orderCount = document.getElementById('blank-count');
+                    orderCount.innerHTML = count + " 개";
+                }
+
+                // 썸네일은 서버에서 받아와야 함
+                const ex_img = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fexam-154961781.jpg&type=sc960_832";
+                
+                loadData().then(res => {
+                    load_member_id().then(res1 => {
+                        let orderBtn = document.getElementById("btn-order");
+                        orderBtn.setAttribute("onClick", "send_order(" + res1 +")");
+                    });
+
+                    let name = document.getElementById('blank-name');
+                    name.innerHTML = res.name;
+
+                    let price = document.getElementById('blank-price');
+                    price.innerHTML = res.price.toLocaleString('ko-KR') + " 원";
+                })
+                .catch((err) => console.log(err));
+            </script>
+
+
+            <style>
+
+            * {
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+        body {
+            margin: 0;
+        }
+        .gjs-row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            flex-wrap: nowrap;
+            padding: 10px;
+        }
+        
+        .gjs-cell {
+            min-height: 75px;
+            flex-grow: 1;
+            flex-basis: 100%;
+        }
+        
+        #title-row{
+            width: 100%;
+            box-shadow: rgba(55, 55, 55, 0.2) 0 0 5px 0;
+            margin: auto;
+        }
+        
+        #title-text{
+            padding: 30px 40px 30px 40px;
+            font-size: 34px;
+            font-weight: 900;
+        }
+        
+        #title-text:hover{
+            cursor:pointer;
+        }
+        
+        .product-order-container-cell{
+            margin: 0 10%;
+        }
+        
+        .text-space{
+            display: table;
+            line-height: 24px;
+            border-bottom: 1px solid #ddd;
+            width: 80vw;
+        }
+        
+        .cell-title{
+            display: table-cell;
+            width: 190px;
+            min-width: 190px;
+            padding: 10px 0 10px 10px;
+            font-weight: bold;
+        }
+        
+        .product-content{
+            display: table-cell;
+            padding: 10px 0 10px 10px;
+            font-weight: 400;
+        }
+        
+        .input-blank{
+            height: auto;
+            width: 50vw;
+            padding: .8em .5em;
+            margin: auto;
+            margin-bottom: 15px;
+        }
+        
+        .selbox{
+            height: auto;
+            width: 50vw;
+            padding: .8em .5em;
+            margin-bottom: 15px;
+        }
+        
+        #btn-order {
+            width: 220px;
+            height: 55px;
+            
+            text-align: center;
+            font-size: 30px;
+            display: block;
+            
+            float: bottom;
+            bottom: 0;
+            
+            background: #ff5b59;
+            color: #fff;
+            border: 1px solid #ff5b59;
+            margin-left: 37%;
+            margin-top: 50px;
+        }
+        
+        #btn-order:hover{
+            cursor:pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .gjs-row {
+                flex-wrap: wrap;
+            }
+        }
+        
+
+                    
+</style>
+        `,
+        },
     ],
 };
 
-export const addPages = (editor, page_id) => {
+export const addPages = (editor, page_id, page_count) => {
     editor.on("load", () => {
         const pageManager = editor.Pages;
 
-        pageManager.add({
-            id: "page-1",
-            component: layout_pages[page_id - 1],
-        });
+        if (page_id === "0") {
+            for (let i = 1; i <= page_count; i++) {
+                pageManager.add({
+                    id: "page-" + i,
+                    component: "",
+                });
+            }
 
-        const somePage = pageManager.get("page-1");
-        pageManager.select(somePage);
+            const somePage = pageManager.get("page-1");
+            pageManager.select(somePage);
+        } else {
+            pageManager.add({
+                id: "layout-page-1",
+                component: layout_pages[page_id - 1],
+            });
+
+            const somePage = pageManager.get("layout-page-1");
+            pageManager.select(somePage);
+        }
     });
 };
