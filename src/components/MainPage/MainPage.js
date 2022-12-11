@@ -221,8 +221,9 @@ function MainPage() {
                 defaults: {
                     traits: [
                         // Strings are automatically converted to text types
-                        "name", // Same as: { type: 'text', name: 'name' }
-                        "placeholder",
+                        //"name", // Same as:
+                        { type: "text", name: "버튼 이름" },
+                        //"placeholder",
                         {
                             type: "select", // Type of the trait
                             label: "클릭시", // The label you will see in Settings
@@ -230,24 +231,53 @@ function MainPage() {
                             options: [
                                 {
                                     id: "location.href='./index.html'",
-                                    name: "홈 화면",
+                                    name: "페이지 1으로 이동",
                                 },
                                 {
                                     id: "location.href='./index2.html'",
-                                    name: "상세 화면",
+                                    name: "페이지 2으로 이동",
                                 },
                                 {
                                     id: "location.href='./index3.html'",
-                                    name: "주문 화면",
+                                    name: "페이지 3으로 이동",
                                 },
-                                { id: "test()", name: "로그인 화면" },
+                                {
+                                    id: "location.href='./index4.html'",
+                                    name: "페이지 4으로 이동",
+                                },
 
                                 // 이거 css도 적용하기
                             ],
                         },
+                        // {
+                        //     type: "select",
+                        //     label: "버튼 꾸미기",
+                        //     name: "id",
+                        //     options: [
+                        //         {
+                        //             id: "",
+                        //             name: "프리셋 1",
+                        //         },
+                        //         {
+                        //             id: "",
+                        //             name: "프리셋 2",
+                        //         },
+                        //         {
+                        //             id: "",
+                        //             name: "프리셋 3",
+                        //         },
+
+                        //         // 이거 css도 적용하기
+                        //     ],
+                        // },
+                        // {
+                        //     type: "checkbox",
+                        //     name: "required",
+                        // },
                         {
                             type: "checkbox",
-                            name: "required",
+                            label: "사용 불가능하게",
+                            name: "disabled",
                         },
                         {
                             type: "button",
