@@ -55,7 +55,7 @@ const layout_pages = [
                 //                 alt="상품 이미지"
                 //                 ></img>
 
-                const serverUrl = "https://sddsapi.paas-ta.org";
+                const serverUrl = "http://52.231.107.168:3000";
 
                 const split_domain = location.href.split("/");
                 const website_url = split_domain[3];
@@ -306,7 +306,7 @@ body {
             <script>
 
                 //긴 화면으로 표현하는 레이아웃
-                const serverUrl = "https://sddsapi.paas-ta.org";
+                const serverUrl = "http://52.231.107.168:3000";
 
                 const split_domain = location.href.split("/");
                 const website_url = split_domain[3];
@@ -500,6 +500,10 @@ body {
 export const layoutManager = {
     pages: [
         {
+            id: "page-0",
+            component: "",
+        },
+        {
             id: "layout-page-2",
             component: `
             <div class="gjs-row" id="title-row" data-gjs-removable="false">
@@ -546,7 +550,7 @@ export const layoutManager = {
             <div class="gjs-row" data-gjs-removable="false"></div>
 
             <script>
-                const serverUrl = "https://sddsapi.paas-ta.org";
+                const serverUrl = "http://52.231.107.168:3000";
 
                 const split_domain1 = location.href.split("/");
                 const website_url = split_domain1[3];
@@ -1168,27 +1172,29 @@ body {
 };
 
 export const addPages = (editor, page_id, page_count) => {
-    editor.on("load", () => {
-        const pageManager = editor.Pages;
+    // editor.on("load", () => {
 
-        if (page_id === "0") {
-            for (let i = 1; i <= page_count; i++) {
-                pageManager.add({
-                    id: "page-" + i,
-                    component: "",
-                });
-            }
+    // });
+    const pageManager = editor.Pages;
 
-            const somePage = pageManager.get("page-1");
-            pageManager.select(somePage);
-        } else {
+    if (page_id === "0") {
+        for (let i = 1; i <= page_count; i++) {
             pageManager.add({
-                id: "layout-page-1",
-                component: layout_pages[page_id - 1],
+                id: "page-" + i,
+                component: "",
             });
-
-            const somePage = pageManager.get("layout-page-1");
-            pageManager.select(somePage);
+            console.log("page add : " + i);
         }
-    });
+
+        const somePage = pageManager.get("page-1");
+        pageManager.select(somePage);
+    } else {
+        pageManager.add({
+            id: "layout-page-1",
+            component: layout_pages[page_id - 1],
+        });
+
+        const somePage = pageManager.get("layout-page-1");
+        pageManager.select(somePage);
+    }
 };

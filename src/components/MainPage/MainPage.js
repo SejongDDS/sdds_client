@@ -42,8 +42,12 @@ function MainPage() {
 
     let params = useParams();
     let page_id = params.layout_id;
-    let page_count = "3"; //페이지 수(레이아웃의 경우 자동 3, 포트폴리오는 처음에 입력받음)
+    let page_count = ""; //페이지 수(레이아웃의 경우 자동 3, 포트폴리오는 처음에 입력받음)
     let domain = ""; //도메인 입력에 사용될 변수
+
+    if (page_id !== "0") {
+        page_count = 3;
+    }
 
     useEffect(() => {
         const editor = grapesjs.init({
@@ -83,72 +87,113 @@ function MainPage() {
                             css: {
                                 "style.css": (ed) => {
                                     const pageManager = ed.Pages;
-                                    const somePage = pageManager.get("page-1");
-                                    const component =
-                                        somePage.getMainComponent();
-
-                                    sessionStorage.setItem(
-                                        "style",
-                                        ed.getCss({ component })
-                                    );
+                                    if (page_id === "0") {
+                                        const somePage =
+                                            pageManager.get("page-1");
+                                        const component =
+                                            somePage.getMainComponent();
+                                        sessionStorage.setItem(
+                                            "style",
+                                            ed.getCss({ component })
+                                        );
+                                        return ed.getCss({ component });
+                                    } else {
+                                        const somePage =
+                                            pageManager.get("layout-page-1");
+                                        const component =
+                                            somePage.getMainComponent();
+                                        sessionStorage.setItem(
+                                            "style",
+                                            ed.getCss({ component })
+                                        );
+                                        return ed.getCss({ component });
+                                    }
                                     // console.log(
                                     //     "<Main> : " +
                                     //         sessionStorage.getItem("style")
                                     // );
-                                    return ed.getCss({ component });
                                 },
                                 "style2.css": (ed) => {
                                     const pageManager = ed.Pages;
-                                    const somePage = pageManager.get("page-2");
-                                    const component =
-                                        somePage.getMainComponent();
+                                    for (let i = 2; i <= page_count; i++) {
+                                        console.log(i);
+                                        if (page_id === "0") {
+                                            const somePage = pageManager.get(
+                                                "page-" + i
+                                            );
+                                            const component =
+                                                somePage.getMainComponent();
+                                            sessionStorage.setItem(
+                                                "style" + i,
+                                                ed.getCss({ component })
+                                            );
+                                        } else {
+                                            const somePage = pageManager.get(
+                                                "layout-page-" + i
+                                            );
+                                            const component =
+                                                somePage.getMainComponent();
+                                            sessionStorage.setItem(
+                                                "style" + i,
+                                                ed.getCss({ component })
+                                            );
+                                        }
+                                    }
 
-                                    sessionStorage.setItem(
-                                        "style2",
-                                        ed.getCss({ component })
-                                    );
-                                    // console.log(
+                                    // const somePage = pageManager.get("page-2");
+                                    // const component =
+                                    //     somePage.getMainComponent();
+
+                                    // sessionStorage.setItem(
+                                    //     "style2",
+                                    //     ed.getCss({ component })
+                                    // );
+                                    // // console.log(
                                     //     "<Main> : " +
                                     //         sessionStorage.getItem("style2")
                                     // );
 
-                                    return ed.getCss({ component });
+                                    //리턴 없이 해도 되는지?? ##########
+                                    // return ed.getCss({ component });
                                 },
                             },
                             "index.html": (ed) => {
-                                let code = `<!doctype html>
-                            <html lang="ko">
-                            <head>
-                                <meta charset="utf-8">
-                                <link rel="stylesheet" href="./css/style.css">
-                            </head>
-                            ${ed.Pages.get("page-1")
-                                .getMainComponent()
-                                .toHTML()}
-                            </html>`;
-
-                                // sessionStorage.setItem("html", code);
-                                // console.log(sessionStorage.getItem("html"));
-
-                                return code;
-                            },
-                            //위 수정
-                            "index2.html": (ed) => {
-                                let code = `<!doctype html>
+                                if (page_id === "0") {
+                                    let code = `<!doctype html>
                                 <html lang="ko">
                                 <head>
                                     <meta charset="utf-8">
-                                    <link rel="stylesheet" href="./css/style2.css">
+                                    <link rel="stylesheet" href="./css/style.css">
                                 </head>
-                                ${ed.Pages.get("page-2")
+                                ${ed.Pages.get("page-1")
                                     .getMainComponent()
                                     .toHTML()}
                                 </html>`;
+                                    return code;
+                                }
 
-                                // sessionStorage.setItem("html2", code);
-                                // console.log(sessionStorage.getItem("html2"));
+                                // sessionStorage.setItem("html", code);
+                                // console.log(sessionStorage.getItem("html"));
+                            },
+                            //위 수정
+                            "index2.html": (ed) => {
+                                if (page_id === "0") {
+                                    let code = `<!doctype html>
+                                    <html lang="ko">
+                                    <head>
+                                        <meta charset="utf-8">
+                                        <link rel="stylesheet" href="./css/style2.css">
+                                    </head>
+                                    ${ed.Pages.get("page-2")
+                                        .getMainComponent()
+                                        .toHTML()}
+                                    </html>`;
 
-                                return code;
+                                    // sessionStorage.setItem("html2", code);
+                                    // console.log(sessionStorage.getItem("html2"));
+
+                                    return code;
+                                }
                             },
                         },
                     });
@@ -171,7 +216,7 @@ function MainPage() {
 
         // 설정 추가 예시
         editor.DomComponents.addType("button", {
-            isComponent: (el) => el.tagName == "BUTTON",
+            //isComponent: (el) => el.tagName == "11",
             model: {
                 defaults: {
                     traits: [
@@ -181,12 +226,23 @@ function MainPage() {
                         {
                             type: "select", // Type of the trait
                             label: "클릭시", // The label you will see in Settings
-                            name: "이것도 내맘대로 바꿈", // The name of the attribute/property to use on component
+                            name: "onclick", // The name of the attribute/property to use on component
                             options: [
-                                { id: "내맘대로바꿈", name: "홈 화면" },
-                                { id: "email", name: "상세 화면" },
-                                { id: "password", name: "주문 화면" },
+                                {
+                                    id: "location.href='./index.html'",
+                                    name: "홈 화면",
+                                },
+                                {
+                                    id: "location.href='./index2.html'",
+                                    name: "상세 화면",
+                                },
+                                {
+                                    id: "location.href='./index3.html'",
+                                    name: "주문 화면",
+                                },
                                 { id: "test()", name: "로그인 화면" },
+
+                                // 이거 css도 적용하기
                             ],
                         },
                         {
@@ -343,150 +399,221 @@ function MainPage() {
                         class: "pannel-domain-modal",
                     },
                 });
+
                 editor.Modal.onceClose(() => {
                     domain = content.value;
                     if (page_id === "0") {
+                        //아닌 경우도 입력 #######
                         page_count = pageInput.value;
+
+                        // 입력 안된거 있으면 다시 켬
+                        if (domain === "" || page_count === "") {
+                            alert("도메인 및 페이지 수 입력을 완료해주세요");
+
+                            editor.Modal.open({
+                                title: title,
+                                content: domainModal_container,
+                                attributes: {
+                                    class: "pannel-domain-modal",
+                                },
+                            });
+                        } else {
+                            // 이거 테스트할 필요가 있음 -- 중복 테스트하는 코드
+                            axios
+                                .get(
+                                    "http://52.231.107.168:3000/api/v1/website/check/" +
+                                        domain,
+                                    {
+                                        headers: {
+                                            Authorization: `Bearer ${token}`,
+                                        },
+                                    }
+                                )
+                                .then((res) => {
+                                    if (res.data === true) {
+                                        alert(
+                                            "이미 존재하는 도메인입니다.\n새로운 도메인을 입력해주세요."
+                                        );
+
+                                        // 다시 모달 오픈
+                                        editor.Modal.open({
+                                            title: title,
+                                            content: domainModal_container,
+                                            attributes: {
+                                                class: "pannel-domain-modal",
+                                            },
+                                        });
+                                    } else {
+                                        addCommands(
+                                            editor,
+                                            domain,
+                                            page_id,
+                                            page_count,
+                                            token
+                                        );
+                                    }
+                                })
+                                .catch((err) => console.log(err));
+                        }
+                    } else {
+                        if (domain === "") {
+                            alert("도메인을 입력해주세요");
+
+                            editor.Modal.open({
+                                title: title,
+                                content: domainModal_container,
+                                attributes: {
+                                    class: "pannel-domain-modal",
+                                },
+                            });
+                        } else {
+                            // 이거 테스트할 필요가 있음 -- 중복 테스트하는 코드
+                            axios
+                                .get(
+                                    "http://52.231.107.168:3000/api/v1/website/check/" +
+                                        domain,
+                                    {
+                                        headers: {
+                                            Authorization: `Bearer ${token}`,
+                                        },
+                                    }
+                                )
+                                .then((res) => {
+                                    if (res.data === true) {
+                                        alert(
+                                            "이미 존재하는 도메인입니다.\n새로운 도메인을 입력해주세요."
+                                        );
+
+                                        // 다시 모달 오픈
+                                        editor.Modal.open({
+                                            title: title,
+                                            content: domainModal_container,
+                                            attributes: {
+                                                class: "pannel-domain-modal",
+                                            },
+                                        });
+                                    } else {
+                                        addCommands(
+                                            editor,
+                                            domain,
+                                            page_id,
+                                            page_count,
+                                            token
+                                        );
+                                    }
+                                })
+                                .catch((err) => console.log(err));
+                        }
                     }
 
-                    addCommands(editor, domain, page_id, token);
+                    addCommands(editor, domain, page_id, page_count, token);
+
+                    //페이지 여러개 설정
+                    addPages(editor, page_id, page_count);
+
+                    const panelManager = editor.Panels;
+                    panelManager.addButton("options", {
+                        id: "pages",
+                        className: "fa fa-pager",
+                        command: "pages",
+                        attributes: { title: "다른 페이지 보기" },
+                    });
 
                     //아래 코드 수정 #########################
 
-                    // console.log(domain);
-                    if (domain === "") {
-                        alert("도메인을 입력해주세요!");
+                    //domain 입력 변수 설정
+                    const page_title = document.createElement("p");
+                    page_title.className = "domain_title";
+                    page_title.innerHTML = "페이지 설정";
 
-                        editor.Modal.open({
-                            title: title,
-                            content: domainModal_container,
-                            attributes: {
-                                class: "pannel-domain-modal",
-                            },
-                        });
+                    const pageModal_container = document.createElement("div");
+
+                    const pageInfo_container = document.createElement("div");
+                    pageInfo_container.className = "modal-info-container";
+
+                    const page_info = document.createElement("b");
+                    page_info.className = "modal-info-text";
+                    if (page_id === "0") {
+                        page_info.innerHTML =
+                            "현재 선택 가능 페이지: 1 ~ " + page_count;
                     } else {
-                        // 이거 테스트할 필요가 있음 -- 중복 테스트하는 코드
-                        axios
-                            .get(
-                                "https://sddsapi.paas-ta.org/api/v1/website/check/" +
-                                    domain,
-                                {
-                                    headers: {
-                                        Authorization: `Bearer ${token}`,
-                                    },
-                                }
-                            )
-                            .then((res) => {
-                                if (res.data === true) {
-                                    alert(
-                                        "이미 존재하는 도메인입니다.\n새로운 도메인을 입력해주세요."
-                                    );
+                        page_info.innerHTML =
+                            "<h5>쇼핑몰 변경 가능 페이지</h5>1: 메인 페이지</br>2: 상품 상세정보 페이지</br>3: 주문 확인 페이지";
+                    }
 
-                                    // 다시 모달 오픈
+                    const page_content = document.createElement("input");
+                    page_content.className = "domain-input";
+                    page_content.value = "";
+                    page_content.focus = true;
+                    page_content.size = 34;
+                    page_content.placeholder = "이동할 페이지를 입력해주세요.";
+
+                    const page_btn = document.createElement("button");
+                    page_btn.className = "domain-btn";
+                    page_btn.type = "button";
+                    page_btn.setAttribute("data-close-modal", "");
+
+                    const page_span = document.createElement("span");
+                    page_span.innerHTML = "적용";
+
+                    page_btn.appendChild(page_span);
+                    pageModal_container.appendChild(pageInfo_container);
+                    pageInfo_container.appendChild(page_info);
+                    pageModal_container.appendChild(page_content);
+                    pageModal_container.appendChild(page_btn);
+
+                    editor.Commands.add("pages", {
+                        run: (editor) => {
+                            editor.Modal.open({
+                                title: page_title,
+                                content: pageModal_container,
+                                attributes: {
+                                    class: "pannel-pages-modal",
+                                },
+                            });
+                            editor.Modal.onceClose(() => {
+                                if (page_id === "0") {
+                                } else {
+                                }
+
+                                const newPageId = page_content.value;
+
+                                if (newPageId >= 1 && newPageId <= page_count) {
+                                    const pageManager = editor.Pages;
+
+                                    if (page_id === "0") {
+                                        let newPage = pageManager.get(
+                                            "page-" + page_content.value
+                                        );
+                                        pageManager.select(newPage);
+
+                                        alert(
+                                            page_content.value +
+                                                " 페이지로 변경되었습니다."
+                                        );
+                                    } else {
+                                        const newPage = pageManager.get(
+                                            "layout-page-" + page_content.value
+                                        );
+                                        pageManager.select(newPage);
+                                    }
+                                } else {
+                                    alert(
+                                        "올바르지 않은 페이지 숫자입니다.\n페이지 숫자만을 입력해주세요.\n(예) 2"
+                                    );
                                     editor.Modal.open({
-                                        title: title,
-                                        content: domainModal_container,
+                                        title: page_title,
+                                        content: pageModal_container,
                                         attributes: {
-                                            class: "pannel-domain-modal",
+                                            class: "pannel-pages-modal",
                                         },
                                     });
-                                } else {
-                                    addCommands(editor, domain, page_id, token);
                                 }
-                            })
-                            .catch((err) => console.log(err));
-                    }
+                            });
+                        },
+                    });
                 });
             },
-        });
-
-        //domain 입력 변수 설정
-        const page_title = document.createElement("p");
-        page_title.className = "domain_title";
-        page_title.innerHTML = "페이지 설정";
-
-        const pageModal_container = document.createElement("div");
-
-        const pageInfo_container = document.createElement("div");
-        pageInfo_container.className = "modal-info-container";
-
-        const page_info = document.createElement("b");
-        page_info.className = "modal-info-text";
-        if (page_id === "0") {
-            page_info.innerHTML = "현재 선택 가능 페이지: 1 ~ " + page_count;
-        } else {
-            page_info.innerHTML =
-                "<h5>쇼핑몰 변경 가능 페이지</h5>1: 메인 페이지</br>2: 상품 상세정보 페이지</br>3: 주문 확인 페이지";
-        }
-
-        const page_content = document.createElement("input");
-        page_content.className = "domain-input";
-        page_content.value = domain;
-        page_content.focus = true;
-        page_content.size = 34;
-        page_content.placeholder = "이동할 페이지를 입력해주세요.";
-
-        const page_btn = document.createElement("button");
-        page_btn.className = "domain-btn";
-        page_btn.type = "button";
-        page_btn.setAttribute("data-close-modal", "");
-
-        const page_span = document.createElement("span");
-        page_span.innerHTML = "적용";
-
-        page_btn.appendChild(page_span);
-        pageModal_container.appendChild(pageInfo_container);
-        pageInfo_container.appendChild(page_info);
-        pageModal_container.appendChild(page_content);
-        pageModal_container.appendChild(page_btn);
-
-        editor.Commands.add("pages", {
-            run: (editor) => {
-                editor.Modal.open({
-                    title: page_title,
-                    content: pageModal_container,
-                    attributes: {
-                        class: "pannel-pages-modal",
-                    },
-                });
-                editor.Modal.onceClose(() => {
-                    if (page_id === "0") {
-                    } else {
-                    }
-                    const newPageId = page_content.value;
-
-                    if (newPageId >= 1 && newPageId <= page_count) {
-                        const pageManager = editor.Pages;
-
-                        if (page_id === "0") {
-                            const newPage = pageManager.get(
-                                "page-" + page_content.value
-                            );
-                            pageManager.select(newPage);
-                        } else {
-                            const newPage = pageManager.get(
-                                "layout-page-" + page_content.value
-                            );
-                            pageManager.select(newPage);
-                        }
-                    } else {
-                        alert(
-                            "올바르지 않은 페이지 숫자입니다.\n페이지 숫자만을 입력해주세요.\n(예) 2"
-                        );
-                    }
-                });
-            },
-        });
-
-        //페이지 여러개 설정
-        addPages(editor, page_id, page_count);
-
-        const panelManager = editor.Panels;
-        panelManager.addButton("options", {
-            id: "pages",
-            className: "fa fa-pager",
-            command: "pages",
-            attributes: { title: "다른 페이지 보기" },
         });
 
         // editor.BlockManager.add("my-first-block", {

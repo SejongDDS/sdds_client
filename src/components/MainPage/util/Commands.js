@@ -3,7 +3,7 @@ import axios from "axios";
 import { dom } from "@fortawesome/fontawesome-svg-core";
 
 //명령들 한번에 묶어서 추가하는 함수
-export const addCommands = (editor, domain, page_id, token) => {
+export const addCommands = (editor, domain, page_id, page_count, token) => {
     editor.Commands.add("set-device-desktop", {
         run: (editor) => editor.setDevice("Desktop"),
     });
@@ -18,7 +18,7 @@ export const addCommands = (editor, domain, page_id, token) => {
             } else {
                 axios
                     .get(
-                        "https://sddsapi.paas-ta.org/api/v1/website/check/" +
+                        "http://52.231.107.168:3000/api/v1/website/check/" +
                             domain,
                         {
                             headers: {
@@ -38,64 +38,197 @@ export const addCommands = (editor, domain, page_id, token) => {
                             editor.runCommand("gjs-export-zip");
 
                             setTimeout(() => {
-                                let code_1 = `<!doctype html>
-                                <html lang="ko">
-                                <head>
-                                    <meta charset="utf-8">
-                                    <link rel="stylesheet" href="./css/style.css">
-                                </head>
-                                ${editor.Pages.get("page-1")
-                                    .getMainComponent()
-                                    .toHTML()}
-                                </html>`;
-                                sessionStorage.setItem("html", code_1);
-                                console.log(sessionStorage.getItem("html"));
-                                let code_2 = `<!doctype html>
-                                <html lang="ko">
-                                <head>
-                                <meta charset="utf-8">
-                                <link rel="stylesheet" href="./css/style2.css">
-                                </head>
-                                ${editor.Pages.get("page-2")
-                                    .getMainComponent()
-                                    .toHTML()}
-                                </html>`;
-                                sessionStorage.setItem("html2", code_2);
-                                console.log(sessionStorage.getItem("html2"));
-                                console.log(
-                                    "style : " + sessionStorage.getItem("style")
-                                );
-                                console.log(
-                                    "style2 : " +
-                                        sessionStorage.getItem("style2")
-                                );
+                                if (page_id === "0") {
+                                    //포토폴리오 레이아웃
+                                    for (let i = 1; i <= page_count; i++) {
+                                        //페이지 수만큼 반복
+                                        if (i === 1) {
+                                            //첫 페이지의 경우
+                                            let code = `
+                                            <!doctype html>
+                                            <html lang="ko">
+                                            <head>
+                                                <meta charset="utf-8">
+                                                <link rel="stylesheet" href="./css/style.css">
+                                            </head>
+                                            ${editor.Pages.get("page-1")
+                                                .getMainComponent()
+                                                .toHTML()}
+                                            </html>`;
+                                            sessionStorage.setItem(
+                                                "html",
+                                                code
+                                            );
+                                            console.log(
+                                                sessionStorage.getItem("html")
+                                            );
+                                        } else {
+                                            //첫 화면이 아닌 경우
+                                            let code =
+                                                `
+                                            <!doctype html>
+                                            <html lang="ko">
+                                            <head>
+                                                <meta charset="utf-8">
+                                                <link rel="stylesheet" href="./css/style` +
+                                                i +
+                                                `.css">
+                                            </head>
+                                            ${editor.Pages.get("page-" + i)
+                                                .getMainComponent()
+                                                .toHTML()}
+                                            </html>`;
+                                            sessionStorage.setItem(
+                                                "html" + i,
+                                                code
+                                            );
+                                            console.log(
+                                                sessionStorage.getItem(
+                                                    "html" + i
+                                                )
+                                            );
+                                        }
+                                    }
+                                } else {
+                                    // 쇼핑몰 레이아웃 전송의 경우
+                                    // console.log("쇼핑몰임" + page_count);
+                                    for (
+                                        let index = 1;
+                                        index <= page_count;
+                                        index++
+                                    ) {
+                                        // console.log("쇼핑몰 인덱스: " + index);
+                                        if (index === 1) {
+                                            let code = `
+                                            <!doctype html>
+                                            <html lang="ko">
+                                            <head>
+                                                <meta charset="utf-8">
+                                                <link rel="stylesheet" href="./css/style.css">
+                                            </head>
+                                            ${editor.Pages.get("layout-page-1")
+                                                .getMainComponent()
+                                                .toHTML()}
+                                            </html>`;
+                                            sessionStorage.setItem(
+                                                "html",
+                                                code
+                                            );
+                                            console.log(
+                                                sessionStorage.getItem("html")
+                                            );
+                                        } else {
+                                            let code =
+                                                `
+                                            <!doctype html>
+                                            <html lang="ko">
+                                            <head>
+                                                <meta charset="utf-8">
+                                                <link rel="stylesheet" href="./css/style` +
+                                                index +
+                                                `.css">
+                                            </head>
+                                            ${editor.Pages.get(
+                                                "layout-page-" + index
+                                            )
+                                                .getMainComponent()
+                                                .toHTML()}
+                                            </html>`;
+                                            sessionStorage.setItem(
+                                                "html" + index,
+                                                code
+                                            );
+                                            console.log(
+                                                sessionStorage.getItem(
+                                                    "html" + index
+                                                )
+                                            );
+                                        }
+                                    }
+                                }
                                 console.log("domain: " + domain);
                                 const frm = new FormData();
+
                                 frm.append("website_url", domain);
-                                let html = new File(
-                                    [sessionStorage.getItem("html")],
-                                    "index.html"
-                                );
-                                let html2 = new File(
-                                    [sessionStorage.getItem("html2")],
-                                    "index2.html"
-                                );
-                                let css = new File(
-                                    [sessionStorage.getItem("style")],
-                                    "style.css"
-                                );
-                                let css2 = new File(
-                                    [sessionStorage.getItem("style2")],
-                                    "style2.css"
-                                );
-                                frm.append("html", html);
-                                frm.append("html", html2);
-                                frm.append("css", css);
-                                frm.append("css", css2);
+
+                                //받는건 레이아웃 동일하게 받아도 됨
+                                for (let i = 1; i <= page_count; i++) {
+                                    //첫 페이지의 경우
+                                    if (i === 1) {
+                                        let html = new File(
+                                            [sessionStorage.getItem("html")],
+                                            "index.html"
+                                        );
+
+                                        let css = new File(
+                                            [sessionStorage.getItem("style")],
+                                            "style.css"
+                                        );
+
+                                        console.log(
+                                            "style: " +
+                                                sessionStorage.getItem("style")
+                                        );
+
+                                        frm.append("html", html);
+                                        frm.append("css", css);
+                                    } else {
+                                        //첫 페이지가 아닌 경우 (index에 맞춰서 저장)
+                                        let html = new File(
+                                            [
+                                                sessionStorage.getItem(
+                                                    "html" + i
+                                                ),
+                                            ],
+                                            "index" + i + ".html"
+                                        );
+
+                                        let css = new File(
+                                            [
+                                                sessionStorage.getItem(
+                                                    "style" + i
+                                                ),
+                                            ],
+                                            "style" + i + ".css"
+                                        );
+
+                                        console.log(
+                                            "style" +
+                                                i +
+                                                " : " +
+                                                sessionStorage.getItem(
+                                                    "style" + i
+                                                )
+                                        );
+
+                                        frm.append("html", html);
+                                        frm.append("css", css);
+                                    }
+                                }
+                                // let html = new File(
+                                //     [sessionStorage.getItem("html")],
+                                //     "index.html"
+                                // );
+                                // let html2 = new File(
+                                //     [sessionStorage.getItem("html2")],
+                                //     "index2.html"
+                                // );
+                                // let css = new File(
+                                //     [sessionStorage.getItem("style")],
+                                //     "style.css"
+                                // );
+                                // let css2 = new File(
+                                //     [sessionStorage.getItem("style2")],
+                                //     "style2.css"
+                                // );
+                                // frm.append("html", html);
+                                // frm.append("html", html2);
+                                // frm.append("css", css);
+                                // frm.append("css", css2);
 
                                 axios
                                     .post(
-                                        "https://sddsapi.paas-ta.org/api/v1/website",
+                                        "http://52.231.107.168:3000/api/v1/website",
                                         frm,
                                         {
                                             headers: {
@@ -107,7 +240,7 @@ export const addCommands = (editor, domain, page_id, token) => {
                                     .catch((err) => console.log(err));
                                 axios
                                     .post(
-                                        "https://sddsapi.paas-ta.org/api/v1/member/sign-up/" +
+                                        "http://52.231.107.168:3000/api/v1/member/sign-up/" +
                                             domain,
                                         {
                                             login_id: domain + "_admin",
@@ -126,16 +259,16 @@ export const addCommands = (editor, domain, page_id, token) => {
                                         console.log(data);
                                         console.log("domain: " + domain);
 
-                                        if (page_id === "0") {
-                                            window.location.href =
-                                                "http://www.hyeonuk.co.kr/" +
-                                                domain +
-                                                "/";
-                                        } else {
-                                            window.location.replace(
-                                                "/personal"
-                                            );
-                                        }
+                                        // if (page_id === "0") {
+                                        //     window.location.href =
+                                        //         "http://www.hyeonuk.co.kr/" +
+                                        //         domain +
+                                        //         "/";
+                                        // } else {
+                                        //     window.location.replace(
+                                        //         "/personal"
+                                        //     );
+                                        // }
                                     })
                                     .catch((err) => console.log(err));
                             }, 1500);
