@@ -61,7 +61,7 @@ function LoginMain() {
                         //로그인 post 전송
                         axios({
                             method: "post",
-                            url: "https://sddsapi.paas-ta.org/api/v1/login",
+                            url: "http://52.231.107.168:3000/api/v1/login",
                             data: {
                                 login_id: state.login_id,
                                 password: state.password,
@@ -72,6 +72,9 @@ function LoginMain() {
                                 if (res.data.statusCode === 200) {
                                     // access_token 리코일 저장
                                     setToken(res.data.access_token);
+                                    alert(
+                                        "로그인 되었습니다! 관리 페이지로 이동합니다."
+                                    );
 
                                     console.log(res.data.access_token);
 

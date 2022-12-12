@@ -28,7 +28,7 @@ function Intro() {
                 type="button"
                 class="btn btn-light btn-lg"
                 onClick={() => {
-                    navigate("/layout");
+                    navigate("/login");
                 }}
             >
                 시작하기

@@ -202,7 +202,7 @@ function MainPage() {
                 gjs_forms,
                 gjs_img_editor,
                 gjs_pj_manager,
-                // gjs_tail,
+                gjs_tail,
             ],
             pluginsOpts: {
                 gjsBlockBasic: {},
@@ -249,45 +249,45 @@ function MainPage() {
                                 // 이거 css도 적용하기
                             ],
                         },
-                        // {
-                        //     type: "select",
-                        //     label: "버튼 꾸미기",
-                        //     name: "id",
-                        //     options: [
-                        //         {
-                        //             id: "",
-                        //             name: "프리셋 1",
-                        //         },
-                        //         {
-                        //             id: "",
-                        //             name: "프리셋 2",
-                        //         },
-                        //         {
-                        //             id: "",
-                        //             name: "프리셋 3",
-                        //         },
+                        {
+                            type: "select",
+                            label: "버튼 꾸미기",
+                            name: "class",
+                            options: [
+                                {
+                                    id: "",
+                                    name: "버튼 디자인을 선택해주세요!",
+                                },
+                                {
+                                    id: "btn-order1",
+                                    name: "프리셋 1",
+                                },
+                                {
+                                    id: "btn-order2",
+                                    name: "프리셋 2",
+                                },
+                                {
+                                    id: "btn-order3",
+                                    name: "프리셋 3",
+                                },
 
-                        //         // 이거 css도 적용하기
-                        //     ],
-                        // },
-                        // {
-                        //     type: "checkbox",
-                        //     name: "required",
-                        // },
+                                // 이거 css도 적용하기
+                            ],
+                        },
                         {
                             type: "checkbox",
                             label: "사용 불가능하게",
                             name: "disabled",
                         },
-                        {
-                            type: "button",
-                            // ...
-                            text: "Click me",
-                            full: true, // Full width button
-                            command: (editor) => alert("Hello"),
-                            // or you can just specify the Command ID
-                            command: "some-command",
-                        },
+                        // {
+                        //     type: "button",
+                        //     // ...
+                        //     text: "Click me",
+                        //     full: true, // Full width button
+                        //     command: (editor) => alert("Hello"),
+                        //     // or you can just specify the Command ID
+                        //     // command: "some-command",
+                        // },
                     ],
                     // As by default, traits are binded to attributes, so to define
                     // their initial value we can use attributes

@@ -32,7 +32,7 @@ function Navbar2() {
                                 </Button>{" "}
                             </Margin_Btn>
                         </Link>
-                        <Link to="/layout">
+                        <Link to="/login">
                             <Margin_Btn>
                                 <Button variant="outline-secondary">
                                     시작하기

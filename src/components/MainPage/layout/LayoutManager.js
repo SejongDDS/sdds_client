@@ -816,7 +816,7 @@ export const layoutManager = {
                             name="address"
                             placeholder="주소를 입력해주세요"
                             data-gjs-removable="false"
-                            readonly
+                            
                         />
                         <input
                             class="input-blank"
@@ -870,11 +870,11 @@ export const layoutManager = {
                 document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
                 //카카오 지도 발생
                 new daum.Postcode({
-                oncomplete: function(data) { //선택시 입력값 세팅
-                    document.getElementById("address_kakao").value = data.address; // 주소 넣기
-                    document.getElementById("detail-address").focus(); //상세입력 포커싱
-                    
-                }}).open();
+                    oncomplete: function(data) { //선택시 입력값 세팅
+                        document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                        document.getElementById("detail-address").focus(); //상세입력 포커싱
+                        
+                    }}).open();
                 });
                 }
 
@@ -888,7 +888,7 @@ export const layoutManager = {
                 const product_id = split_data[0].split("=")[1];
                 const count = split_data[1].split("=")[1];
 
-                console.log("log! id = " + product_id + " & count = " + count);
+                console.log("product id = " + product_id + " & count = " + count);
 
                 //물품 JSON 데이터 받아오기
                 async function loadData(){
@@ -907,6 +907,7 @@ export const layoutManager = {
                 }
 
                 async function load_member_id(){
+                    //여기 고치기 #######################
                     let member1 = await fetch(serverUrl + "/api/v1/member/all/" + website_url, {
                         headers: {
                             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoidGVzdDEyMzQiLCJpYXQiOjE2NjgzNjM2NTcsImV4cCI6MTY3MDk1NTY1N30.nEl8jXeuwa1qog0JxeaoXxxOO6vy3_q8Pj6aTMiOJ7Y",
@@ -921,6 +922,9 @@ export const layoutManager = {
                 }
 
                 function send_order(product_id){
+                    alert("주문이 완료되었습니다.");
+                    location.href="index.html";
+
                     const countElement = document.getElementById('product-count');
                     let count = countElement.value;
 
@@ -951,6 +955,8 @@ export const layoutManager = {
                     .then((data) => console.log(data))
                     .then(() => alert("상품 주문이 완료되었습니다."))
                     .catch((err) => console.log(err));
+                    //주문 성공 모달 띄울지?
+                    //그냥 확인 취소 뜨는 창 뜨는거 하면 될듯
 
                     console.log(count + " address: " + address + "tel: " + tel);
                 }
@@ -966,6 +972,9 @@ export const layoutManager = {
                 window.onload = function() {
                     let orderCount = document.getElementById('blank-count');
                     orderCount.innerHTML = count + " 개";
+
+                    let e2 = document.getElementById("btn-order");
+                    e2.setAttribute("onClick", "send_order(1)");
                 }
 
                 // 썸네일은 서버에서 받아와야 함
@@ -1114,7 +1123,54 @@ export const addPages = (editor, page_id, page_count) => {
         for (let i = 1; i <= page_count; i++) {
             pageManager.add({
                 id: "page-" + i,
-                component: "",
+                component: `
+                <style>
+                    .btn-order1 {
+                        width: 220px;
+                        height: 55px;
+                        
+                        text-align: center;
+                        font-size: 30px;
+                        display: block;
+                        margin: auto;
+                        
+                        background: #ff5b59;
+                        color: #fff;
+                        border: 1px solid #ff5b59;
+                    }
+
+                    .btn-order2 {
+                        width: 200px;
+                        height: 60px;
+
+                        text-align: center;
+                        padding: 15px 30px;
+                        border-radius: 50px;
+                        margin: auto;
+                        
+
+                        background: #fff
+                        border: 2px solid #bfbfbf;
+                        color: #bfbfbf;
+                    }
+
+                    .btn-order3 {
+                        width: 240px;
+                        height: 60px;
+
+                        display: block;
+                        font-size: 18px;
+                        outline: none;  
+                        transition: .3s linear;
+                        border-radius: 6px;
+                        margin: auto;
+
+                        background-color: #00a8ff;
+                        border: none;
+                        color: #fff;
+                    }
+                
+                </style>`,
             });
             console.log("page add : " + i);
         }

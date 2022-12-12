@@ -13,7 +13,7 @@ export const websiteState = atom({
 export const tokenState = atom({
     key: "tokenState",
     default:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX2xvZ2luX2lkIjoiMTExMSIsImlhdCI6MTY2OTUyOTM0NCwiZXhwIjoxNjcyMTIxMzQ0fQ.k6YpTzdcV3ODyduaI9wNv7JrSYNfBaVh7QJtoV42aqw",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VyX2xvZ2luX2lkIjoic2RkcyIsImlhdCI6MTY3MDc1OTM1MiwiZXhwIjoxNjczMzUxMzUyfQ.LCQ8r6Cw1AAG3NnQx0aoJcqebKvfpqHJzVU-QFBH974",
 });
 
 export const getToken = selector({
