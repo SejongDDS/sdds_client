@@ -19,7 +19,7 @@ function Start() {
                 type="button"
                 class="btn btn-outline-secondary btn-lg"
                 onClick={() => {
-                    navigate("/layout");
+                    navigate("/login");
                 }}
             >
                 무료로 시작하기

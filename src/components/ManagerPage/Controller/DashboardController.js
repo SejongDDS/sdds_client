@@ -14,7 +14,7 @@ export const asyncProductQuery = selector({
         let website = get(websiteState);
         let token = get(tokenState);
         const response = await axios.get(
-            "https://sddsapi.paas-ta.org/api/v1/product/" + website,
+            "http://52.231.107.168:3000/api/v1/product/" + website,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ export const asyncProductQuery = selector({
 export const getProducts = async (token, website) => {
     try {
         const response = await axios.get(
-            "https://sddsapi.paas-ta.org/api/v1/product/" + website,
+            "http://52.231.107.168:3000/api/v1/product/" + website,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ export const getProducts = async (token, website) => {
 export const getProductDetail = async (token, website, id) => {
     try {
         const response = await axios.get(
-            "https://sddsapi.paas-ta.org/api/v1/product/" + website + "/" + id,
+            "http://52.231.107.168:3000/api/v1/product/" + website + "/" + id,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -81,7 +81,7 @@ export const updateProduct = async (
 
     try {
         const response = await axios.post(
-            "https://sddsapi.paas-ta.org/api/v1/product/" + id,
+            "http://52.231.107.168:3000/api/v1/product/" + id,
             data,
             {
                 headers: {
@@ -119,7 +119,7 @@ export const addProduct = async (
 
     try {
         const response = await axios.post(
-            "https://sddsapi.paas-ta.org/api/v1/product",
+            "http://52.231.107.168:3000/api/v1/product",
             frm,
             {
                 headers: {
@@ -136,7 +136,7 @@ export const addProduct = async (
 export const deleteProduct = async (token, id, website) => {
     try {
         const response = await axios.delete(
-            "https://sddsapi.paas-ta.org/api/v1/product/" +
+            "http://52.231.107.168:3000/api/v1/product/" +
                 id +
                 "?website_url=" +
                 website,
@@ -155,7 +155,7 @@ export const deleteProduct = async (token, id, website) => {
 export const getOrders = async (token, website) => {
     try {
         const response = await axios.get(
-            "https://sddsapi.paas-ta.org/api/v1/orders/" + website,
+            "http://52.231.107.168:3000/api/v1/orders/" + website,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -172,7 +172,7 @@ export const getOrders = async (token, website) => {
 export const getOrderDetail = async (token, website, id) => {
     try {
         const response = await axios.get(
-            "https://sddsapi.paas-ta.org/api/v1/orders/" + website + "/" + id,
+            "http://52.231.107.168:3000/api/v1/orders/" + website + "/" + id,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -200,7 +200,7 @@ export const updateOrder = async (
     };
     try {
         const response = await axios.post(
-            "https://sddsapi.paas-ta.org/api/v1/orders/" + id,
+            "http://52.231.107.168:3000/api/v1/orders/" + id,
             data,
             {
                 headers: {
@@ -218,7 +218,7 @@ export const updateOrder = async (
 export const deleteOrder = async (token, id) => {
     try {
         const response = await axios.delete(
-            "https://sddsapi.paas-ta.org/api/v1/orders/" + id,
+            "http://52.231.107.168:3000/api/v1/orders/" + id,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -234,7 +234,7 @@ export const deleteOrder = async (token, id) => {
 export const getMembers = async (token, website) => {
     try {
         const response = await axios.get(
-            "https://sddsapi.paas-ta.org/api/v1/member/all/" + website,
+            "http://52.231.107.168:3000/api/v1/member/all/" + website,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -251,7 +251,7 @@ export const getMembers = async (token, website) => {
 export const getMemberDetail = async (token, website, id) => {
     try {
         const response = await axios.get(
-            "https://sddsapi.paas-ta.org/api/v1/member/" + website + "/" + id,
+            "http://52.231.107.168:3000/api/v1/member/" + website + "/" + id,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

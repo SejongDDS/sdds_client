@@ -7,7 +7,6 @@ import Modal_SignUp from "./Modal_SignUp";
 import "./SignUpMain.scss";
 
 import axios from "axios";
-import { useRecoilState } from "recoil";
 
 import logo from "../../../resources/imgs/logo.png";
 import { useNavigate } from "react-router-dom";
@@ -105,7 +104,7 @@ function SighUpMain() {
                         if (state.password === state.check_password) {
                             axios({
                                 method: "post",
-                                url: "https://sddsapi.paas-ta.org/api/v1/user/sign-up",
+                                url: "http://52.231.107.168:3000/api/v1/user/sign-up",
                                 data: {
                                     login_id: state.login_id,
                                     password: state.password,
@@ -128,16 +127,16 @@ function SighUpMain() {
                                             "이미 존재하거나 올바르지 않는 아이디입니다.\n다른 아이디를 다시 입력해주세요."
                                         );
                                     }
-                                    // 홈으로 이동
-                                    //window.location.href = "../";
+
                                     // 이거 로그인 완료 페이지 따로 만드는거 필요?
                                 })
                                 .catch(function (error) {
                                     //오류 로그 출력
                                     console.log(error);
 
-                                    //오류 모달 표시
-                                    // -- 빈칸에 뭘 표시할 수  있?
+                                    alert(
+                                        "오류가 발생했습니다.\n관리자에게 문의 바랍니다."
+                                    );
 
                                     //202(정보가 이미 존재하면) - 그 정보 표시
                                 });

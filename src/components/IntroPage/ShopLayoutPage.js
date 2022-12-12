@@ -32,7 +32,7 @@ function ShopLayoutPage() {
                                 alt="layout_1"
                             ></img>
                         </div>
-                        <p className="card-title">레이아웃 1</p>
+                        <p className="card-title">쇼핑몰 레이아웃 1</p>
                         <p className="card-description">
                             카드 형식 메뉴를 활용해서
                             <br />
@@ -55,7 +55,7 @@ function ShopLayoutPage() {
                                 alt="layout_1"
                             ></img>
                         </div>
-                        <p className="card-title">레이아웃 2</p>
+                        <p className="card-title">쇼핑몰 레이아웃 2</p>
                         <p className="card-description">
                             나열된 메뉴를 활용해서
                             <br />
