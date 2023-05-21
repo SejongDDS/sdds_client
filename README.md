@@ -33,7 +33,7 @@ Drag & Drop 웹빌더 Saas 프로그램 오픈소스 프로젝트로 진행한 �
 ![sdds시스템구성도](https://github.com/SejongDDS/sdds_client/assets/81470586/1ca87bc3-7585-4a51-81bd-f9525dc2e2e1)
 
 ### SDDS서비스 구현 모식도
-<img width="279" alt="sdds서비스구현모식도" src="https://github.com/SejongDDS/sdds_client/assets/81470586/67ac4721-97a2-4431-9b61-51ae9c845a0e">
+<img width="1468" alt="sdds서비스구현모식도" src="https://github.com/SejongDDS/sdds_client/assets/81470586/67ac4721-97a2-4431-9b61-51ae9c845a0e">
 
 ## 서비스 구현 화면
 ### 웹빌더 화면(좌: 캔버스, 우: 컴포넌트 설정 화면)
